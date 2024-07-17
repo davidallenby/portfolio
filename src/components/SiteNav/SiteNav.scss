@@ -1,1 +1,36 @@
-.SiteNav {}
+@import '/src/assets/styles/variables';
+
+.SiteNav {
+  display: inline-flex;
+
+  a {
+    text-decoration: none;
+    font-family: $headings-font-family;
+    transition: .25s;
+    font-size: 110%;
+    padding: 0 1.5rem;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 0;
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 1px;
+      background-color: $primary;
+      transition: .25s;
+    }
+
+    &.active,
+    &:hover {
+      color: lighten($primary, 15%);
+
+      &::after {
+        width: 50%;
+      }
+    }
+  }
+}

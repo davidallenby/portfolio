@@ -1,12 +1,13 @@
-import React, { FC, MouseEventHandler, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './MobileMenu.scss';
 import Link from 'next/link';
 import { getCurrentYear } from '../../hooks/common';
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
 import { FaCodepen } from 'react-icons/fa';
 import SiteLogo from '@components/SiteLogo/SiteLogo';
-import { UI } from '../../interfaces/ui.interfaces';
+import { NavMenuItem } from '../../interfaces/ui.interfaces';
 import { useMobileNavContext } from '../../context/MobileNavContext';
+import { SITENAV_ITEMS } from '../../constants/navigation';
 
 interface MobileMenuProps {}
 
@@ -17,27 +18,9 @@ const MobileMenu: FC<MobileMenuProps> = (props) => {
   // The delay between showing/hiding the menu, and attaching the element
   const delay = 250;
   // Mobile navigation menu items
-  const navItems: UI.NavMenuItem[] = [
-    {
-      label: 'Home',
-      url: '/'
-    },
-    {
-      label: 'Projects',
-      url: '/projects'
-    },
-    {
-      label: 'About',
-      url: '/about'
-    },
-    {
-      label: 'Contact',
-      url: '/#contact'
-    },
-  ]
+  const navItems: NavMenuItem[] = [...SITENAV_ITEMS]
 
   useEffect(() => {
-    console.log('Open is: ', open)
     setStyleClass(`MobileMenu${open ? ` MobileMenu--open` : ''}`)
     setTimeout(() => {
       setAttach(open);
