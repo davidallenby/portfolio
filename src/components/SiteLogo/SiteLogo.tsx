@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
-import Image from 'next/image'
+import React, { FC, useEffect } from 'react';
+import Logo from '@svg/site-logo.svg';
 import './SiteLogo.scss';
+import Link from 'next/link';
 
 interface SiteLogoProps {
   colorInverted?: boolean;
@@ -28,15 +29,16 @@ const SiteLogo: FC<SiteLogoProps> = ({
     return styleClass;
   }
 
+  useEffect(() => {
+
+  }, [])
+
   return (
-    <div className={getClassName()}>
-      <Image 
-        src={`/svg/site-logo.svg`} 
-        width={42}
-        height={42}
-        alt='David Allenby Site Logo'
-      />
-    </div>
+    <Link href={'/'}
+      className={getClassName()}
+    >
+      <Logo />
+    </Link>
   );
 }
 

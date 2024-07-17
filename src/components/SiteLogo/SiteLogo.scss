@@ -1,7 +1,23 @@
 @import '/src/assets/styles/variables';
 
 .SiteLogo {
-  img {
-    fill: $primary;
+  &.SiteLogo--inverted {
+    svg {
+      & > :nth-child(1) {
+        stroke: $primary-100;
+      }
+      & > :not(:nth-child(1)) {
+        fill: $primary-100;
+      }
+    }
+  }
+
+  svg {
+    & > :nth-child(1) {
+      stroke: $primary;
+    }
+    & > :not(:nth-child(1)) {
+      fill: $primary;
+    }
   }
 }
