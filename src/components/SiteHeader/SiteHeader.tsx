@@ -17,6 +17,13 @@ const SiteHeader: FC<SiteHeaderProps> = () => {
     height: 0,
     width: 0
   })
+  // This is required because there's a delay between the DOM loading and the
+  // window event figuring out whether or not this is a mobile device or not.
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Check whether it's a mobile viewport or not. We'll use this to attach /
+  // remove the mobile menu/desktop menu
+  const isMobile = screen.width < 768;
 
   useEffect(() => {
     // Set the screen size in state
@@ -25,18 +32,16 @@ const SiteHeader: FC<SiteHeaderProps> = () => {
         height: window.innerHeight,
         width: window.innerWidth
       })
+      if (!isLoaded) { setIsLoaded(true) }
     }
     // Run handleResize on page load (window is not available outside useEffect)
     handleResize();    
     // Create a version of handleResize with debounce attached
-    const debounceResize = debounce(handleResize, 500)
+    const debounceResize = debounce(handleResize, 100)
     // Run the dounce version of handleResize when the window size is changed
     window.addEventListener('resize', debounceResize)
-  }, [setScreen])
+  }, [setScreen, setIsLoaded, isLoaded])
 
-  // Check whether it's a mobile viewport or not. We'll use this to attach /
-  // remove the mobile menu/desktop menu
-  const isMobile = screen.width < 768;
 
   return (
     <MobileNavContextProvider>
@@ -45,8 +50,9 @@ const SiteHeader: FC<SiteHeaderProps> = () => {
         <SiteLogo 
           className='me-4'
         />
-        { isMobile ? <ToggleMobileNav />  : <SiteNav />}
-        { isMobile && <MobileMenu />}
+        <ToggleMobileNav className='d-md-none' />
+        <SiteNav className='d-none d-md-inline-flex' />
+        { isLoaded && isMobile && <MobileMenu />}
       </div>
     </div>
     </MobileNavContextProvider>

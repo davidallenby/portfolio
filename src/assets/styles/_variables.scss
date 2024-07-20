@@ -5,7 +5,9 @@
 // COLORS
 $primary: #917059;
 $primary-100: lighten($primary, 38%);
+$beige: #f5e9e1;
 $body-bg: #FBFBFB;
+$body-color: #3D3D3D;
 
 // PADDING
 $gutter: 2rem;
@@ -19,3 +21,6 @@ $h1-font-size: $font-size-base * 3;
 
 // COMPONENTS
 $header-height: 80px;
+
+// BORDERS
+$border-radius: 0;

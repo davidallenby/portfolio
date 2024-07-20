@@ -1,0 +1,19 @@
+@import '/src/assets/styles/variables';
+
+.ContentContainer {
+  opacity: 0;
+  transition: 1s;
+  & > div {
+    transition: 1.25s;
+    position: relative;
+    padding: 136px $gutter;
+  }
+}
+
+.ContentContainer--visible {
+  opacity: 1;
+
+  & > div {
+    top:0;
+  }
+}

@@ -1,3 +1,7 @@
+@import '/src/assets/styles/variables';
 .SiteHeader {
   position: sticky;
+  background-color: $body-bg;
+  top: 0;
+  z-index: 10;
 }

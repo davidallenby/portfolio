@@ -26,8 +26,11 @@
 @import "../../../node_modules/bootstrap/scss/grid";
 @import "../../../node_modules/bootstrap/scss/helpers";
 @import "../../../node_modules/bootstrap/scss/card";
+@import "../../../node_modules/bootstrap/scss/buttons";
 
 // Custom Styles
+@import './base'; // Base elements (e.g. hr, code, ul etc.)
 @import './spacing'; // Padding and margins
 @import './typography'; // Custom fonts 
 @import './containers';
+@import './utils'; // Custom utility classes

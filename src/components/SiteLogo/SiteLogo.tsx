@@ -1,15 +1,16 @@
-import React, { FC, useEffect } from 'react';
-import Logo from '@svg/site-logo.svg';
+import React, { Component, FC, ReactNode } from 'react';
 import './SiteLogo.scss';
 import Link from 'next/link';
 
 interface SiteLogoProps {
   colorInverted?: boolean;
   className?: string;
+  onClick?: () => void;
+  isLink: boolean;
 }
 
 const SiteLogo: FC<SiteLogoProps> = ({
-  colorInverted, className
+  colorInverted, className, isLink = true
 }) => {
   /**
    * This will build the style classes for the element based on whether the
@@ -29,17 +30,15 @@ const SiteLogo: FC<SiteLogoProps> = ({
     return styleClass;
   }
 
-  useEffect(() => {
 
-  }, [])
 
-  return (
-    <Link href={'/'}
+  return (isLink ? <Link href={'/'}
       className={getClassName()}
     >
-      <Logo />
-    </Link>
-  );
+      <span>DA</span>
+    </Link> : <span className={getClassName()}>
+      <span>DA</span>  
+    </span>);
 }
 
 export default SiteLogo;

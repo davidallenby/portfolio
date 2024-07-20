@@ -2,14 +2,18 @@ import React, { FC } from 'react';
 import './ToggleMobileNav.scss';
 import { useMobileNavContext } from '../../context/MobileNavContext';
 
-interface ToggleMobileNavProps {}
+interface ToggleMobileNavProps {
+  className?: string;
+}
 
-const ToggleMobileNav: FC<ToggleMobileNavProps> = () => {
+const ToggleMobileNav: FC<ToggleMobileNavProps> = ({
+  className
+}) => {
   const { open, toggleOpen} = useMobileNavContext();
 
   return (
     <button type='button' 
-      className={`ToggleMobileNav${open ? ' ToggleMobileNav--open': ''}`}
+      className={`ToggleMobileNav${open ? ' ToggleMobileNav--open': ''}${' ' + className ?? ''}`}
       onClick={() => {
         toggleOpen(!open);
       }}
