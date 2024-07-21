@@ -1,0 +1,8 @@
+@import '/src/assets/styles/variables';
+
+.Chip {
+  background-color: $beige;
+  padding: .5rem .67rem;
+  color: darken($primary, 11%);
+  border-radius: .5rem;
+}

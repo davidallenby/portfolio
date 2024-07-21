@@ -13,6 +13,10 @@
 /.next/
 /out/
 
+# Firebase
+/.firebase/
+/.github/
+
 # production
 /build
 
@@ -24,9 +28,11 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+firebase-debug.log
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel

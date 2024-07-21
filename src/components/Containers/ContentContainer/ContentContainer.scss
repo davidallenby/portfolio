@@ -1,0 +1,27 @@
+@import '/src/assets/styles/variables';
+@import '/node_modules/bootstrap/scss/functions';
+@import '/node_modules/bootstrap/scss/mixins';
+@import '/node_modules/bootstrap/scss/variables';
+
+.ContentContainer {
+  opacity: 0;
+  transition: 1s;
+  & > div {
+    transition: 1.25s;
+    position: relative;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    @include media-breakpoint-up(md) {
+      padding-top: 136px;
+      padding-bottom: 136px;
+    }
+  }
+}
+
+.ContentContainer--visible {
+  opacity: 1;
+
+  & > div {
+    top:0;
+  }
+}

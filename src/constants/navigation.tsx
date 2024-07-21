@@ -19,6 +19,6 @@ export const SITENAV_ITEMS: NavMenuItem[] = [
   },
   {
     label: 'Contact',
-    url: '/#contact'
+    url: '/contact'
   },
 ]
