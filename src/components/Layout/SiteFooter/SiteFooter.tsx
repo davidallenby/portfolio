@@ -1,35 +1,49 @@
 import React, { FC } from 'react';
 import './SiteFooter.scss';
 import SiteLogo from '@components/SiteLogo/SiteLogo';
-import { getCurrentYear } from '../../hooks/common';
-import SiteNav from '@components/SiteNav/SiteNav';
+import { getCurrentYear } from '../../../helpers/common';
+import SiteNav from '../SiteNav/SiteNav';
+import ExternalIcons from '@components/Content/ExternalIcons/ExternalIcons';
 
 interface SiteFooterProps {}
 
 const SiteFooter: FC<SiteFooterProps> = () => (
   <footer className="SiteFooter bg-primary">
     <div className='contained gutter-x'>
-        <div className='d-block d-md-flex justify-content-between align-items-center'>
-          <div className='d-flex align-items-center mb-5 mb-md-0'>
-            <SiteLogo colorInverted
+        <div className='d-block d-md-flex justify-content-between flex-grow-1'>
+          <div className='mb-5 mb-md-0 d-flex align-items-center'>
+            <SiteLogo 
+              colorInverted
               className='me-4'
             />
             <small className='d-none d-md-block'>
               <span>&copy; David Allenby {getCurrentYear()}</span>
             </small>
+            
+            
           </div>
-          <SiteNav vertical
+          <SiteNav 
+            vertical
             colorInverted
             className='d-md-none mb-5'
           />
-          <SiteNav colorInverted
-            className='d-none d-md-block'
+          <div className='d-flex align-items-center justify-content-md-end flex-grow-1'>
+          <SiteNav 
+            colorInverted
+            className='d-none d-md-block mb-0 mt-2 me-4'
           />
+          <ExternalIcons colorInverted
+            className='mb-4 mb-md-0'
+          />
+          </div>
+          
           <small className='d-block d-md-none'>
             <span>&copy; David Allenby {getCurrentYear()}</span>
           </small>
         </div>
+        
     </div>
+    
   </footer>
 );
 

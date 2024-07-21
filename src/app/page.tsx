@@ -1,12 +1,12 @@
 import './home/Home.scss';
-import ExternalIcons from "@components/ExternalIcons/ExternalIcons";
-import ContentContainer from "@components/ContentContainer/ContentContainer";
-import { getYearsExperience } from "../hooks/common";
+import ExternalIcons from "@components/Content/ExternalIcons/ExternalIcons";
+import ContentContainer from "@components/Containers/ContentContainer/ContentContainer";
+import { getYearsExperience } from "../helpers/common";
 import Link from "next/link";
 import { LINKS } from "../constants/links";
 import Image from "next/image";
 import OILogo from '@svg/openinvest-logo.svg';
-import FeaturedArticles from '@components/FeaturedArticles/FeaturedArticles';
+import FeaturedArticles from '@components/Content/FeaturedArticles/FeaturedArticles';
 import SiteLogo from '@components/SiteLogo/SiteLogo';
 
 export default function Home() {
@@ -85,7 +85,7 @@ export default function Home() {
       </ContentContainer>
       
       <ContentContainer className="bg-beige">
-        <FeaturedArticles posts={3} />
+        <FeaturedArticles postLimit={3} />
       </ContentContainer>
     </main> 
   );

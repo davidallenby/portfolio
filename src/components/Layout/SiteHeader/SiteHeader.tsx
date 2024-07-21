@@ -3,11 +3,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import './SiteHeader.scss';
 import SiteLogo from '@components/SiteLogo/SiteLogo';
-import { debounce } from '../../hooks/common';
-import ToggleMobileNav from '@components/ToggleMobileNav/ToggleMobileNav';
-import SiteNav from '@components/SiteNav/SiteNav';
-import MobileMenu from '@components/MobileMenu/MobileMenu';
-import { MobileNavContextProvider } from '../../context/MobileNavContext';
+import { debounce } from '../../../helpers/common';
+import ToggleMobileNav from '../ToggleMobileNav/ToggleMobileNav';
+import SiteNav from '../SiteNav/SiteNav';
+import MobileMenu from '../MobileMenu/MobileMenu';
+import { MobileNavContextProvider } from '@context/MobileNavContext';
 
 interface SiteHeaderProps {}
 

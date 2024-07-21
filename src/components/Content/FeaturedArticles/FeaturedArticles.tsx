@@ -6,13 +6,13 @@ import { BsArrowRight } from 'react-icons/bs';
 import { useEffect, useState } from "react"
 import db from "@lib/firestore";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore"
-import { BlogPost } from '../../interfaces/blog.interfaces';
-import { FIREBASE } from '../../constants/firebase';
+import { BlogPost } from '../../../interfaces/blog.interfaces';
+import { FIREBASE } from '../../../constants/firebase';
 
 interface FeaturedArticlesProps {
   className?: string;
   title?: string;
-  posts: number;
+  postLimit: number;
 }
 /**
  * Creates the list of card templates that display the blog posts.
@@ -81,7 +81,7 @@ const setLoadingContent = (): ReactNode => {
 }
 
 const FeaturedArticles: FC<FeaturedArticlesProps> = ({
-  className, title = 'Featured articles', posts = 3
+  className, title = 'Featured articles', postLimit = 3
 }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [items, setItems] = useState<BlogPost[]>([]);
@@ -89,15 +89,15 @@ const FeaturedArticles: FC<FeaturedArticlesProps> = ({
   /**
    * Fetch the article data from the server
    *
-   * @param {number} posts
+   * @param {number} postLimit
    * @return {*}  {Promise<BlogPost[]>}
    */
-  async function getArticleData(posts: number): Promise<BlogPost[]> {
+  async function getArticleData(postLimit: number): Promise<BlogPost[]> {
     setLoading(true);
     try {
       const collectionName = FIREBASE.COLLECTIONS.NAMES.BLOG_POSTS;
       const q = query(
-        collection(db, collectionName), orderBy('dateCreated'), limit(posts)
+        collection(db, collectionName), orderBy('dateCreated'), limit(postLimit)
       );
       const req = await getDocs(q);
       return req.docs.map((doc) => ({ ...doc.data() as BlogPost, id: doc.id }))
@@ -111,11 +111,11 @@ const FeaturedArticles: FC<FeaturedArticlesProps> = ({
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getArticleData(posts);
+      const data = await getArticleData(postLimit);
       setItems(data);
     }
     getData();
-  }, [posts])
+  }, [postLimit])
 
   return (
     <>

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './ToggleMobileNav.scss';
-import { useMobileNavContext } from '../../context/MobileNavContext';
+import { useMobileNavContext } from '@context/MobileNavContext';
 
 interface ToggleMobileNavProps {
   className?: string;

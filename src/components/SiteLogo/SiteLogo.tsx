@@ -1,4 +1,4 @@
-import React, { Component, FC, ReactNode } from 'react';
+import React, { FC } from 'react';
 import './SiteLogo.scss';
 import Link from 'next/link';
 
@@ -6,7 +6,7 @@ interface SiteLogoProps {
   colorInverted?: boolean;
   className?: string;
   onClick?: () => void;
-  isLink: boolean;
+  isLink?: boolean;
 }
 
 const SiteLogo: FC<SiteLogoProps> = ({

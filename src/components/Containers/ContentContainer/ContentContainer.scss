@@ -6,7 +6,8 @@
   & > div {
     transition: 1.25s;
     position: relative;
-    padding: 136px $gutter;
+    padding-top: 136px;
+    padding-bottom: 136px;
   }
 }
 

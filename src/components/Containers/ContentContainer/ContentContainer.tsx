@@ -66,9 +66,11 @@ const ContentContainer: FC<ContentContainerProps> = ({
 
   return (
     <section ref={elem} className={`ContentContainer${' ' + className ?? ''}`}>
-      <div className='contained gutter-x'>
-        {children}
-      </div>
+      { contained ? 
+        <div className={`gutter-x contained`}>
+          {children}
+        </div> : children
+      }
     </section>
   );
 }

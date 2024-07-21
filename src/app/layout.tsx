@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import '../assets/styles/index.scss';
-import SiteHeader from "@components/SiteHeader";
-import SiteFooter from "@components/SiteFooter/SiteFooter";
+import SiteHeader from "@components/Layout/SiteHeader";
+import SiteFooter from "@components/Layout/SiteFooter/SiteFooter";
 
 export const metadata: Metadata = {
   title: `David Allenby | Lead frontend developer based in Berlin, Germany`,
@@ -14,10 +14,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
+    <html lang="en" className="d-flex flex-column flex-grow-1 h-100">
+      <body className="d-flex flex-column flex-grow-1">
         <SiteHeader />
+        <main className="d-flex flex-column flex-grow-1">
         {children}
+        </main>
         <SiteFooter />
       </body>
     </html>

@@ -1,8 +1,8 @@
 import React, { FC, ReactNode } from 'react';
 import './SiteNav.scss';
 import Link from 'next/link';
-import { NavMenuItem } from '../../interfaces/ui.interfaces';
-import { SITENAV_ITEMS } from '../../constants/navigation';
+import { NavMenuItem } from '../../../interfaces/ui.interfaces';
+import { SITENAV_ITEMS } from '../../../constants/navigation';
 
 interface SiteNavProps {
   vertical?: boolean;
