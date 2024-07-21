@@ -8,9 +8,9 @@
  */
 
 import { ContactRequestPayload } from "./interfaces/contact";
-import { runWith } from "firebase-functions";
 import * as sendgrid from '@sendgrid/mail';
 import * as logger from 'firebase-functions/logger';
+import { runWith } from "firebase-functions/v1";
 
 sendgrid.setApiKey(process.env.SENDGRID as string)
 
