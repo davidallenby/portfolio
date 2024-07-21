@@ -1,1 +1,1 @@
-export const RECAPTCHA_SITE_KEY = `6LcuCRUqAAAAANYaR7Y4UD3tdV_6tsjjaoCv8Rda`;
+export const RECAPTCHA_SITE_KEY = `6LdtMxUqAAAAAMAR-ONrZJb9WXr4wn4ypKf4JP0k`;
