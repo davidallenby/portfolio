@@ -7,9 +7,8 @@
  * See a full list of supported triggers at https://firebase.google.com/docs/functions
  */
 
-// import * as logger from "firebase-functions/logger";
 import { ContactRequestPayload } from "./interfaces/contact";
-import { runWith } from "firebase-functions/v1";
+import { runWith } from "firebase-functions";
 import * as sendgrid from '@sendgrid/mail';
 import * as logger from 'firebase-functions/logger';
 
