@@ -10,7 +10,7 @@
 // import * as logger from "firebase-functions/logger";
 import { ContactRequestPayload } from "./interfaces/contact";
 import { runWith } from "firebase-functions/v1";
-import sendgrid = require('@sendgrid/mail');
+import * as sendgrid from '@sendgrid/mail';
 import * as logger from 'firebase-functions/logger';
 
 sendgrid.setApiKey(process.env.SENDGRID as string)

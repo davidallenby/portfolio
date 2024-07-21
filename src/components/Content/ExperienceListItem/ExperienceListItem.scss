@@ -1,8 +1,0 @@
-@import '/src/assets/styles/variables';
-
-.ExperienceListItem {
-  border-bottom: 1px solid lighten($primary, 30%);
-  &:last-of-type {
-    border-bottom: 0;
-  }
-}
