@@ -71,39 +71,6 @@ export default function About() {
     }
   ]
 
-  // const experience: ExperienceItemInterface[] = [
-  //   {
-  //     role: 'Lead frontend developer',
-  //     employerName: 'OpenInvest Australia',
-  //     location: 'Melbourne, AU',
-  //     dates: 'July 2023 - February 2024'
-  //   },
-  //   {
-  //     role: 'Senior frontend developer',
-  //     employerName: 'OpenInvest Australia',
-  //     location: 'Melbourne, AU',
-  //     dates: 'October 2020 - July 2023'
-  //   },
-  //   {
-  //     role: 'Senior frontend developer & UX designer',
-  //     employerName: 'Australian Council for Educational Research',
-  //     location: 'Melbourne, AU',
-  //     dates: 'August 2017 - October 2020'
-  //   },
-  //   {
-  //     role: 'Lead developer',
-  //     employerName: 'The Refinery',
-  //     location: 'Melbourne, AU',
-  //     dates: 'May 2016 - June 2017'
-  //   },
-  //   {
-  //     role: 'Frontend developer',
-  //     employerName: 'National Australia Bank',
-  //     location: 'Melbourne, AU',
-  //     dates: 'June 2015 - May 2016'
-  //   }
-  // ]
-
   return (
     <main>
       <ContentContainer contained={false}>
@@ -162,13 +129,12 @@ export default function About() {
 
       <ContentContainer className="bg-beige">
         <div className="row flex-row-reverse">
-
           <div className="col-12 col-lg-6 mb-5 mb-lg-0">
             <h2>Who am I?</h2>
             <p>Originally from Northern Ireland, I&apos;ve spent the last 14 years living and working in the vibrant tech scene of Melbourne, Australia. Recently, I took the plunge and moved to Berlin, Germany, drawn by a long-standing fascination with the language and culture.</p>
             <p>When I&apos;m not immersed in code, I love staying active and fueling my passion for football. Fitness is a big part of my life, and you&apos;ll often find me exploring new ways to stay in shape. My wanderlust has taken me to 16 countries so far, and my travel bucket list keeps growing.</p>
             <p>
-              <span>In my spare time, I&apos;m also the co-founder of a camping startup based in Sydney, Australia, where I channel my entrepreneurial spirit and love for the great outdoors. I&apos;m currently looking for freelance opportunities, so if you have a project in mind, </span>
+              <span>In my spare time, I&apos;m also the co-founder of a <Link href={`http://camplete.com.au`} target="_blank">camping startup</Link> based in Sydney, Australia, where I channel my entrepreneurial spirit and love for the great outdoors. I&apos;m currently looking for freelance opportunities, so if you have a project in mind, </span>
               <Link href={'/contact'}>get in touch!</Link>
             </p>
           </div>

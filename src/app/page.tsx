@@ -27,7 +27,14 @@ export default function Home() {
         <h2 className="mb-4">Featured projects</h2>
         <div className="Projects__wrapper mb-5">
           <a href="/about" className="position-relative FeaturedProject">
-            <video controls={false} autoPlay={true} loop playsInline className='w-100 h-100' style={{ objectFit: 'cover'}}>
+            <video 
+              controls={false} 
+              autoPlay={true} 
+              loop 
+              playsInline 
+              className='w-100 h-100' 
+              style={{ objectFit: 'cover'}}
+            >
               <source src="video/camplete-logo.webm" type="video/webm" />
             </video>
             <span className='FeaturedProject__info'></span>
