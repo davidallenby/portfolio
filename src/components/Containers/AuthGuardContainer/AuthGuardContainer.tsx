@@ -1,45 +1,55 @@
 'use client'
 import { ROUTES } from "@constants/navigation";
-import { useAuthContext } from "@context/AuthContext";
+import { auth } from "@lib/firebase/app";
 import { useRouter } from "next/navigation";
 import { FC, ReactNode, useEffect, useState } from "react";
 
 interface AuthGuardContainerProps {
   children: ReactNode;
-  
+  hideVerified?: boolean;
 }
 /**
  * This container will hide content from view until the auth state has loaded
  * from Firebase. If the user is not logged in it will redirect them to the
- * login screen.
+ * login screen. If the user IS logged in, but we want to hide the content
+ * from a verified user... it will redirect them to the admin screen
  *
  * @param {*} { children }
  * @return {*} 
  */
-const AuthGuardContainer: FC<AuthGuardContainerProps> = ({ children }) => {
+const AuthGuardContainer: FC<AuthGuardContainerProps> = ({ 
+  children, hideVerified = false
+}: AuthGuardContainerProps): ReactNode => {
   const [loading, setLoading] = useState<boolean>(true);
-  const authCxt = useAuthContext();
   const router = useRouter();
   
   useEffect(() => {
+    // Hide the content from view...
+    setLoading(true);
+
     /**
      * Gets the current auth state and redirects the user if they're logged in.
      * @returns 
      */
-    async function getAuthState() {
-      // Hide the child content from view until the auth has finished loading
-      setLoading(true);
-      // If the user is not logged in/verified, redirect to login screen.
-      if (!authCxt) {
+    const unsubscribe = auth.onAuthStateChanged((state) => {
+      // If not logged in, redirect to login
+      if (!hideVerified && !state) {
         router.push(ROUTES.LOGIN);
         return;
       }
-      // Show the content if the user is logged in/verified
-      setLoading(false);
-    }
 
-    getAuthState();
-  }, [authCxt, router])
+      if (hideVerified && state) {
+        router.push(ROUTES.ADMIN)
+        return;
+      }
+      // Show the content in the view...
+      setLoading(false);
+    })
+    
+    // Will unsubscribe when the component unmounts.
+    return unsubscribe;
+
+  }, [router, hideVerified])
 
   return (
     <>

@@ -19,6 +19,7 @@ const LoginForm: FC<ContactFormProps> = () => {
   } = useForm<LoginFormInput>();
 
   const [error , setError] = useState('')
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   /**
@@ -29,6 +30,7 @@ const LoginForm: FC<ContactFormProps> = () => {
    * @param {*} data
    */
   const onSubmit = async (data: any) => {
+    setLoading(true);
     setError('');
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
@@ -37,6 +39,7 @@ const LoginForm: FC<ContactFormProps> = () => {
       console.error('Error logging in:', error.message);
       setError('There was an error logging in.')
     }
+    setLoading(false);
   };
 
   return (
@@ -46,6 +49,7 @@ const LoginForm: FC<ContactFormProps> = () => {
         <input id="email" 
           placeholder='Email address'
           type="email" 
+          disabled={loading}
           {...register("email", { required: "Email is required" })}
         />
         {errors.email && <p className='text-danger mt-1'>
@@ -57,6 +61,7 @@ const LoginForm: FC<ContactFormProps> = () => {
         <input id="password" 
           placeholder='Password'
           type="password" 
+          disabled={loading}
           {...register("password", { required: "Password is required" })}
         />
         {errors.password && <p className='text-danger mt-1'>
@@ -65,8 +70,11 @@ const LoginForm: FC<ContactFormProps> = () => {
       </div>
       { error && <p className='mb-4 text-danger'>{error}</p>}
       <button type="submit"
+        disabled={loading}
         className='btn btn-outline-primary'
-      >Login</button>
+      >
+        {loading ? 'Logging in...' : 'Log in'}
+      </button>
     </form>
   );
 };

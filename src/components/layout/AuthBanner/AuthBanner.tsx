@@ -1,5 +1,5 @@
 'use client'
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import './AuthBanner.scss';
 import Link from 'next/link';
 import { useAuthContext } from '@context/AuthContext';
@@ -13,7 +13,7 @@ interface AuthBannerProps {}
  *
  * @return {*} 
  */
-const AuthBanner: FC<AuthBannerProps> = () => {
+const AuthBanner: FC<AuthBannerProps> = (): ReactNode => {
   const user = useAuthContext();
 
   const signOut = () => {
