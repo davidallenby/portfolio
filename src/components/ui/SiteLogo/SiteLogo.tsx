@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import './SiteLogo.scss';
 import Link from 'next/link';
+import { ROUTES } from '@constants/navigation';
 
 interface SiteLogoProps {
   colorInverted?: boolean;
@@ -32,7 +33,7 @@ const SiteLogo: FC<SiteLogoProps> = ({
 
 
 
-  return (isLink ? <Link href={'/'}
+  return (isLink ? <Link href={ROUTES.HOME}
       className={getClassName()}
     >
       <span>DA</span>

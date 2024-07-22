@@ -1,8 +1,4 @@
-@import '/src/assets/styles/variables';
-@import '/src/assets/styles/typography';
-
-.ContactForm {
-  position: relative;
+form {
   label {
     display: block;
     margin-bottom: 8px;
@@ -18,8 +14,4 @@
   textarea {
     min-height: 200px;
   }
-}
-
-.ContactForm__overlay {
-  background-color: $body-bg;
 }

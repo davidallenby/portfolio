@@ -1,8 +1,10 @@
+
+'use client'
 import React, { FC, ReactNode } from 'react';
 import './SiteNav.scss';
 import Link from 'next/link';
-import { NavMenuItem } from '../../../interfaces/ui.interfaces';
-import { SITENAV_ITEMS } from '../../../constants/navigation';
+import { NavMenuItem } from '@interfaces/ui.interfaces';
+import { SITENAV_ITEMS } from '@constants/navigation';
 
 interface SiteNavProps {
   vertical?: boolean;
@@ -48,7 +50,7 @@ const SiteNav: FC<SiteNavProps> = (props) => {
    * @return {*} 
    */
   const getNavLinks = (): ReactNode => {
-   return siteNavItems.map((item, i) => {
+    return siteNavItems.map((item, i) => {
       return vertical ? <li key={i}>
         {getNavLinkNode(item)}
       </li> : getNavLinkNode(item, i)
@@ -72,10 +74,12 @@ const SiteNav: FC<SiteNavProps> = (props) => {
 
   return (
     <nav className={setStyleClass()}>
-      { vertical ? 
+      { vertical ? <>
         <ul className='list-unstyled mb-0'>
           {getNavLinks()}
-        </ul> : getNavLinks() }
+        </ul>
+      </>
+      : getNavLinks() }
     </nav>
   );
 }

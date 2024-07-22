@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
 import './MobileMenu.scss';
 import Link from 'next/link';
-import { getCurrentYear } from '../../../helpers/common';
-import SiteLogo from '@components/SiteLogo/SiteLogo';
-import { NavMenuItem } from '../../../interfaces/ui.interfaces';
+import { getCurrentYear } from '@utils/common';
+import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
+import { NavMenuItem } from '@interfaces/ui.interfaces';
 import { useMobileNavContext } from '@context/MobileNavContext';
-import { SITENAV_ITEMS } from '../../../constants/navigation';
-import ExternalIcons from '@components/Content/ExternalIcons/ExternalIcons';
+import { SITENAV_ITEMS } from '@constants/navigation';
+import ExternalIcons from '@components/features/ExternalIcons/ExternalIcons';
 
 interface MobileMenuProps {}
 

@@ -4,10 +4,10 @@ import './FeaturedArticles.scss';
 import Link from 'next/link';
 import { BsArrowRight } from 'react-icons/bs';
 import { useEffect, useState } from "react"
-import db from "@lib/firestore";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore"
-import { BlogPost } from '../../../interfaces/blog.interfaces';
-import { FIREBASE } from '../../../constants/firebase';
+import { BlogPost } from '@interfaces/blog.interfaces';
+import { FIREBASE } from '@constants/firebase';
+import { db } from '@lib/firebase/app';
 
 interface FeaturedArticlesProps {
   className?: string;

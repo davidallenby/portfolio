@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import './SiteFooter.scss';
-import SiteLogo from '@components/SiteLogo/SiteLogo';
-import { getCurrentYear } from '../../../helpers/common';
+import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
+import { getCurrentYear } from '../../../utils/common';
 import SiteNav from '../SiteNav/SiteNav';
-import ExternalIcons from '@components/Content/ExternalIcons/ExternalIcons';
+import ExternalIcons from '@components/features/ExternalIcons/ExternalIcons';
 
 interface SiteFooterProps {}
 

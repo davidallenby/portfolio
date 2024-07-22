@@ -2,8 +2,8 @@
 
 import React, { FC, useEffect, useState } from 'react';
 import './SiteHeader.scss';
-import SiteLogo from '@components/SiteLogo/SiteLogo';
-import { debounce } from '../../../helpers/common';
+import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
+import { debounce } from '../../../utils/common';
 import ToggleMobileNav from '../ToggleMobileNav/ToggleMobileNav';
 import SiteNav from '../SiteNav/SiteNav';
 import MobileMenu from '../MobileMenu/MobileMenu';

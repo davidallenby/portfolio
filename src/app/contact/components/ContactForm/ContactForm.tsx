@@ -3,16 +3,16 @@ import React, { FC, useRef, useState } from 'react';
 import './ContactForm.scss';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { RECAPTCHA_SITE_KEY } from '../../../constants/recaptcha';
+import { RECAPTCHA_SITE_KEY } from '@constants/recaptcha';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import app from '@lib/firebase-config';
+import app from '@lib/firebase/firebase-config';
 import SendingSpinner from './SendingSpinner';
 
 
 interface ContactFormProps {}
 
 // Define the form data type
-interface IFormInput {
+interface ContactFormInput {
   name: string;
   email: string;
   phone?: string;
@@ -26,7 +26,7 @@ const ContactForm: FC<ContactFormProps> = () => {
 
   const { 
     register, reset, handleSubmit, setValue, formState: { errors }
-  } = useForm<IFormInput>();
+  } = useForm<ContactFormInput>();
   // Reference to the recaptcha component
   const recaptchaRef = useRef<ReCAPTCHA>(null);  
   // Sending states
@@ -38,7 +38,7 @@ const ContactForm: FC<ContactFormProps> = () => {
    * When the user clicks submit
    * @param data 
    */
-  const onSubmit: SubmitHandler<IFormInput> = async data => {
+  const onSubmit: SubmitHandler<ContactFormInput> = async data => {
     // Validate recaptcha
     const recaptchaToken = await recaptchaRef.current?.executeAsync();
     if (!recaptchaToken) { 
@@ -132,7 +132,7 @@ const ContactForm: FC<ContactFormProps> = () => {
           <button 
             disabled={sending}
             type="submit"
-            className='btn btn-primary'
+            className='btn btn-outline-primary'
           >Submit</button>
         </div>
 
