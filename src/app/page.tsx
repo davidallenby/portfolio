@@ -16,8 +16,6 @@ export default async function Home() {
   // Get the items from the server
   const items: BlogPostView[] = await getBlogPosts(3);
 
-  console.log(items);
-
   return (    
     <PublicLayout>
       <ContentContainer className="HomeHeroBanner">
