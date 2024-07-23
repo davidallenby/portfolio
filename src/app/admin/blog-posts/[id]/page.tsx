@@ -2,7 +2,7 @@ import './EditPost.scss';
 import EditPostHeader from "../../components/EditPostHeader/EditPostHeader";
 import EditPostForm from "../../components/EditPostForm/EditPostForm";
 import { BlogPost, BlogPostView } from '@interfaces/blog.interfaces';
-import { getBlogPostDetails } from '@lib/firebase/firestore';
+import { getBlogPostById } from '@lib/firebase/firestore';
 
 export default async function EditPost({ params }: { 
   params: { id: string } 
@@ -10,7 +10,7 @@ export default async function EditPost({ params }: {
   let postData: BlogPostView|null = null;
 
   try {
-    postData = await getBlogPostDetails(params.id)
+    postData = await getBlogPostById(params.id)
   } catch (err) {
     console.log(err);
   }

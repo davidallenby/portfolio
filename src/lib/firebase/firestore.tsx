@@ -41,13 +41,13 @@ export async function getBlogPosts(posts?: number): Promise<BlogPostView[]> {
 }
 
 /**
- * Get the details of a singular blog post
+ * Get the details of a singular blog post. Fetched by ID
  *
  * @export
  * @param {string} id
  * @return {*}  {Promise<BlogPost>}
  */
-export async function getBlogPostDetails(id: string): Promise<BlogPostView> {
+export async function getBlogPostById(id: string): Promise<BlogPostView> {
   try {
     const collectionName = FIREBASE.COLLECTIONS.NAMES.BLOG_POSTS;
     const snapshot = await getDoc(doc(db, `${collectionName}`, id))
