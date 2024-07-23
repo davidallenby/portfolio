@@ -21,7 +21,7 @@ const AuthBanner: FC<AuthBannerProps> = (): ReactNode => {
   const signOut = () => auth.signOut();
 
   const getUrl = () => {
-    return (path.includes('admin')) ? '/' : '/admin'
+    return (path.includes('admin')) ? '/?' : '/admin'
   }
 
   const getLabel = () => {

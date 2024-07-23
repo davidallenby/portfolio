@@ -1,4 +1,4 @@
-import './home/Home.scss';
+import './page.scss';
 import ExternalIcons from "@components/features/ExternalIcons/ExternalIcons";
 import ContentContainer from "@components/containers/ContentContainer/ContentContainer";
 import { getYearsExperience } from "../utils/common";
@@ -9,18 +9,20 @@ import OILogo from '@svg/openinvest-logo.svg';
 import FeaturedArticles from '@components/features/FeaturedArticles/FeaturedArticles';
 import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
 import PublicLayout from '@components/layout/PublicLayout/PublicLayout';
-import { BlogPost } from '@interfaces/blog.interfaces';
-import { getArticleData } from '@lib/firebase/firestore';
+import { BlogPost, BlogPostView } from '@interfaces/blog.interfaces';
+import { getBlogPosts } from '@lib/firebase/firestore';
 
 export default async function Home() {
   // Get the items from the server
-  const items: BlogPost[] = await getArticleData(3);
+  const items: BlogPostView[] = await getBlogPosts(3);
+
+  console.log(items);
 
   return (    
     <PublicLayout>
       <ContentContainer className="HomeHeroBanner">
         <h1 className="mb-1">David Allenby</h1>
-        <h2 className="subtitle mb-3">Lead frontend developer</h2>
+        <h2 className="subtitle text-base mb-3">Lead frontend developer</h2>
         <p>
           <span>Hi, I&apos;m David. I&apos;m a lead frontend developer based in Berlin, Germany.</span>
           <br/>
@@ -45,7 +47,7 @@ export default async function Home() {
               className='w-100 h-100' 
               style={{ objectFit: 'cover'}}
             >
-              <source src="video/camplete-logo.webm" type="video/webm" />
+              <source src="/video/camplete-logo.webm" type="video/webm" />
             </video>
             <span className='FeaturedProject__info'></span>
           </Link>

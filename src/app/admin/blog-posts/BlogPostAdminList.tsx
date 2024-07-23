@@ -26,7 +26,6 @@ const BlogPostAdminList: FC<BlogPostAdminListProps> = ({
       </thead>
       <tbody>
         { posts.map((item, i) => {
-          console.log(item);
           return <tr key={i}>
             <td>{getDateString(item.dateCreated)}</td>
             <td>{item.title}</td>
@@ -36,7 +35,7 @@ const BlogPostAdminList: FC<BlogPostAdminListProps> = ({
               })}
             </td>
             <td className="text-end">
-              <Link href={`blog-posts/edit?postId=${item.id}`}>
+              <Link href={`blog-posts/${item.id}`}>
                 Edit post
               </Link>
             </td>

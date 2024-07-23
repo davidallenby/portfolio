@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import '../assets/styles/index.scss';
-import AuthBanner from "@components/layout/AuthBanner/AuthBanner";
+import AuthBanner from "@components/ui/AuthBanner/AuthBanner";
 import MainApp from "@components/layout/MainApp/MainApp";
 
 export const metadata: Metadata = {

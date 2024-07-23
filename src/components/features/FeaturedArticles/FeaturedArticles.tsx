@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import './FeaturedArticles.scss';
 import Link from 'next/link';
 import { BsArrowRight } from 'react-icons/bs';
-import { BlogPostView } from '@interfaces/blog.interfaces';
+import { BlogPost, BlogPostView } from '@interfaces/blog.interfaces';
 import { getDateString } from '@utils/dates';
 
 interface FeaturedArticlesProps {
@@ -35,7 +35,9 @@ const setArticleContent = (posts: BlogPostView[]): React.ReactNode => {
                     {item.title}
                   </Link>
                 </h3>
-                <small className='d-block text-muted mb-4'>{getDateString(item.dateCreated)}</small>
+                <small className='d-block subtitle mb-4'>
+                  Published: {getDateString(item.dateCreated)}
+                </small>
                 <Link href={`/blog/${item.slug}`} className="small">
                   <span className="d-inline-block me-2">Read more</span>
                   <BsArrowRight />

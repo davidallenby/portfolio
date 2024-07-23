@@ -1,12 +1,12 @@
-import { getArticleData } from "@lib/firebase/firestore";
+import { getBlogPosts } from "@lib/firebase/firestore";
 import Link from "next/link";
 import { PiPlus } from "react-icons/pi";
-import BlogPostAdminList from "./components/BlogPostAdminList";
+import BlogPostAdminList from "./BlogPostAdminList";
 import AdminLayoutContainer from "@components/containers/AdminLayoutContainer/AdminLayoutContainer";
 
 export default async function BlogPosts() {
 
-  const posts = await getArticleData()
+  const posts = await getBlogPosts()
 
   return (
     <AdminLayoutContainer>

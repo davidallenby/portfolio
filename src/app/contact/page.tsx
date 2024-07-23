@@ -1,5 +1,5 @@
 import PublicLayout from "@components/layout/PublicLayout/PublicLayout";
-import ContactForm from "./components/ContactForm/ContactForm";
+import ContactForm from "./ContactForm";
 import ContentContainer from "@components/containers/ContentContainer/ContentContainer";
 
 export default function Contact() {
