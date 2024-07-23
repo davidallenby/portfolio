@@ -1,6 +1,6 @@
 import { FIREBASE } from "@constants/firebase";
 import { collection, doc, getDoc, getDocs, limit, orderBy, query } from "@firebase/firestore";
-import { BlogPost, BlogPostData, BlogPostView } from "@interfaces/blog.interfaces";
+import { BlogPostData, BlogPostView } from "@interfaces/blog.interfaces";
 import { db } from "./app";
 
 /**
