@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,16 +22,41 @@
       }
     ],
     "paths": {
-      "@styles/*": ["./src/assets/styles/*"],
-      "@components/*": ["./src/components/*"],
-      "@svg/*": ["./src/assets/svg/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@context/*": ["./src/context/*"],
-      "@interfaces/*": ["./src/interfaces/*"],
-      "@constants/*": ["./src/constants/*"],
-      "@utils/*": ["./src/utils/*"],
+      "@styles/*": [
+        "./src/assets/styles/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@svg/*": [
+        "./src/assets/svg/*"
+      ],
+      "@lib/*": [
+        "./src/lib/*"
+      ],
+      "@context/*": [
+        "./src/context/*"
+      ],
+      "@interfaces/*": [
+        "./src/interfaces/*"
+      ],
+      "@constants/*": [
+        "./src/constants/*"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/middleware.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "BACKUP/types/**/*.ts",
+    "src/middleware.ts",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
