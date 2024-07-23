@@ -9,8 +9,9 @@ import OILogo from '@svg/openinvest-logo.svg';
 import FeaturedArticles from '@components/features/FeaturedArticles/FeaturedArticles';
 import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
 import PublicLayout from '@components/layout/PublicLayout/PublicLayout';
-import { BlogPost, BlogPostView } from '@interfaces/blog.interfaces';
+import { BlogPostView } from '@interfaces/blog.interfaces';
 import { getBlogPosts } from '@lib/firebase/firestore';
+import { BsGithub } from 'react-icons/bs';
 
 export default async function Home() {
   // Get the items from the server
@@ -66,6 +67,14 @@ export default async function Home() {
               <p className='h3 mb-0'>David Allenby</p>
             </span>
             <span className='FeaturedProject__info'></span>
+          </Link>
+        </div>
+        <div className='text-center'>
+          <Link href={LINKS.GITHUB}
+            className='btn btn-outline-primary d-inline-flex align-items-center'
+          >
+            <BsGithub className='me-2' />
+            <span>View GitHub</span>
           </Link>
         </div>
       </ContentContainer>
