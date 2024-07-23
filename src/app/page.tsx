@@ -8,10 +8,38 @@ import Image from "next/image";
 import OILogo from '@svg/openinvest-logo.svg';
 import FeaturedArticles from '@components/features/FeaturedArticles/FeaturedArticles';
 import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
+import PublicLayout from '@components/layout/PublicLayout/PublicLayout';
+import { BlogPost } from '@interfaces/blog.interfaces';
+import { collection, getDocs, limit, orderBy, query } from '@firebase/firestore';
+import { FIREBASE } from '@constants/firebase';
+import { db } from '@lib/firebase/app';
 
-export default function Home() {
+export default async function Home() {
+
+  /**
+   * Fetch the article data from the server
+   *
+   * @param {number} postLimit
+   * @return {*}  {Promise<BlogPost[]>}
+   */
+  async function getArticleData(postLimit: number): Promise<BlogPost[]> {
+    try {
+      const collectionName = FIREBASE.COLLECTIONS.NAMES.BLOG_POSTS;
+      const q = query(
+        collection(db, collectionName), orderBy('dateCreated'), limit(postLimit)
+      );
+      const req = await getDocs(q);
+      return req.docs.map((doc) => ({ ...doc.data() as BlogPost, id: doc.id }))
+    } catch (err) {
+      console.log(err);
+      return [];
+    }
+  }
+  // Get the items from the server
+  const items: BlogPost[] = await getArticleData(3);
+
   return (    
-    <>
+    <PublicLayout>
       <ContentContainer className="HomeHeroBanner">
         <h1 className="mb-1">David Allenby</h1>
         <h2 className="subtitle mb-3">Lead frontend developer</h2>
@@ -95,8 +123,8 @@ export default function Home() {
       </ContentContainer>
       
       <ContentContainer className="bg-beige">
-        <FeaturedArticles postLimit={3} />
+        <FeaturedArticles items={items} />
       </ContentContainer>
-    </> 
+    </PublicLayout> 
   );
 }

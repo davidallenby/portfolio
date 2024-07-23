@@ -11,6 +11,7 @@ import { SiJquery, SiVite, SiWebpack } from "react-icons/si";
 import Link from "next/link";
 import { LINKS } from "@constants/links";
 import { ROUTES } from "@constants/navigation";
+import PublicLayout from "@components/layout/PublicLayout/PublicLayout";
 
 export default function About() {
   const chips: ChipInterface[] = [
@@ -73,7 +74,7 @@ export default function About() {
   ]
 
   return (
-    <>
+    <PublicLayout>
       <ContentContainer contained={false}>
         <div className="contained gutter-x">
           <div className="row">
@@ -167,6 +168,6 @@ export default function About() {
           </div>
         </div>
       </ContentContainer>
-    </>
+    </PublicLayout>
   );
 }

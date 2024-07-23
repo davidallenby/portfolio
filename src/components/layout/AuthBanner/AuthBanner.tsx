@@ -4,6 +4,7 @@ import './AuthBanner.scss';
 import Link from 'next/link';
 import { useAuthContext } from '@context/AuthContext';
 import { auth } from '@lib/firebase/app';
+import { usePathname } from 'next/navigation';
 
 interface AuthBannerProps {}
 /**
@@ -15,18 +16,26 @@ interface AuthBannerProps {}
  */
 const AuthBanner: FC<AuthBannerProps> = (): ReactNode => {
   const user = useAuthContext();
+  const path = usePathname();
 
-  const signOut = () => {
-    auth.signOut()
+  const signOut = () => auth.signOut();
+
+  const getUrl = () => {
+    return (path.includes('admin')) ? '/' : '/admin'
   }
+
+  const getLabel = () => {
+    return (path.includes('admin') ? 'View site' : 'Admin console')
+  }
+
   return (
     <>
       { user && <div className="AuthBanner bg-dark">
       <div className='contained gutter-x d-flex align-items-center justify-content-between'>
         <Link
-          href={'/admin'}
+          href={getUrl()}
           className='btn btn-link btn-sm text-light me-3'
-        >Go to admin</Link>
+        >{getLabel()}</Link>
         <div className='ms-auto'>
           <button type='button'
             onClick={() => signOut()}

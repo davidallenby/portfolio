@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import '../assets/styles/index.scss';
-import SiteHeader from "@components/ui/SiteHeader";
-import SiteFooter from "@components/ui/SiteFooter/SiteFooter";
 import AuthBanner from "@components/layout/AuthBanner/AuthBanner";
 import MainApp from "@components/layout/MainApp/MainApp";
 
@@ -21,11 +19,7 @@ export default function RootLayout({
       <body className="d-flex flex-column flex-grow-1">
         <MainApp>
           <AuthBanner />
-          <SiteHeader />
-          <main className="d-flex flex-column flex-grow-1">
-          {children}
-          </main>
-          <SiteFooter />
+          { children }
         </MainApp>
       </body>
     </html>

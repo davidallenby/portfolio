@@ -5,8 +5,8 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { RECAPTCHA_SITE_KEY } from '@constants/recaptcha';
 import { getFunctions, httpsCallable } from 'firebase/functions';
-import app from '@lib/firebase/firebase-config';
 import SendingSpinner from './SendingSpinner';
+import { app } from '@lib/firebase/app';
 
 
 interface ContactFormProps {}
