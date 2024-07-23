@@ -1,0 +1,9 @@
+.EditPost__featured-image-wrapper {
+  position: relative;
+  background-color: aliceblue;
+  &:before {
+    content: '';
+    display: block;
+    padding-bottom: 40%;
+  }
+}

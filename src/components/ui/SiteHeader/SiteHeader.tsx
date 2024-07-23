@@ -46,7 +46,7 @@ const SiteHeader: FC<SiteHeaderProps> = () => {
   return (
     <MobileNavContextProvider>
       <div className="SiteHeader">
-      <div className="contained d-flex align-items-center justify-content-between gutter-x py-3">
+      <div className="d-flex align-items-center justify-content-between gutter-x py-3">
         <SiteLogo 
           className='me-4'
         />

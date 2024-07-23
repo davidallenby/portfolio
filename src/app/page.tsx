@@ -10,31 +10,9 @@ import FeaturedArticles from '@components/features/FeaturedArticles/FeaturedArti
 import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
 import PublicLayout from '@components/layout/PublicLayout/PublicLayout';
 import { BlogPost } from '@interfaces/blog.interfaces';
-import { collection, getDocs, limit, orderBy, query } from '@firebase/firestore';
-import { FIREBASE } from '@constants/firebase';
-import { db } from '@lib/firebase/app';
+import { getArticleData } from '@lib/firebase/firestore';
 
 export default async function Home() {
-
-  /**
-   * Fetch the article data from the server
-   *
-   * @param {number} postLimit
-   * @return {*}  {Promise<BlogPost[]>}
-   */
-  async function getArticleData(postLimit: number): Promise<BlogPost[]> {
-    try {
-      const collectionName = FIREBASE.COLLECTIONS.NAMES.BLOG_POSTS;
-      const q = query(
-        collection(db, collectionName), orderBy('dateCreated'), limit(postLimit)
-      );
-      const req = await getDocs(q);
-      return req.docs.map((doc) => ({ ...doc.data() as BlogPost, id: doc.id }))
-    } catch (err) {
-      console.log(err);
-      return [];
-    }
-  }
   // Get the items from the server
   const items: BlogPost[] = await getArticleData(3);
 

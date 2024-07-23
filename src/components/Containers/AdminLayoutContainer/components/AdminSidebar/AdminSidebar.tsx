@@ -11,7 +11,7 @@ const AdminSidebar: FC<AdminSidebarProps> = () => {
   const path = usePathname();
 
   return (
-    <div className='AdminSidebar h-100'>
+    <div className='AdminSidebar'>
       <ul className="list-unstyled py-5">
         <li>
           <Link 

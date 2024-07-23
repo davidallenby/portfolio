@@ -5,12 +5,13 @@ interface ChipProps {
   className?: string;
   children?: ReactNode;
   icon?: ReactNode;
+  small?: boolean;
 }
 
 const Chip: FC<ChipProps> = ({
-  className, children, icon
+  className, children, icon, small
 }) => (
-  <div className={`Chip d-inline-flex${' ' + className ?? ''}`}>
+  <div className={`Chip d-inline-flex${' ' + className ?? ''}${small ? ' Chip--small' : ''}`}>
     { icon && <span className='me-2'>
       {icon}
     </span>}

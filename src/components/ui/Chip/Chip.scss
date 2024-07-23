@@ -5,4 +5,9 @@
   padding: .5rem .67rem;
   color: darken($primary, 11%);
   border-radius: .5rem;
+
+  &.Chip--small {
+    padding: .35rem .5rem;
+    font-size: .8rem;
+  }
 }

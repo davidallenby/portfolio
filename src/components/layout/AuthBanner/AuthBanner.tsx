@@ -31,7 +31,7 @@ const AuthBanner: FC<AuthBannerProps> = (): ReactNode => {
   return (
     <>
       { user && <div className="AuthBanner bg-dark">
-      <div className='contained gutter-x d-flex align-items-center justify-content-between'>
+      <div className='gutter-x d-flex align-items-center justify-content-between'>
         <Link
           href={getUrl()}
           className='btn btn-link btn-sm text-light me-3'

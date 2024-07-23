@@ -9,7 +9,7 @@ interface SiteFooterProps {}
 
 const SiteFooter: FC<SiteFooterProps> = () => (
   <footer className="SiteFooter bg-primary">
-    <div className='contained gutter-x'>
+    <div className='gutter-x'>
         <div className='d-block d-md-flex justify-content-between flex-grow-1'>
           <div className='mb-5 mb-md-0 d-flex align-items-center'>
             <SiteLogo 

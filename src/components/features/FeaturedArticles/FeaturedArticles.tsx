@@ -3,19 +3,20 @@ import React, { FC } from 'react';
 import './FeaturedArticles.scss';
 import Link from 'next/link';
 import { BsArrowRight } from 'react-icons/bs';
-import { BlogPost } from '@interfaces/blog.interfaces';
+import { BlogPostView } from '@interfaces/blog.interfaces';
+import { getDateString } from '@utils/dates';
 
 interface FeaturedArticlesProps {
   className?: string;
   title?: string;
-  items: BlogPost[];
+  items: BlogPostView[];
 }
 /**
  * Creates the list of card templates that display the blog posts.
  *
  * @return {*} 
  */
-const setArticleContent = (posts: BlogPost[]): React.ReactNode => {
+const setArticleContent = (posts: BlogPostView[]): React.ReactNode => {
   if (!posts.length) {
     return <p className='lead'>There are no posts to display! 🧐</p>
   }
@@ -34,7 +35,7 @@ const setArticleContent = (posts: BlogPost[]): React.ReactNode => {
                     {item.title}
                   </Link>
                 </h3>
-                <p></p>
+                <small className='d-block text-muted mb-4'>{getDateString(item.dateCreated)}</small>
                 <Link href={`/blog/${item.slug}`} className="small">
                   <span className="d-inline-block me-2">Read more</span>
                   <BsArrowRight />
