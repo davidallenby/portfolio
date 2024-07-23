@@ -1,0 +1,17 @@
+form {
+  label {
+    display: block;
+    margin-bottom: 8px;
+    @extend .subtitle;
+  }
+  input,textarea {
+    padding: .5rem 1rem;
+    display: block;
+    width: 100%;
+    border: 1px solid $primary;
+  }
+
+  textarea {
+    min-height: 200px;
+  }
+}

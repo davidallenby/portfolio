@@ -22,9 +22,12 @@
       "@components/*": ["./src/components/*"],
       "@svg/*": ["./src/assets/svg/*"],
       "@lib/*": ["./src/lib/*"],
-      "@context/*": ["./src/context/*"]
+      "@context/*": ["./src/context/*"],
+      "@interfaces/*": ["./src/interfaces/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@utils/*": ["./src/utils/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/middleware.ts"],
   "exclude": ["node_modules"]
 }

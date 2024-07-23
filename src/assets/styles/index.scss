@@ -27,6 +27,7 @@
 @import "../../../node_modules/bootstrap/scss/helpers";
 @import "../../../node_modules/bootstrap/scss/card";
 @import "../../../node_modules/bootstrap/scss/buttons";
+@import "../../../node_modules/bootstrap/scss/tables";
 
 // Custom Styles
 @import './base'; // Base elements (e.g. hr, code, ul etc.)
@@ -34,3 +35,4 @@
 @import './typography'; // Custom fonts 
 @import './containers';
 @import './utils'; // Custom utility classes
+@import './forms';

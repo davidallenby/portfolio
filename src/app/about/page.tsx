@@ -1,15 +1,17 @@
-import ContentContainer from "@components/Containers/ContentContainer/ContentContainer";
-import { getYearsExperience } from "../../helpers/common";
+import ContentContainer from "@components/containers/ContentContainer/ContentContainer";
+import { getYearsExperience } from "@utils/common";
 import Image from 'next/image';
 import './About.scss'
 import { FaAngular, FaCss3, FaGithub, FaHtml5, FaJs, FaNodeJs, FaReact, FaSass } from "react-icons/fa";
-import { ChipInterface } from "../../interfaces/ui.interfaces";
-import Chip from "@components/Content/Chip/Chip";
+import { ChipInterface } from "@interfaces/ui.interfaces";
+import Chip from "@components/ui/Chip/Chip";
 import { TbBrandReactNative } from "react-icons/tb";
 import { IoLogoCapacitor, IoLogoFirebase } from "react-icons/io5";
 import { SiJquery, SiVite, SiWebpack } from "react-icons/si";
 import Link from "next/link";
-import { LINKS } from "../../constants/links";
+import { LINKS } from "@constants/links";
+import { ROUTES } from "@constants/navigation";
+import PublicLayout from "@components/layout/PublicLayout/PublicLayout";
 
 export default function About() {
   const chips: ChipInterface[] = [
@@ -72,7 +74,7 @@ export default function About() {
   ]
 
   return (
-    <main>
+    <PublicLayout>
       <ContentContainer contained={false}>
         <div className="contained gutter-x">
           <div className="row">
@@ -107,7 +109,7 @@ export default function About() {
               <span>For a more detailed overview of my skills and experience, check out my </span>
               <Link href={LINKS.LINKEDIN}>LinkedIn</Link>
               <span> profile. Or </span>
-              <Link href={'/contact'}>get in touch</Link>
+              <Link href={ROUTES.CONTACT}>get in touch</Link>
               <span> and I will happily share my CV.</span> 
             </p>
           </div>
@@ -135,7 +137,7 @@ export default function About() {
             <p>When I&apos;m not immersed in code, I love staying active and fueling my passion for football. Fitness is a big part of my life, and you&apos;ll often find me exploring new ways to stay in shape. My wanderlust has taken me to 16 countries so far, and my travel bucket list keeps growing.</p>
             <p>
               <span>In my spare time, I&apos;m also the co-founder of a <Link href={`http://camplete.com.au`} target="_blank">camping startup</Link> based in Sydney, Australia, where I channel my entrepreneurial spirit and love for the great outdoors. I&apos;m currently looking for freelance opportunities, so if you have a project in mind, </span>
-              <Link href={'/contact'}>get in touch!</Link>
+              <Link href={ROUTES.CONTACT}>get in touch!</Link>
             </p>
           </div>
           <div className="col-12 col-lg-6 AboutMe__img-grid">
@@ -166,6 +168,6 @@ export default function About() {
           </div>
         </div>
       </ContentContainer>
-    </main>
+    </PublicLayout>
   );
 }

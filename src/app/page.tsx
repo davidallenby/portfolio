@@ -1,20 +1,28 @@
-import './home/Home.scss';
-import ExternalIcons from "@components/Content/ExternalIcons/ExternalIcons";
-import ContentContainer from "@components/Containers/ContentContainer/ContentContainer";
-import { getYearsExperience } from "../helpers/common";
+import './page.scss';
+import ExternalIcons from "@components/features/ExternalIcons/ExternalIcons";
+import ContentContainer from "@components/containers/ContentContainer/ContentContainer";
+import { getYearsExperience } from "../utils/common";
 import Link from "next/link";
 import { LINKS } from "../constants/links";
 import Image from "next/image";
 import OILogo from '@svg/openinvest-logo.svg';
-import FeaturedArticles from '@components/Content/FeaturedArticles/FeaturedArticles';
-import SiteLogo from '@components/SiteLogo/SiteLogo';
+import FeaturedArticles from '@components/features/FeaturedArticles/FeaturedArticles';
+import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
+import PublicLayout from '@components/layout/PublicLayout/PublicLayout';
+import { BlogPost, BlogPostView } from '@interfaces/blog.interfaces';
+import { getBlogPosts } from '@lib/firebase/firestore';
 
-export default function Home() {
+export default async function Home() {
+  // Get the items from the server
+  const items: BlogPostView[] = await getBlogPosts(3);
+
+  console.log(items);
+
   return (    
-    <main>
+    <PublicLayout>
       <ContentContainer className="HomeHeroBanner">
         <h1 className="mb-1">David Allenby</h1>
-        <h2 className="subtitle mb-3">Lead frontend developer</h2>
+        <h2 className="subtitle text-base mb-3">Lead frontend developer</h2>
         <p>
           <span>Hi, I&apos;m David. I&apos;m a lead frontend developer based in Berlin, Germany.</span>
           <br/>
@@ -23,10 +31,14 @@ export default function Home() {
         <ExternalIcons />
       </ContentContainer>
 
-      <ContentContainer className="bg-white">
+      <hr />
+
+      <ContentContainer className="">
         <h2 className="mb-4">Featured projects</h2>
-        <div className="Projects__wrapper mb-5">
-          <a href="/about" className="position-relative FeaturedProject">
+        <div className="FeaturedProjects__wrapper mb-5">
+          <Link href={`https://camplete.com.au`} 
+            target='_blank'
+            className="position-relative FeaturedProject">
             <video 
               controls={false} 
               autoPlay={true} 
@@ -35,17 +47,19 @@ export default function Home() {
               className='w-100 h-100' 
               style={{ objectFit: 'cover'}}
             >
-              <source src="video/camplete-logo.webm" type="video/webm" />
+              <source src="/video/camplete-logo.webm" type="video/webm" />
             </video>
             <span className='FeaturedProject__info'></span>
-          </a>
-          <a href="/" className="FeaturedProject">
+          </Link>
+          <Link href={'https://openinvest.com.au'} 
+            target='_blank'
+            className="FeaturedProject">
             <OILogo />
             <span className='FeaturedProject__info'></span>
-          </a>
-          <Link   
-            href='/'
-            className="d-flex flex-column justify-content-center align-items-center FeaturedProject"
+          </Link>
+          <Link href={'https://davidallenby.com'}
+            target='_blank'
+            className="d-flex flex-column justify-content-center align-items-center FeaturedProject bg-white"
           >
             <span className='d-flex align-items-center'>
               <SiteLogo isLink={false}
@@ -56,13 +70,10 @@ export default function Home() {
             <span className='FeaturedProject__info'></span>
           </Link>
         </div>
-        <div className="text-center">
-          <Link href={`/projects`}
-            className="btn btn-outline-primary"
-          >View more</Link>
-        </div>
       </ContentContainer>
+
       <hr />
+
       <ContentContainer className="bg-white">
         <div className="row">
           <div className="col-12 col-lg-6 d-flex flex-column justify-content-center mb-5 mb-lg-0">
@@ -92,8 +103,8 @@ export default function Home() {
       </ContentContainer>
       
       <ContentContainer className="bg-beige">
-        <FeaturedArticles postLimit={3} />
+        <FeaturedArticles items={items} />
       </ContentContainer>
-    </main> 
+    </PublicLayout> 
   );
 }
