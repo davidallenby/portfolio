@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import AdminSidebar from "./components/AdminSidebar/AdminSidebar";
+import AdminSidebar from "./AdminSidebar";
 import './AdminLayoutContainer.scss';
 
 interface AdminLayoutProps {
