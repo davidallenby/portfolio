@@ -9,6 +9,10 @@
 }
 
 .FeaturedProjects__wrapper {
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
+
   display: grid;
   position: relative;
   grid-template-columns: repeat(2, 1fr);
@@ -37,6 +41,7 @@
     transition: .25s;
     color: $body-color;
     position: relative;
+    min-height: 200px;
     &:hover {
       & > .FeaturedProject__info {
         opacity: 1;

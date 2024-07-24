@@ -11,3 +11,7 @@ hr {
 .grecaptcha-badge {
   display: none !important;
 }
+
+body.scroll-lock {
+  overflow: hidden;
+}

@@ -20,6 +20,8 @@ In future, I plan on adding the following features to this repo:
  - Automated tests
  - Manage / Edit Projects
  - Blog post comments (Google / FB sign in methods)
+ - Dynamically add icons to Blog Post Tags
+ - Update / Edit alt tags on blog post featured images
 
 ## Tech stack
 

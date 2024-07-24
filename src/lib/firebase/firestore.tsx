@@ -1,6 +1,6 @@
 import { FIREBASE } from "@constants/firebase";
-import { collection, doc, getDoc, getDocs, limit, orderBy, query } from "@firebase/firestore";
-import { BlogPostData, BlogPostView } from "@interfaces/blog.interfaces";
+import { addDoc, collection, doc, getDoc, getDocs, limit, orderBy, query } from "@firebase/firestore";
+import { BlogPostData, BlogPostTag, BlogPostView } from "@interfaces/blog.interfaces";
 import { db } from "./app";
 
 /**
@@ -13,7 +13,7 @@ import { db } from "./app";
  */
 export async function getBlogPosts(posts?: number): Promise<BlogPostView[]> {
   try {
-    const collectionName = FIREBASE.COLLECTIONS.NAMES.BLOG_POSTS;
+    const collectionName = FIREBASE.COLLECTIONS.BLOG_POSTS;
     const coll = collection(db, collectionName);
     let q = query(coll, orderBy('dateCreated'));
     // If the posts filer is added, limit the reqest
@@ -49,7 +49,7 @@ export async function getBlogPosts(posts?: number): Promise<BlogPostView[]> {
  */
 export async function getBlogPostById(id: string): Promise<BlogPostView> {
   try {
-    const collectionName = FIREBASE.COLLECTIONS.NAMES.BLOG_POSTS;
+    const collectionName = FIREBASE.COLLECTIONS.BLOG_POSTS;
     const snapshot = await getDoc(doc(db, `${collectionName}`, id))
     // If the document exists...
     if (snapshot) {
@@ -67,5 +67,36 @@ export async function getBlogPostById(id: string): Promise<BlogPostView> {
   } catch (err) {
     console.log(err);
     throw err;
+  }
+}
+
+export const getBlogPostTags = async () => {
+  try {
+    const collectionName = FIREBASE.COLLECTIONS.BLOG_POST_TAGS
+    const req = await getDocs(collection(db, collectionName))
+    const mapped: BlogPostTag[] = req.docs.map((doc) => {
+      return {
+        ...doc.data() as BlogPostTag,
+        id: doc.id
+      }
+    })
+
+    console.log('Post tags!', mapped)
+    return mapped;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+}
+
+export const createTag = async (value: string) => {
+  try {
+    const collectionName = FIREBASE.COLLECTIONS.BLOG_POST_TAGS;
+    await addDoc(collection(db, collectionName), {
+      label: value
+    })
+
+  } catch (err) {
+    console.log(err)
   }
 }

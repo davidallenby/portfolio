@@ -1,5 +1,4 @@
 'use client'
-
 import { FC } from "react";
 import './AdminSidebar.scss';
 import Link from "next/link";

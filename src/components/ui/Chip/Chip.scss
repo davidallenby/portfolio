@@ -2,12 +2,16 @@
 
 .Chip {
   background-color: $beige;
-  padding: .5rem .67rem;
+  padding: .67rem .67rem;
   color: darken($primary, 11%);
   border-radius: .5rem;
 
   &.Chip--small {
-    padding: .35rem .5rem;
+    padding: .5rem .5rem;
     font-size: .8rem;
+  }
+
+  & > * {
+    line-height: 1;
   }
 }

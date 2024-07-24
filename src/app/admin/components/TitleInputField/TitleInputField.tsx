@@ -1,21 +1,24 @@
 'use client'
-import React, { FC, ReactNode } from 'react';
+import React, { DetailedHTMLProps, forwardRef, InputHTMLAttributes } from 'react';
 import './TitleInputField.scss';
 
-interface TitleInputFieldProps {
-  className?: string;
+interface TitleInputFieldProps extends DetailedHTMLProps<
+InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
 }
 
-const AuthBanner: FC<TitleInputFieldProps> = ({
-  className
-}): ReactNode => {
-
+const TitleInputField = forwardRef((props: TitleInputFieldProps, _ref: any) => {
+  const { className } = props;
   return (
-    <input type="text" 
+    <input 
+      { ...props }
+      ref={_ref}
+      type="text" 
       placeholder='Enter post title'
       className={`TitleInputField${className ? ` ${className}` : '' }`}
     />
   );
-}
+})
 
-export default AuthBanner;
+TitleInputField.displayName = 'TitleInputField';
+
+export default TitleInputField;

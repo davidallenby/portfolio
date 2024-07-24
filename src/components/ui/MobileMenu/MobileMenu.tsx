@@ -6,7 +6,7 @@ import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
 import { NavMenuItem } from '@interfaces/ui.interfaces';
 import { useMobileNavContext } from '@context/MobileNavContext';
 import { SITENAV_ITEMS } from '@constants/navigation';
-import ExternalIcons from '@components/features/ExternalIcons/ExternalIcons';
+import ExternalIcons from '@features/ExternalIcons/ExternalIcons';
 
 interface MobileMenuProps {}
 

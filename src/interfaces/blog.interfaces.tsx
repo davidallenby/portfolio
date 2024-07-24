@@ -21,3 +21,8 @@ export interface BlogPostView extends BlogPost {
   dateEdited: Date;
   datePublished: Date;
 }
+
+export interface BlogPostTag {
+  label: string;
+  id: string;
+}

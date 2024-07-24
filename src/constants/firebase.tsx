@@ -1,9 +1,7 @@
 export namespace FIREBASE {
   export const COLLECTIONS = {
-    NAMES: {
-      BLOG_POSTS: 'blog_posts',
-      DRAFTS: 'blog_posts_draft',
-      PROJECTS: 'projects'
-    }
+    BLOG_POSTS: 'blog_posts',
+    BLOG_POST_TAGS: 'blog_post_tags',
+    PROJECTS: 'projects'
   }
 }

@@ -46,15 +46,15 @@ const SiteHeader: FC<SiteHeaderProps> = () => {
   return (
     <MobileNavContextProvider>
       <div className="SiteHeader">
-      <div className="d-flex align-items-center justify-content-between gutter-x py-3">
-        <SiteLogo 
-          className='me-4'
-        />
-        <ToggleMobileNav className='d-md-none' />
-        <SiteNav className='d-none d-md-inline-flex' />
-        { isLoaded && isMobile && <MobileMenu />}
+        <div className="contained d-flex align-items-center justify-content-between gutter-x py-3">
+          <SiteLogo 
+            className='me-4'
+          />
+          <ToggleMobileNav className='d-md-none' />
+          <SiteNav className='d-none d-md-inline-flex' />
+          { isLoaded && isMobile && <MobileMenu />}
+        </div>
       </div>
-    </div>
     </MobileNavContextProvider>
   );
 }

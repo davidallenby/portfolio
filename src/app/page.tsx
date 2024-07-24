@@ -1,12 +1,12 @@
 import './page.scss';
-import ExternalIcons from "@components/features/ExternalIcons/ExternalIcons";
+import ExternalIcons from "@features/ExternalIcons/ExternalIcons";
 import ContentContainer from "@components/containers/ContentContainer/ContentContainer";
 import { getYearsExperience } from "../utils/common";
 import Link from "next/link";
 import { LINKS } from "../constants/links";
 import Image from "next/image";
 import OILogo from '@svg/openinvest-logo.svg';
-import FeaturedArticles from '@components/features/FeaturedArticles/FeaturedArticles';
+import FeaturedArticles from '../features/FeaturedArticles/FeaturedArticles';
 import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
 import PublicLayout from '@components/layout/PublicLayout/PublicLayout';
 import { BlogPostView } from '@interfaces/blog.interfaces';

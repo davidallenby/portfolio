@@ -2,9 +2,8 @@
 import React, { FC } from 'react';
 import './FeaturedArticles.scss';
 import Link from 'next/link';
-import { BsArrowRight } from 'react-icons/bs';
-import { BlogPost, BlogPostView } from '@interfaces/blog.interfaces';
-import { getDateString } from '@utils/dates';
+import { BlogPostView } from '@interfaces/blog.interfaces';
+import BlogPostCard from '@components/ui/BlogPostCard/BlogPostCard';
 
 interface FeaturedArticlesProps {
   className?: string;
@@ -27,23 +26,7 @@ const setArticleContent = (posts: BlogPostView[]): React.ReactNode => {
           return <div className="col-12 col-lg-4 mb-4 mb-lg-0 FeaturedArticle" 
             key={i}
           >
-            <div className='bg-white'>
-              <div className="FeaturedArticle__image"></div>
-              <div className="FeaturedArticle__content p-3">
-                <h3>
-                  <Link href={`/blog/${item.slug}`}>
-                    {item.title}
-                  </Link>
-                </h3>
-                <small className='d-block subtitle mb-4'>
-                  Published: {getDateString(item.dateCreated)}
-                </small>
-                <Link href={`/blog/${item.slug}`} className="small">
-                  <span className="d-inline-block me-2">Read more</span>
-                  <BsArrowRight />
-                </Link>
-              </div>              
-            </div>
+            <BlogPostCard postItem={item} />
           </div>
         })
       }

@@ -1,24 +1,19 @@
 import './EditPost.scss';
 import EditPostHeader from "../../components/EditPostHeader/EditPostHeader";
 import EditPostForm from "../../components/EditPostForm/EditPostForm";
-import { BlogPost, BlogPostView } from '@interfaces/blog.interfaces';
 import { getBlogPostById } from '@lib/firebase/firestore';
+import { cache } from 'react';
 
 export default async function EditPost({ params }: { 
   params: { id: string } 
 }) {
-  let postData: BlogPostView|null = null;
-
-  try {
-    postData = await getBlogPostById(params.id)
-  } catch (err) {
-    console.log(err);
-  }
+  const query = cache(async () => await getBlogPostById(params.id));
+  const data = await query();
 
   return (
       <>
         <EditPostHeader />
-        <EditPostForm postData={postData}  />
+        <EditPostForm postData={data} />
       </> 
     
   );

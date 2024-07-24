@@ -8,13 +8,13 @@ interface PublicLayoutProps {
 }
 
 const PublicLayout: FC<PublicLayoutProps> = ({ children }) => (
-<>
-  <SiteHeader />
-    <main className="d-flex flex-column flex-grow-1">
-      {children}
-    </main>
-  <SiteFooter />
-</>
+  <>
+    <SiteHeader />
+      <main className="d-flex flex-column flex-grow-1">
+        {children}
+      </main>
+    <SiteFooter />
+  </>
 );
 
 export default PublicLayout;

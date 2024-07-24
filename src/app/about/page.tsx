@@ -14,6 +14,7 @@ import { ROUTES } from "@constants/navigation";
 import PublicLayout from "@components/layout/PublicLayout/PublicLayout";
 
 export default function About() {
+
   const chips: ChipInterface[] = [
     {
       label: 'HTML',
