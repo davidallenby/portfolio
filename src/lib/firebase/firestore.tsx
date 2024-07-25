@@ -92,11 +92,12 @@ export const getBlogPostTags = async () => {
 export const createTag = async (value: string) => {
   try {
     const collectionName = FIREBASE.COLLECTIONS.BLOG_POST_TAGS;
-    await addDoc(collection(db, collectionName), {
+    const req = await addDoc(collection(db, collectionName), {
       label: value
     })
-
+    return req.id;
   } catch (err) {
     console.log(err)
+    return;
   }
 }

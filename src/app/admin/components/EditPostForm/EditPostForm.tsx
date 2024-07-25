@@ -1,19 +1,24 @@
 'use client'
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useRef, useState } from 'react';
 import './EditPostForm.scss';
 import TitleInputField from '../TitleInputField/TitleInputField';
 import { BsShare } from 'react-icons/bs';
-import { BlogPostView } from '@interfaces/blog.interfaces';
+import { BlogPostTag, BlogPostView } from '@interfaces/blog.interfaces';
 import { getDateString } from '@utils/dates';
 import { useForm } from 'react-hook-form';
 import BlogPostFeaturedImageUpload from '../BlogPostFeaturedImageUpload/BlogPostFeaturedImageUpload';
-import BlogPostTagList from '@features/BlogPostTagList/BlogPostTagList';
-import BlogPostTagsInput from '@components/ui/BlogPostTagsInput/BlogPostTagsInput';
-import { BiEditAlt } from 'react-icons/bi';
+import { useGetTags } from '../../../../hooks/blog';
+import { MultiSelect } from 'primereact/multiselect';
+import Chip from '@components/ui/Chip/Chip';
+import { queryClient } from '@context/ReactQueryProvider';
+import { useMutation } from '@tanstack/react-query';
+import { createTag } from '@lib/firebase/firestore';
+import { QUERY } from '@constants/query';
+import { objectSort } from '../../../../helpers/common';
 
 interface EditPostFormProps {
   formId?: string;
-  postData: BlogPostView|null;
+  postData: BlogPostView;
   className?: string;
   onChange?: () => void;
 }
@@ -21,12 +26,37 @@ interface EditPostFormProps {
 const EditPostForm: FC<EditPostFormProps> = ({
   className, postData, formId = 'form-edit-post'
 }): ReactNode => {
+  // Ref
+  const ref: React.RefObject<any> = React.createRef();
   // React hook form
   const {
-    register, reset, handleSubmit, getValues, formState: { errors }
+    register, reset, handleSubmit, getValues, control, formState: { errors }
   } = useForm({ defaultValues: { ...postData} });
   // Feature image upload
   const [imageUpload, setImageUpload] = useState<File|null>(null);
+  // Feature image upload
+  const [editing, setEditing] = useState<boolean>(false);
+  // Queries
+  const { isLoading, isError, isSuccess, data } = useGetTags();
+  // Selected items
+  const [selected, setSelected] = useState<BlogPostTag[]>([]);
+  // Options
+  const [options, setOptions] = useState<BlogPostTag[]>([])
+  // Creating tag spinner
+  const [creating, setCreating] = useState<boolean>(false);
+  
+
+  // Mutations
+  const mutation = useMutation({
+    mutationFn: createTag,
+    onSuccess: async (newTagId) => {
+      // Invalidate and refetch
+      await queryClient.invalidateQueries({
+        queryKey: [QUERY.IDS.BLOG_POST_TAGS]
+      })
+      return newTagId;
+    },
+  })
 
   /**
    * Fired when the user clicks "Publish"
@@ -37,9 +67,16 @@ const EditPostForm: FC<EditPostFormProps> = ({
   }
 
   useEffect(() => {
-    console.log('Post data: ', postData)
+    if (isSuccess) {
+      setOptions(data)
+      data.sort(objectSort('label'))
+    }
+  }, [data, isSuccess])
+
+  useEffect(() => {
     reset({ ...postData });
-  }, [postData, reset])
+    setSelected(data?.filter(item => postData.tagIds.includes(item.id)) ?? [])
+  }, [postData, reset, data])
 
   /**
    * Fired when the user changes the featured image for upload
@@ -51,6 +88,55 @@ const EditPostForm: FC<EditPostFormProps> = ({
     setImageUpload(e)
   }
 
+  const countryTemplate = (option: BlogPostTag) => {
+      return option && <Chip onDismiss={(e) => console.log(e)}>
+      { option?.label }
+    </Chip>;
+  };
+
+  /**
+   * Fired when the user clicks "create new tag" button. It will add a new tag
+   * to the data base, then react-query will invalidate and update the list of
+   * tags
+   *
+   * @param {string} label
+   */
+  const createTagHandler = async (label: string) => {
+    setCreating(true);
+    await mutation.mutateAsync(label)
+    setCreating(false);            
+  }
+
+  /**
+   * Creates the empty state template for the filter. When the user searches for
+   * a tag item, and nothing appears. It will show this empty message with a
+   * button that allows the user to create a tag from the filter value
+   * @param e 
+   * @returns 
+   */
+  const emptyState = (e: any) => {
+    const filterValue = e.filterValue;
+    return (
+      <div className='d-flex align-items-center flex-wrap'>
+        <p className='mb-0 me-1'>No result found. </p>
+        <button type="button" 
+          disabled={creating}
+          onClick={(e) => createTagHandler(filterValue)}
+          className={'p-0 bg-transparent border-0 text-primary btn-link text-decoration-none'}
+        >
+          Create tag from filter
+        </button>
+      </div>
+    );
+  };
+
+  /**
+   * Fired when the list of selected tags is updated
+   * @param e 
+   */
+  const tagChangeHandler = ({ value }: { 
+    value: BlogPostTag[]
+  }) => setSelected(value)
 
   return (
     <form 
@@ -61,7 +147,9 @@ const EditPostForm: FC<EditPostFormProps> = ({
       { postData ? <>
         <TitleInputField 
           className={'mb-3'}
-          {...register('title', { required: 'Title is required' })}
+          {...register('title', {
+            required: 'Title is required'
+          })}
         />
         <div className="mb-3 d-flex align-items-center justify-content-between mb-4">
           <p className="subtitle mb-0 me-4">
@@ -85,9 +173,22 @@ const EditPostForm: FC<EditPostFormProps> = ({
         />
 
         <div className='EditPost__container mb-3'>
-          <BlogPostTagList tagIds={getValues('tagIds')}
-            enableEdit
+          <MultiSelect
+            ref={ref}
+            filter
+            resetFilterOnHide
+            style={{ width: '100%' }}
+            value={selected} 
+            options={data ? [...data] : []} 
+            onChange={tagChangeHandler} 
+            optionLabel="label" 
+            placeholder="Select tags" 
+            selectedItemTemplate={countryTemplate}
+            emptyFilterMessage={emptyState} 
+            className="w-full md:w-20rem" 
+            display="chip" 
           />
+             {/* <BlogPostTagList  tagIds={getValues('tagIds')} /> */}
         </div>
         
         <div className="EditPost__content-wrapper EditPost__container  lead">
