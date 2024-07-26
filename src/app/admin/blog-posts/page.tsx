@@ -2,7 +2,7 @@ import { getBlogPosts } from "@lib/firebase/firestore";
 import Link from "next/link";
 import { PiPlus } from "react-icons/pi";
 import BlogPostAdminList from "./BlogPostAdminList";
-import AdminLayoutContainer from "@components/containers/AdminLayoutContainer/AdminLayoutContainer";
+import AdminLayoutContainer from "@components/layout/AdminLayoutContainer/AdminLayoutContainer";
 
 export default async function BlogPosts() {
 
