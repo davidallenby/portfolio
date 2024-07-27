@@ -23,7 +23,7 @@
 }
 
 .p-multiselect-filter {
-  margin: 0 1rem;
+  margin: 0 1rem 0 0;
   border: 1px solid $primary-100;
   padding-right: 3rem;
   ::placeholder::before {
@@ -53,26 +53,50 @@
   border: 1px solid $primary;
 }
 
+.p-multiselect-select-all:not(.p-icon):not(svg),
 .p-multiselect-checkbox {
   margin-right: .5rem;
-  display: flex;
-  justify-content: center;
-  height: 1.5rem;
-  width: 1.5rem;
-  background-color: white;
-  border: 1px solid $primary-100;
-
-  .p-checkbox {
-    line-height: 1;
-
-    & > input {
-      display: none;
-    }
-  }
 }
 
 .p-checkbox {
+  line-height: 1;
+  border: 1px solid $primary-100;
   position: relative;
+  background-color: white;
+
+  &.p-highlight {
+    font-weight: bold;
+
+    .p-checkbox-box {
+      background-color: $primary;
+
+
+    }
+  }
+
+  input {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .p-checkbox-box {
+    position: relative;
+    height: 1.5rem;
+    width: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      color: $primary-100;
+      height: 18px;
+      width: 18px;
+    }
+  }
 }
 
 .p-multiselect-item {
@@ -82,14 +106,10 @@
     background-color: $beige;
     font-weight: bold;
 
-    .p-multiselect-checkbox {
+    .p-checkbox {
       background-color: $primary;
 
-      svg {
-        color: $primary-100;
-        height: 18px;
-        width: 18px;
-      }
+
     }
   }
 }

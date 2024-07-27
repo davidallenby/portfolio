@@ -80,7 +80,7 @@ const EditPostForm: FC<EditPostFormProps> = ({
           })}
         />
 
-        <div className='EditPost__container mb-3'>
+        <div className='EditPost__container mb-5'>
           <EditPostTagsMultiselect />
         </div>
         

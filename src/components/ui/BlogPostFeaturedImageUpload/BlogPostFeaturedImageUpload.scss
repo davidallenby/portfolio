@@ -3,6 +3,7 @@
   position: relative;
   background-color: $beige;
   margin-bottom: 40px;
+  color: $primary;
   &:before {
     content: '';
     display: block;
@@ -13,20 +14,22 @@
     cursor: pointer;
 
     .BlogPostFeaturedImageUpload__hover-state {
-      opacity: 1;
+      color: $primary-100;
+      background: darken($primary-100, 20%)
     }
   }
 }
 
 .BlogPostFeaturedImageUpload__hover-state {
-  transition: .25s;
-  opacity: 0;
+  transition: .5s;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba($primary, .8);
-  color: $primary-100;
   z-index: 1;
+}
+
+.BlogPostFeaturedImageUpload__text {
+  opacity: 1;
 }

@@ -40,8 +40,8 @@ forwardRef((props: BlogPostFeaturedImageUploadProps, _ref: any) => {
     >
       <span className='BlogPostFeaturedImageUpload__hover-state d-flex align-items-center justify-content-center'>
         <BiEditAlt className='me-3' />
-        { imagePreviewUrl ?  <span>Edit Image</span> : 
-        <span>No image selected</span>}
+        { imagePreviewUrl ?  <span className='BlogPostFeaturedImageUpload__text'>Edit Image</span> : 
+        <span className='BlogPostFeaturedImageUpload__text'>No image selected</span>}
       </span>
       <input 
         onChange={handleImageChange}
