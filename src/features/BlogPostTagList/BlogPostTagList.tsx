@@ -9,11 +9,7 @@ interface BlogPostTagListProps {
   enableEdit?: boolean;
 }
 
-
-
-const BlogPostTagList: FC<BlogPostTagListProps> = ({
-  tagIds
-}) => {
+const BlogPostTagList: FC<BlogPostTagListProps> = ({ tagIds }) => {
   // Queries
   const { isLoading, isError, isSuccess, data } = useGetTags();
 
@@ -26,9 +22,7 @@ const BlogPostTagList: FC<BlogPostTagListProps> = ({
       { isSuccess && <>
         {tagIds?.map((id, i) => {
           const found = data.find((tag: BlogPostTag) => id === tag.id);
-          return found ? <Chip className="me-4 mb-3" key={i}
-            onDismiss={() => console.log('HE')}
-          >
+          return found ? <Chip className="me-4 mb-3" key={i}>
           {found.label}
         </Chip> : false;
         })}

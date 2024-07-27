@@ -30,7 +30,9 @@ const ContentEditorToolbar: FC<ContentEditorToolbarProps> = ({
       <BiStrikethrough />
     </ContentEditorToolbarButton>
     <ContentEditorToolbarButton
-      onClick={(e) => editor?.chain().setHeading({ level: 2 }).run()}
+      onClick={(e) => {
+        editor?.chain().toggleHeading({ level: 2 }).run()
+      }}
     >
       <BiHeading />
     </ContentEditorToolbarButton>

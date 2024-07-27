@@ -1,5 +1,5 @@
 'use client'
-import React, { createRef, FC, ReactNode, RefObject, useEffect, useState } from 'react';
+import React, { createRef, FC, ReactNode, useEffect, useState } from 'react';
 import './EditPostForm.scss';
 import TitleInputField from '../TitleInputField/TitleInputField';
 import { BsShare } from 'react-icons/bs';
@@ -16,14 +16,7 @@ import { createTag } from '@lib/firebase/firestore';
 import { QUERY } from '@constants/query';
 import { objectSort } from '../../../../helpers/common';
 
-
-// src/Tiptap.tsx
-import { FloatingMenu, BubbleMenu, EditorContent, useEditor, EditorProvider, useCurrentEditor } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import Heading from '@tiptap/extension-heading'
-import { BiBold } from 'react-icons/bi';
-import ContentEditorToolbar from '@features/ContentEditor/components/ContentEditorToolbar/ContentEditorToolbar';
-// import { Editor } from 'primereact/editor';
+import ContentEditor from '@features/ContentEditor/ContentEditor';
 
 interface EditPostFormProps {
   formId?: string;
@@ -45,8 +38,6 @@ const EditPostForm: FC<EditPostFormProps> = ({
   } = useForm({ defaultValues: { ...postData} });
   // Feature image upload
   const [imageUpload, setImageUpload] = useState<File|null>(null);
-  // Feature image upload
-  const [editing, setEditing] = useState<boolean>(false);
   // Queries
   const { isLoading, isError, isSuccess, data } = useGetTags();
   // Selected items
@@ -55,35 +46,6 @@ const EditPostForm: FC<EditPostFormProps> = ({
   const [options, setOptions] = useState<BlogPostTag[]>([])
   // Creating tag spinner
   const [creating, setCreating] = useState<boolean>(false);
-  // editor
-  const [text, setText] = useState<string>('');
-
-  // define your extension array
-  const extensions = [
-    StarterKit.configure({
-      bulletList: {
-        keepMarks: true,
-        keepAttributes: false,
-      },
-      orderedList: {
-        keepMarks: true,
-        keepAttributes: false,
-      }
-    }),
-    // Headings
-    Heading.configure({
-      levels: [2,3,4],
-      
-    })
-  ]
-
-  const editor = useEditor({
-    extensions,
-    content: text,
-    immediatelyRender: false,
-  })
-
-  
 
   // Mutations
   const mutation = useMutation({
@@ -145,11 +107,12 @@ const EditPostForm: FC<EditPostFormProps> = ({
    * @return {*} 
    */
   const selectedItemTemplate = (option: BlogPostTag): ReactNode => {
-      return option && <Chip onDismiss={(e) => removeItem(option)}
+    if (!option) { return; }
+      return <Chip onDismiss={(e) => removeItem(option)}
         className='me-3 my-2'
       >
-      { option?.label }
-    </Chip>;
+        { option?.label }
+      </Chip>;
   };
 
   /**
@@ -249,15 +212,9 @@ const EditPostForm: FC<EditPostFormProps> = ({
         </div>
         
         <div className="EditPost__content-wrapper EditPost__container lead">
-            <>
-              <BubbleMenu editor={editor}>
-                <ContentEditorToolbar editor={editor} />
-              </BubbleMenu>
-              <FloatingMenu editor={editor}>
-                <ContentEditorToolbar editor={editor} />
-              </FloatingMenu>
-              <EditorContent editor={editor} />      
-            </>
+          <ContentEditor 
+            onChange={() => {}}
+          />
         </div>
       </> : <>
         <h1>Post data not found!</h1>
