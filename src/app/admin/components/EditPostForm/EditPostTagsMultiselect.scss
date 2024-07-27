@@ -8,15 +8,14 @@
   border-bottom: 1px solid $primary-100;
 }
 
-.p-multiselect-items-wrapper,
 .p-multiselect-header {
   padding: 0 1rem;
 }
 
 .p-multiselect-header {
-  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 .p-multiselect-filter-container {
@@ -25,7 +24,12 @@
 
 .p-multiselect-filter {
   margin: 0 1rem;
-  
+  border: 1px solid $primary-100;
+  padding-right: 3rem;
+  ::placeholder::before {
+    content: 'Search for a tag...';
+    
+  }
 }
 
 .p-multiselect-filter-icon {
@@ -47,4 +51,45 @@
 
 .p-inputwrapper {
   border: 1px solid $primary;
+}
+
+.p-multiselect-checkbox {
+  margin-right: .5rem;
+  display: flex;
+  justify-content: center;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: white;
+  border: 1px solid $primary-100;
+
+  .p-checkbox {
+    line-height: 1;
+
+    & > input {
+      display: none;
+    }
+  }
+}
+
+.p-checkbox {
+  position: relative;
+}
+
+.p-multiselect-item {
+  padding: .5rem 1rem;
+
+  &.p-highlight {
+    background-color: $beige;
+    font-weight: bold;
+
+    .p-multiselect-checkbox {
+      background-color: $primary;
+
+      svg {
+        color: $primary-100;
+        height: 18px;
+        width: 18px;
+      }
+    }
+  }
 }

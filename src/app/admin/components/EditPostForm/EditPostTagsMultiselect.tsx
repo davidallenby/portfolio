@@ -8,6 +8,8 @@ import { createTag } from "@lib/firebase/firestore";
 import { useMutation } from "@tanstack/react-query";
 import { MultiSelect } from "primereact/multiselect";
 import { createRef, ReactNode, useEffect, useState } from "react";
+// TODO: Move this out into a multiselect component. Customise the styles for
+// TODO: this dropdown specifically.
 import './EditPostTagsMultiselect.scss';
 
 export default function EditPostTagsMultiselect({ }) {
@@ -63,7 +65,7 @@ export default function EditPostTagsMultiselect({ }) {
   const emptyState = (e: any) => {
     const filterValue = e.filterValue;
     return (
-      <div className='d-flex align-items-center flex-wrap'>
+      <div className='d-flex align-items-center flex-wrap px-3'>
         <p className='mb-0 me-1'>No result found. </p>
         <button type="button" 
           disabled={creating}
