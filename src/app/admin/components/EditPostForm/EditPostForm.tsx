@@ -1,5 +1,5 @@
 'use client'
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { createRef, FC, ReactNode, RefObject, useEffect, useState } from 'react';
 import './EditPostForm.scss';
 import TitleInputField from '../TitleInputField/TitleInputField';
 import { BsShare } from 'react-icons/bs';
@@ -16,7 +16,14 @@ import { createTag } from '@lib/firebase/firestore';
 import { QUERY } from '@constants/query';
 import { objectSort } from '../../../../helpers/common';
 
-import { Editor } from 'primereact/editor';
+
+// src/Tiptap.tsx
+import { FloatingMenu, BubbleMenu, EditorContent, useEditor, EditorProvider, useCurrentEditor } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import Heading from '@tiptap/extension-heading'
+import { BiBold } from 'react-icons/bi';
+import ContentEditorToolbar from '@features/ContentEditor/components/ContentEditorToolbar/ContentEditorToolbar';
+// import { Editor } from 'primereact/editor';
 
 interface EditPostFormProps {
   formId?: string;
@@ -28,9 +35,10 @@ interface EditPostFormProps {
 const EditPostForm: FC<EditPostFormProps> = ({
   className, postData, formId = 'form-edit-post'
 }): ReactNode => {
-
   // Ref
-  const ref: React.RefObject<any> = React.createRef();
+
+  // const editorRef: RefObject<Editor> = createRef();
+  const ref: React.RefObject<any> = createRef();
   // React hook form
   const {
     register, reset, handleSubmit, getValues, control, formState: { errors }
@@ -50,20 +58,30 @@ const EditPostForm: FC<EditPostFormProps> = ({
   // editor
   const [text, setText] = useState<string>('');
 
-  // // Editor
-  // const onEditorError = (e: any) => {
-  //   console.log(e);
-  // }
+  // define your extension array
+  const extensions = [
+    StarterKit.configure({
+      bulletList: {
+        keepMarks: true,
+        keepAttributes: false,
+      },
+      orderedList: {
+        keepMarks: true,
+        keepAttributes: false,
+      }
+    }),
+    // Headings
+    Heading.configure({
+      levels: [2,3,4],
+      
+    })
+  ]
 
-  // const theme: EditorThe = {
-    
-  // }
-  // // Editor
-  // const initialConfig = {
-  //   namespace: 'BlogPostContentEditor',
-  //   onError: onEditorError,
-  //   theme
-  // };
+  const editor = useEditor({
+    extensions,
+    content: text,
+    immediatelyRender: false,
+  })
 
   
 
@@ -231,12 +249,15 @@ const EditPostForm: FC<EditPostFormProps> = ({
         </div>
         
         <div className="EditPost__content-wrapper EditPost__container lead">
-          <Editor value={text} onTextChange={(e) => {
-            console.log(e);
-          }} style={{ minHeight: '320px' }} />
-          <p>Occaecat non enim labore cupidatat enim Lorem sunt. Commodo velit dolor reprehenderit sit pariatur commodo quis ea eu exercitation eu ad. Dolore anim anim aliqua deserunt non adipisicing.</p>
-          <p>Dolor aliquip exercitation eiusmod velit aliqua consequat nisi ea laboris velit. Nulla non aliqua adipisicing ex minim et labore amet quis exercitation in. Officia laborum velit laborum ad proident ullamco nostrud voluptate occaecat elit. Est ad exercitation aliqua quis labore tempor ipsum aliquip et. Ad ad cillum cupidatat esse amet officia Lorem elit anim minim labore quis eiusmod.</p>
-          <p>Enim proident ea mollit duis officia quis pariatur nostrud excepteur eiusmod. Enim consequat deserunt ipsum voluptate sint cillum tempor. Ipsum cupidatat Lorem mollit et. Veniam sint reprehenderit excepteur aliquip amet culpa irure ad magna velit aute excepteur eu occaecat. Adipisicing irure pariatur labore sint laboris enim ipsum voluptate et laborum sunt laboris Lorem in. Et incididunt minim ut dolore id tempor non officia. Exercitation do consectetur et pariatur anim cillum labore ex.</p>
+            <>
+              <BubbleMenu editor={editor}>
+                <ContentEditorToolbar editor={editor} />
+              </BubbleMenu>
+              <FloatingMenu editor={editor}>
+                <ContentEditorToolbar editor={editor} />
+              </FloatingMenu>
+              <EditorContent editor={editor} />      
+            </>
         </div>
       </> : <>
         <h1>Post data not found!</h1>
