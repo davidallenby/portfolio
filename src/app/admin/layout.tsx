@@ -3,8 +3,6 @@ import AuthGuardContainer from "@components/containers/AuthGuardContainer/AuthGu
 import SiteFooter from "@components/ui/SiteFooter/SiteFooter";
 import {PrimeReactProvider} from 'primereact/api'
 
-import "../../../node_modules/primereact/resources/themes/lara-light-cyan/theme.css";
-
 export const metadata: Metadata = {
   title: `Admin panel | David Allenby | Lead frontend developer based in Berlin, Germany`,
   description: "Admin area for my portfolio",
