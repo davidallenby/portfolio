@@ -1,5 +1,5 @@
 'use client'
-import React, { FC, ReactNode, useEffect, useRef, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 import './EditPostForm.scss';
 import TitleInputField from '../TitleInputField/TitleInputField';
 import { BsShare } from 'react-icons/bs';
@@ -16,6 +16,8 @@ import { createTag } from '@lib/firebase/firestore';
 import { QUERY } from '@constants/query';
 import { objectSort } from '../../../../helpers/common';
 
+import { Editor } from 'primereact/editor';
+
 interface EditPostFormProps {
   formId?: string;
   postData: BlogPostView;
@@ -26,6 +28,7 @@ interface EditPostFormProps {
 const EditPostForm: FC<EditPostFormProps> = ({
   className, postData, formId = 'form-edit-post'
 }): ReactNode => {
+
   // Ref
   const ref: React.RefObject<any> = React.createRef();
   // React hook form
@@ -44,6 +47,24 @@ const EditPostForm: FC<EditPostFormProps> = ({
   const [options, setOptions] = useState<BlogPostTag[]>([])
   // Creating tag spinner
   const [creating, setCreating] = useState<boolean>(false);
+  // editor
+  const [text, setText] = useState<string>('');
+
+  // // Editor
+  // const onEditorError = (e: any) => {
+  //   console.log(e);
+  // }
+
+  // const theme: EditorThe = {
+    
+  // }
+  // // Editor
+  // const initialConfig = {
+  //   namespace: 'BlogPostContentEditor',
+  //   onError: onEditorError,
+  //   theme
+  // };
+
   
 
   // Mutations
@@ -88,8 +109,27 @@ const EditPostForm: FC<EditPostFormProps> = ({
     setImageUpload(e)
   }
 
-  const countryTemplate = (option: BlogPostTag) => {
-      return option && <Chip onDismiss={(e) => console.log(e)}>
+  /**
+   * When the user clicks the "dismiss" icon on each chip. It should remove the
+   * item from the list. This function handles updating the selected items array
+   *
+   * @param {BlogPostTag} clicked
+   */
+  const removeItem = (clicked: BlogPostTag) => {
+    const filtered = selected.filter((item) => item.id !== clicked.id);
+    setSelected(filtered);
+  }
+
+  /**
+   * Creates the template for the selected items in the multi select dropdown
+   *
+   * @param {BlogPostTag} option
+   * @return {*} 
+   */
+  const selectedItemTemplate = (option: BlogPostTag): ReactNode => {
+      return option && <Chip onDismiss={(e) => removeItem(option)}
+        className='me-3 my-2'
+      >
       { option?.label }
     </Chip>;
   };
@@ -183,15 +223,17 @@ const EditPostForm: FC<EditPostFormProps> = ({
             onChange={tagChangeHandler} 
             optionLabel="label" 
             placeholder="Select tags" 
-            selectedItemTemplate={countryTemplate}
+            selectedItemTemplate={selectedItemTemplate}
             emptyFilterMessage={emptyState} 
             className="w-full md:w-20rem" 
             display="chip" 
           />
-             {/* <BlogPostTagList  tagIds={getValues('tagIds')} /> */}
         </div>
         
-        <div className="EditPost__content-wrapper EditPost__container  lead">
+        <div className="EditPost__content-wrapper EditPost__container lead">
+          <Editor value={text} onTextChange={(e) => {
+            console.log(e);
+          }} style={{ minHeight: '320px' }} />
           <p>Occaecat non enim labore cupidatat enim Lorem sunt. Commodo velit dolor reprehenderit sit pariatur commodo quis ea eu exercitation eu ad. Dolore anim anim aliqua deserunt non adipisicing.</p>
           <p>Dolor aliquip exercitation eiusmod velit aliqua consequat nisi ea laboris velit. Nulla non aliqua adipisicing ex minim et labore amet quis exercitation in. Officia laborum velit laborum ad proident ullamco nostrud voluptate occaecat elit. Est ad exercitation aliqua quis labore tempor ipsum aliquip et. Ad ad cillum cupidatat esse amet officia Lorem elit anim minim labore quis eiusmod.</p>
           <p>Enim proident ea mollit duis officia quis pariatur nostrud excepteur eiusmod. Enim consequat deserunt ipsum voluptate sint cillum tempor. Ipsum cupidatat Lorem mollit et. Veniam sint reprehenderit excepteur aliquip amet culpa irure ad magna velit aute excepteur eu occaecat. Adipisicing irure pariatur labore sint laboris enim ipsum voluptate et laborum sunt laboris Lorem in. Et incididunt minim ut dolore id tempor non officia. Exercitation do consectetur et pariatur anim cillum labore ex.</p>

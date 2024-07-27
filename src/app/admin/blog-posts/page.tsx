@@ -2,14 +2,14 @@ import { getBlogPosts } from "@lib/firebase/firestore";
 import Link from "next/link";
 import { PiPlus } from "react-icons/pi";
 import BlogPostAdminList from "./BlogPostAdminList";
-import AdminLayoutContainer from "@components/layout/AdminLayoutContainer/AdminLayoutContainer";
+import AdminLayout from "@components/layout/AdminLayout/AdminLayout";
 
 export default async function BlogPosts() {
 
   const posts = await getBlogPosts()
 
   return (
-    <AdminLayoutContainer>
+    <AdminLayout>
       <div className="d-flex align-items-end justify-content-between mb-4">
         <h2 className="me-3 mb-0">Blog posts</h2>
         <Link href={`blog-posts/new`}
@@ -20,6 +20,6 @@ export default async function BlogPosts() {
         </Link>
       </div>
       <BlogPostAdminList posts={posts} />
-    </AdminLayoutContainer>
+    </AdminLayout>
   );
 }

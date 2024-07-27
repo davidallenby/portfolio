@@ -3,7 +3,7 @@
 @import '/node_modules/bootstrap/scss/mixins';
 @import '/node_modules/bootstrap/scss/variables';
 
-.AdminLayoutContainer {
+.AdminLayout {
   @include media-breakpoint-up(lg) {
     display: flex;
     & > div:first-of-type {

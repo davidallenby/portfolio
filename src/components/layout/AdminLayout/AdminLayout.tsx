@@ -6,11 +6,11 @@ interface AdminLayoutProps {
   children: ReactNode;
 }
 
-const AdminLayoutContainer: FC<AdminLayoutProps> = ({ children }) => {
+const AdminLayout: FC<AdminLayoutProps> = ({ children }) => {
 
   return (
 
-      <div className="AdminLayoutContainer h-100">
+      <div className="AdminLayout h-100">
         <AdminSidebar />
         <div className="h-100">
           <div className="py-5 gutter-x">
@@ -21,4 +21,4 @@ const AdminLayoutContainer: FC<AdminLayoutProps> = ({ children }) => {
     
   );
 }
-export default AdminLayoutContainer
+export default AdminLayout

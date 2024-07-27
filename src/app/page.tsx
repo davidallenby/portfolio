@@ -37,7 +37,8 @@ export default async function Home() {
         <div className="FeaturedProjects__wrapper mb-5">
           <Link href={`https://camplete.com.au`} 
             target='_blank'
-            className="position-relative FeaturedProject">
+            className="FeaturedProject mb-4 mb-md-0 border"
+          >
             <video 
               controls={false} 
               autoPlay={true} 
@@ -50,21 +51,24 @@ export default async function Home() {
             </video>
             <span className='FeaturedProject__info'></span>
           </Link>
+
           <Link href={'https://openinvest.com.au'} 
             target='_blank'
-            className="FeaturedProject">
+            className="FeaturedProject mb-4 mb-md-0 border"
+          >
             <OILogo />
             <span className='FeaturedProject__info'></span>
           </Link>
           <Link href={'https://davidallenby.com'}
             target='_blank'
-            className="d-flex flex-column justify-content-center align-items-center FeaturedProject bg-white"
+            className="d-flex flex-column justify-content-center align-items-center FeaturedProject bg-primary mb-4 mb-md-0 border"
           >
             <span className='d-flex align-items-center'>
               <SiteLogo isLink={false}
+                colorInverted
                 className='me-3'
               />
-              <p className='h3 mb-0'>David Allenby</p>
+              <p className='h3 mb-0 text-primary-100'>David Allenby</p>
             </span>
             <span className='FeaturedProject__info'></span>
           </Link>
