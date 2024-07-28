@@ -15,7 +15,7 @@
 
     .BlogPostFeaturedImageUpload__hover-state {
       color: $primary-100;
-      background: darken($primary-100, 20%)
+      background: rgba(darken($primary-100, 20%), .9)
     }
   }
 }
