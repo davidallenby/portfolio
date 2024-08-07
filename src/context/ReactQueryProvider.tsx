@@ -6,7 +6,15 @@ import { AuthContextProvider } from "./AuthContext";
 interface ReactQueryProviderProps {
   children: ReactNode;
 }
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      retry: 1,
+    },
+  },
+});
 /**
  * This component is required for providing react query. If we use it in the 
  * root layout. It throws an error because it is a server component. 

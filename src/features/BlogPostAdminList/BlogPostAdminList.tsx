@@ -5,17 +5,14 @@ import { BlogPostView } from "@interfaces/blog.interfaces";
 import { getDateString } from "@utils/dates";
 import Link from "next/link";
 import Chip from "@components/ui/Chip/Chip";
-import { useGetTags } from "../../../hooks/blog";
+import { useGetPosts, useGetTags } from "@hooks/blog";
 
 interface BlogPostAdminListProps {
-  posts: BlogPostView[];
 }
 
-const BlogPostAdminList: FC<BlogPostAdminListProps> = ({
-  posts = []
-}) => {
-
-  const { data } = useGetTags();
+const BlogPostAdminList: FC<BlogPostAdminListProps> = () => {
+  const { data: posts, isSuccess: postsSuccess } = useGetPosts(10)
+  const { data: tags } = useGetTags();
   
   const getTable = (posts: BlogPostView[]) => {
     return <table className="table">
@@ -38,7 +35,7 @@ const BlogPostAdminList: FC<BlogPostAdminListProps> = ({
             <td>{item.title}</td>
             <td>
               { item.tagIds.map((tagId, i) => {
-                const found = data?.find((item, i) => item.id === tagId)
+                const found = tags?.find((item, i) => item.id === tagId)
                 return <Chip key={i} small>
                   {found?.label}
                 </Chip>
@@ -59,7 +56,9 @@ const BlogPostAdminList: FC<BlogPostAdminListProps> = ({
   return (
     <div className='BlogPostAdminList'>
       {
-        posts.length ? getTable(posts) : <p>No posts to display.</p>
+        postsSuccess && posts.length ? getTable(posts) : <p>
+          <span>No posts to display.</span>
+        </p>
       }
     </div>
   );

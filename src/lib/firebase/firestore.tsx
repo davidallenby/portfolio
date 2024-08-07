@@ -11,7 +11,7 @@ import { db } from "./app";
  * @param {number} [posts]
  * @return {*}  {Promise<BlogPost[]>}
  */
-export async function getBlogPosts(posts?: number): Promise<BlogPostView[]> {
+export const getBlogPosts = async (posts?: number): Promise<BlogPostView[]> => {
   try {
     const collectionName = FIREBASE.COLLECTIONS.BLOG_POSTS;
     const coll = collection(db, collectionName);
@@ -36,7 +36,7 @@ export async function getBlogPosts(posts?: number): Promise<BlogPostView[]> {
     return docs;
   } catch (err) {
     console.log(err);
-    return [];
+    throw err;
   }
 }
 

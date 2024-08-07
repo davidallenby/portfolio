@@ -17,12 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="d-flex flex-column flex-grow-1 h-100">
       <body className="d-flex flex-column flex-grow-1">
-        
           <ReactQueryProvider>
             <AuthBanner />
             { children }
           </ReactQueryProvider>
-        
       </body>
     </html>
   );

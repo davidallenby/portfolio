@@ -6,13 +6,18 @@ import { BsArrowLeft, BsRocketTakeoff, BsSave } from 'react-icons/bs';
 
 interface EditPostHeaderProps {
   className?: string;
-  onSave?: () => void;
-  onPublish?: () => void;
 }
 
 const EditPostHeader: FC<EditPostHeaderProps> = ({
   className
 }): ReactNode => {
+
+  const draftClickHandler = (e: any) => {
+    console.log('---- DRAFT ------', e);
+  }
+  const publishClickHandler = (e: any) => {
+    console.log('---- PUBLISH ----', e);
+  }
 
   return (
     <div className="mb-4 gutter-x py-3 d-flex align-items-center justify-content-between bg-beige">
@@ -25,6 +30,7 @@ const EditPostHeader: FC<EditPostHeaderProps> = ({
       <div>
         <button type="button"
           className="btn btn-outline-primary d-inline-flex align-items-center me-4"
+          onClick={draftClickHandler}
         >
           <BsSave className="me-sm-2" />
           <span className="d-none d-sm-inline">Save draft</span>
@@ -32,6 +38,7 @@ const EditPostHeader: FC<EditPostHeaderProps> = ({
 
         <button type="button"
           className="btn btn-primary d-inline-flex align-items-center"
+          onClick={publishClickHandler}
         >
           <BsRocketTakeoff className="me-sm-2" />
           <span className="d-none d-sm-inline">Publish</span>

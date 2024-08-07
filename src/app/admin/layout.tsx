@@ -17,7 +17,6 @@ export default function AdminLayout({ children }
           <AuthGuardContainer>
             { children } 
           </AuthGuardContainer>
-          
         </main>
         <SiteFooter />
       </PrimeReactProvider>

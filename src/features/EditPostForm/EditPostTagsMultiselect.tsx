@@ -11,11 +11,11 @@ import { createRef, ReactNode, useEffect, useState } from "react";
 // TODO: Move this out into a multiselect component. Customise the styles for
 // TODO: this dropdown specifically.
 import './EditPostTagsMultiselect.scss';
+import { useEditPostContext } from "@context/EditPostContext";
 
 export default function EditPostTagsMultiselect({ }) {
   // Multiselect reference
   const ref: React.RefObject<any> = createRef();
-
   // Queries
   const { isLoading, isError, isSuccess, data } = useGetTags();
   // Selected items
@@ -24,16 +24,27 @@ export default function EditPostTagsMultiselect({ }) {
   const [options, setOptions] = useState<BlogPostTag[]>([])
   // Creating tag spinner
   const [creating, setCreating] = useState<boolean>(false);
+  // Edit Post Context
+  const { postState, setPostState } = useEditPostContext();
 
-  // TODO: I need to get the current post data in here and update the default
-  // TODO: items with whatever is attached to the current post.
+
   useEffect(() => {
+    // If the tag data has loaded successfully, update the available options
     if (isSuccess) {
-      console.log(data)
-      setOptions(data)
       data.sort(objectSort('label'))
+      setOptions(data)
     }
-  }, [data, isSuccess])
+    // If there is no current post data, OR the available tags haven't loaded,
+    // abort here
+    if (!postState || !isSuccess) { return; }
+    // We need to update the list of currently selected tags in the multiselect
+    // when the post data is loaded from the server.
+    const postTagIds = postState.tagIds;
+    const filtered = data.filter(tag => postTagIds.includes(tag.id))
+    setSelected(filtered)
+  }, [data, isSuccess, postState])
+
+
 
   // Mutations
   const mutation = useMutation({
@@ -48,12 +59,31 @@ export default function EditPostTagsMultiselect({ }) {
   })
 
   /**
-   * Fired when the list of selected tags is updated
-   * @param e 
+   * Fired when the multiselect of tags is updated/changed
+   *
+   * @param {{
+   *     value: BlogPostTag[]
+   *   }} { value }
    */
-    const tagChangeHandler = ({ value }: { 
-      value: BlogPostTag[]
-    }) => setSelected(value)
+  const tagChangeHandler = ({ value }: { value: BlogPostTag[] }) => {
+    // Set the selected tags in component state
+    setSelected(value);
+    // Update the post data in state with the newly selected tags.
+    updatePostSelectedTags(value);
+  }
+
+  const updatePostSelectedTags = (selectedTags: BlogPostTag[]) => {
+    // If the current post state is empty (post not found, not yet loaded etc.)
+    // Then abort here.
+    if (!postState) { return; };
+    // Re-map the tags to just the IDs and update the post data.
+    const mapped = selectedTags.map(tag => tag.id);
+    const updatedPost = {
+      ...postState,
+      tagIds: mapped
+    }
+    setPostState(updatedPost)
+  }
 
   /**
    * Creates the empty state template for the filter. When the user searches for
@@ -125,7 +155,7 @@ export default function EditPostTagsMultiselect({ }) {
       resetFilterOnHide
       style={{ width: '100%' }}
       value={selected} 
-      options={data ? [...data] : []} 
+      options={options} 
       onChange={tagChangeHandler} 
       optionLabel="label" 
       placeholder="Select tags" 

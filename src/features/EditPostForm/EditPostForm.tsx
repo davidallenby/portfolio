@@ -1,7 +1,7 @@
 'use client'
-import React, { FC, ReactNode, useState } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 import './EditPostForm.scss';
-import TitleInputField from '../TitleInputField/TitleInputField';
+import TitleInputField from '@components/ui/TitleInputField/TitleInputField';
 import { BsShare } from 'react-icons/bs';
 import { BlogPostView } from '@interfaces/blog.interfaces';
 import { getDateString } from '@utils/dates';
@@ -10,23 +10,28 @@ import BlogPostFeaturedImageUpload from '@components/ui/BlogPostFeaturedImageUpl
 
 import ContentEditor from '@features/ContentEditor/ContentEditor';
 import EditPostTagsMultiselect from './EditPostTagsMultiselect';
+import { useEditPostContext } from '@context/EditPostContext';
 
 interface EditPostFormProps {
   formId?: string;
-  postData: BlogPostView;
   className?: string;
-  onChange?: () => void;
 }
 
 const EditPostForm: FC<EditPostFormProps> = ({
-  className, postData, formId = 'form-edit-post'
+  className, formId = 'form-edit-post'
 }): ReactNode => {
-  // React hook form
-  const {
-    register, handleSubmit, control, formState: { errors }
-  } = useForm({ defaultValues: { ...postData} });
   // Feature image upload
   const [imageUpload, setImageUpload] = useState<File|null>(null);
+
+  const { postState, setPostState } = useEditPostContext();
+
+  const {
+    register, handleSubmit, control, formState: { errors }
+  } = useForm({ defaultValues: { ...postState} });
+
+  useEffect(() => {
+    console.log('EDIT POST FORM UPDATE: ', postState)
+  }, [postState])
 
   /**
    * Fired when the user clicks "Publish"
@@ -46,13 +51,17 @@ const EditPostForm: FC<EditPostFormProps> = ({
     setImageUpload(e)
   }
 
+  const testContentChange = (e: any) => {
+    console.log(e);
+  }
+
   return (
     <form 
       id={formId}
       onSubmit={handleSubmit(onSubmit)}
       className="contained gutter-x"
     >
-      { postData ? <>
+      { postState ? <>
         <TitleInputField 
           className={'mb-3'}
           {...register('title', {
@@ -86,7 +95,7 @@ const EditPostForm: FC<EditPostFormProps> = ({
         
         <div className="EditPost__content-wrapper EditPost__container lead">
           <ContentEditor 
-            onChange={() => {}}
+            onChange={testContentChange}
           />
         </div>
       </> : <>
