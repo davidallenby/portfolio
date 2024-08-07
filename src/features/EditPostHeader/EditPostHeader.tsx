@@ -3,6 +3,11 @@ import React, { FC, ReactNode } from 'react';
 import './EditPostHeader.scss';
 import Link from 'next/link';
 import { BsArrowLeft, BsRocketTakeoff, BsSave } from 'react-icons/bs';
+import { useFormContext } from 'react-hook-form';
+import { getDownloadURL, getStorage, ref, uploadBytes } from 'firebase/storage';
+import { collection, doc } from 'firebase/firestore';
+import { BlogPostView } from '@interfaces/blog.interfaces';
+import { db } from '@lib/firebase/app';
 
 interface EditPostHeaderProps {
   className?: string;
@@ -12,8 +17,44 @@ const EditPostHeader: FC<EditPostHeaderProps> = ({
   className
 }): ReactNode => {
 
-  const draftClickHandler = (e: any) => {
+  const { formState, handleSubmit, getValues, trigger } = useFormContext();
+
+  const draftClickHandler = async (e: any) => {
     console.log('---- DRAFT ------', e);
+    
+    const versionRef = doc(collection(db, `blog_posts/${e.id}/versions`))
+    console.log(versionRef.id)
+
+    return;
+    if (!e.id) {
+      console.log('NO POST ID!!!')
+      return;
+    }
+
+    try {
+      let newPostData: BlogPostView = { ...e }
+
+      // Create a new version reference
+      const versionRef = doc(db, `blog_posts/${e.id}/versions/`)
+
+      // If the featured image is a file blog, we need to upload the new image
+      const newFeaturedImg = (typeof e.featuredImgUrl !== 'string')
+
+      if (newFeaturedImg) {
+        const storage = getStorage();
+        const storageRef = ref(storage, `blog_posts/${e.id}/${e.id}_featured`);
+        const upload = await uploadBytes(storageRef, e.featuredImgUrl);
+        // console.log('Upload snapshot: ', upload)
+        const featuredImageUrl = await getDownloadURL(upload.ref)
+        newPostData.featuredImageUrl = featuredImageUrl;
+      }
+      console.log('New post data: ', newPostData)
+
+      
+
+    } catch (err) {
+      console.log(err);
+    }
   }
   const publishClickHandler = (e: any) => {
     console.log('---- PUBLISH ----', e);
@@ -30,7 +71,7 @@ const EditPostHeader: FC<EditPostHeaderProps> = ({
       <div>
         <button type="button"
           className="btn btn-outline-primary d-inline-flex align-items-center me-4"
-          onClick={draftClickHandler}
+          onClick={handleSubmit(draftClickHandler)}
         >
           <BsSave className="me-sm-2" />
           <span className="d-none d-sm-inline">Save draft</span>

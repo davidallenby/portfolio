@@ -7,6 +7,7 @@ export interface BlogPost {
   slug: string;
   tagIds: string[];
   featuredImageUrl: string;
+  content: any; // TODO: Find out what type is returned from tip tap editor
 }
 // NextJS doesn't support passing "Timestamp" data to client components. 
 // So we need to convert it to a view interface.

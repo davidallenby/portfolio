@@ -52,7 +52,7 @@ const ContentEditorToolbar: FC<ContentEditorToolbarProps> = ({
       <BiItalic />
     </ContentEditorToolbarButton>
     <ContentEditorToolbarButton
-      className={`me-4${editor.isActive('strike') ? ' ContentEditorToolbarButton--active' : ''}`}
+      className={`me-3${editor.isActive('strike') ? ' ContentEditorToolbarButton--active' : ''}`}
       onClick={(e) => editor?.chain().toggleStrike().run()}
     >
       <BiStrikethrough />
@@ -80,7 +80,7 @@ const ContentEditorToolbar: FC<ContentEditorToolbarProps> = ({
       }}>H3</span>
     </ContentEditorToolbarButton>
     <ContentEditorToolbarButton
-      className={`me-4${editor.isActive('heading', { level: 4 }) ? ' ContentEditorToolbarButton--active' : ''}`}
+      className={`me-3${editor.isActive('heading', { level: 4 }) ? ' ContentEditorToolbarButton--active' : ''}`}
       onClick={(e) => {
         editor?.chain().toggleHeading({ level: 4 }).run()
       }}
@@ -97,7 +97,7 @@ const ContentEditorToolbar: FC<ContentEditorToolbarProps> = ({
       <BiLink />
     </ContentEditorToolbarButton>
     <ContentEditorToolbarButton
-      className='me-4'
+      className='me-3'
       onClick={editor.chain().unsetLink().run}
     >
       <BiUnlink />

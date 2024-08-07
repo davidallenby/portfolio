@@ -10,9 +10,10 @@ import { CONTENT_EDITOR } from './constants';
 
 interface ContentEditorProps {
   onChange: (e: any) => void;
+  value: any;
 }
 
-const ContentEditor: FC<ContentEditorProps> = ({ onChange }) => {
+const ContentEditor: FC<ContentEditorProps> = ({ onChange, value }) => {
   // Editor State
   const [content, setContent] = useState<string>('');
   // Extension for TipTap Editor
@@ -41,7 +42,7 @@ const ContentEditor: FC<ContentEditorProps> = ({ onChange }) => {
 
   const editor = useEditor({
     extensions,
-    content: content,
+    content: value,
     immediatelyRender: false,
     onUpdate: onChange
   })
