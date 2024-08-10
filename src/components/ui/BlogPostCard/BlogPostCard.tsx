@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import './BlogPostCard.scss';
-import { BlogPostView } from '@interfaces/blog.interfaces';
-import { getDateString } from '@utils/dates';
+import { getDateString } from '@lib/dates';
 import { BsArrowRight } from 'react-icons/bs';
 import Link from 'next/link';
+import { BlogPost } from '@interfaces/blog.interfaces';
 
 interface BlogPostCardProps {
-  postItem: BlogPostView;
+  postItem: BlogPost;
 }
 
 const BlogPostCard: FC<BlogPostCardProps> = ({

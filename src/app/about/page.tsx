@@ -1,5 +1,5 @@
-import ContentContainer from "@components/containers/ContentContainer/ContentContainer";
-import { getYearsExperience } from "@utils/common";
+import ContentContainer from "@components/layout/ContentContainer/ContentContainer";
+import { getYearsExperience } from "@lib/common";
 import Image from 'next/image';
 import './About.scss'
 import { FaAngular, FaCss3, FaGithub, FaHtml5, FaJs, FaNodeJs, FaReact, FaSass } from "react-icons/fa";
@@ -11,7 +11,7 @@ import { SiJquery, SiVite, SiWebpack } from "react-icons/si";
 import Link from "next/link";
 import { LINKS } from "@constants/links";
 import { ROUTES } from "@constants/navigation";
-import PublicLayout from "@components/layout/PublicLayout/PublicLayout";
+import SiteLayout from "@components/layout/SiteLayout/SiteLayout";
 
 export default function About() {
 
@@ -75,7 +75,7 @@ export default function About() {
   ]
 
   return (
-    <PublicLayout>
+    <SiteLayout>
       <ContentContainer contained={false}>
         <div className="contained gutter-x">
           <div className="row">
@@ -93,8 +93,8 @@ export default function About() {
             </div>
             <div className="col-12 col-md-6">
               <h1>Hi, I&apos;m David</h1>
-              <p>I&apos;m a seasoned Lead Frontend Developer with around {getYearsExperience()} years of extensive experience in the tech industry. While being completely self-taught, my journey has taken me through diverse environments. From large financial institutions to nimble startups and innovative digital agencies. My versatile background has honed my ability to adapt to various project needs and deliver top-notch solutions.</p>
-              <p>Throughout my career, I have had the privilege of working on a multitude of projects that span different sectors. My work with large financial institutions has instilled in me a keen eye for security and performance, ensuring that the applications I develop are both robust and reliable. On the other hand, my experience with startups and digital agencies has sharpened my skills in rapid development and creative problem-solving, allowing me to bring innovative ideas to life quickly and efficiently.</p>
+              <p>I&apos;m a Lead Frontend Developer with about 12 years of hands-on experience in the tech industry. Although I&apos;m completely self-taught, I&apos;ve worked across a variety of environments, from big financial institutions to agile startups and creative digital agencies. This diverse background has made me adaptable and skilled at delivering high-quality solutions tailored to different project needs</p>
+              <p>Over the years, I&apos;ve had the chance to work on a wide range of projects in various sectors. Working with large financial institutions has given me a strong focus on security and performance, making sure the applications I build are solid and reliable. Meanwhile, my experience with startups and digital agencies has fine-tuned my ability to develop quickly and solve problems creatively, helping to bring fresh ideas to life efficiently.</p>
             </div>
           </div>
         </div>
@@ -169,6 +169,6 @@ export default function About() {
           </div>
         </div>
       </ContentContainer>
-    </PublicLayout>
+    </SiteLayout>
   );
 }

@@ -1,24 +1,23 @@
 import './page.scss';
-import ExternalIcons from "@features/ExternalIcons/ExternalIcons";
-import ContentContainer from "@components/containers/ContentContainer/ContentContainer";
-import { getYearsExperience } from "../utils/common";
+import ExternalIcons from "@components/ui/ExternalIcons/ExternalIcons";
+import ContentContainer from "@components/layout/ContentContainer/ContentContainer";
+import { getYearsExperience } from "../lib/common";
 import Link from "next/link";
-import { LINKS } from "../constants/links";
+import { LINKS } from "@constants/links";
 import Image from "next/image";
 import OILogo from '@svg/openinvest-logo.svg';
-import FeaturedArticles from '../features/FeaturedArticles/FeaturedArticles';
+import FeaturedArticles from '../components/ui/FeaturedArticles/FeaturedArticles';
 import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
-import PublicLayout from '@components/layout/PublicLayout/PublicLayout';
-import { BlogPostView } from '@interfaces/blog.interfaces';
-import { getBlogPosts } from '@lib/firebase/firestore';
+import SiteLayout from '@components/layout/SiteLayout/SiteLayout';
 import { BsGithub } from 'react-icons/bs';
+import { BlogPost } from '@interfaces/blog.interfaces';
 
 export default async function Home() {
   // Get the items from the server
-  const items: BlogPostView[] = await getBlogPosts(3);
+  const items: BlogPost[] = [];
 
   return (    
-    <PublicLayout>
+    <SiteLayout>
       <ContentContainer className="HomeHeroBanner">
         <h1 className="mb-1">David Allenby</h1>
         <h2 className="subtitle text-base mb-3">Lead frontend developer</h2>
@@ -116,6 +115,6 @@ export default async function Home() {
       <ContentContainer className="bg-beige">
         <FeaturedArticles items={items} />
       </ContentContainer>
-    </PublicLayout> 
+    </SiteLayout> 
   );
 }

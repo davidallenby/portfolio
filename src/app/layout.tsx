@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import '../assets/styles/index.scss';
-import AuthBanner from "@components/ui/AuthBanner/AuthBanner";
+import '../styles/index.scss';
 import ReactQueryProvider from "@context/ReactQueryProvider"
 
 export const metadata: Metadata = {
@@ -18,7 +17,6 @@ export default function RootLayout({
     <html lang="en" className="d-flex flex-column flex-grow-1 h-100">
       <body className="d-flex flex-column flex-grow-1">
           <ReactQueryProvider>
-            <AuthBanner />
             { children }
           </ReactQueryProvider>
       </body>

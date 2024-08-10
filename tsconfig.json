@@ -24,13 +24,13 @@
     ],
     "paths": {
       "@styles/*": [
-        "./src/assets/styles/*"
+        "./src/styles/*"
       ],
       "@components/*": [
         "./src/components/*"
       ],
       "@svg/*": [
-        "./src/assets/svg/*"
+        "./public/svg/*"
       ],
       "@lib/*": [
         "./src/lib/*"
@@ -44,17 +44,11 @@
       "@constants/*": [
         "./src/constants/*"
       ],
-      "@utils/*": [
-        "./src/utils/*"
-      ],
-      "@features/*": [
-        "./src/features/*"
+      "@modules/*": [
+        "./src/modules/*"
       ],
       "@hooks/*": [
         "./src/hooks/*"
-      ],
-      "@helpers/*": [
-        "./src/helpers/*"
       ]
     }
   },

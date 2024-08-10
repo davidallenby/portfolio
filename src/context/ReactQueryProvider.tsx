@@ -1,7 +1,6 @@
 'use client'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { FC, ReactNode } from "react"
-import { AuthContextProvider } from "./AuthContext";
 
 interface ReactQueryProviderProps {
   children: ReactNode;
@@ -30,9 +29,7 @@ const ReactQueryProvider: FC<ReactQueryProviderProps> =
   
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        {children}
-      </AuthContextProvider>
+      {children}
     </QueryClientProvider>
   );
 }

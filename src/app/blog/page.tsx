@@ -1,13 +1,13 @@
-import ContentContainer from "@components/containers/ContentContainer/ContentContainer";
-import PublicLayout from "@components/layout/PublicLayout/PublicLayout";
+import ContentContainer from "@components/layout/ContentContainer/ContentContainer";
+import SiteLayout from "@components/layout/SiteLayout/SiteLayout";
+import BlogPostList from "@modules/BlogPostList/BlogPostList";
 
-export default function Blog() {
-
+export default async function Blog() {
   return (    
-      <PublicLayout>
+      <SiteLayout>
         <ContentContainer>
-          <h1 className="mb-4">Blog</h1>
+          <BlogPostList/> 
         </ContentContainer> 
-      </PublicLayout>
+      </SiteLayout>
   );
 }

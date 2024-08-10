@@ -1,7 +1,7 @@
 export const QUERY = {
   IDS: {
     BLOG_POSTS: 'getBlogPosts',
-    BLOG_POST_TAGS: 'blogPostTags',
-    EDIT_POST_STATE: 'editPostState'
+    BLOG_POST_TAGS: 'getBlogPostTags',
+    BLOG_POST_CATEGORIES: 'getBlogPostCategories'
   }
 }
