@@ -8,4 +8,20 @@
 @mixin post-img-width-full {
   height: 250px;
   width: 100%;
+
+  @include media-breakpoint-up(md) {
+    height: 300px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    height: 350px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: 400px;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    height: 450px;
+  }
 }

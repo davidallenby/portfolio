@@ -16,9 +16,7 @@ const Modal: FC<ModalProps> = ({ show, title, onClose, children }) => {
   const [styleClass, setStyleClass] = useState('Modal');
 
   useEffect(() => {
-    const baseStyleClass = `Modal position-fixed top-0 start-0 h-100 w-100
-    
-    `;
+    const baseStyleClass = `Modal position-fixed top-0 start-0 h-100 w-100`;
     const updatedStyleClass = `${baseStyleClass}${show ? ' Modal--show' : ''}`
 
     if (show) {

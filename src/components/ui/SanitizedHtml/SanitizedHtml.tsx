@@ -29,9 +29,9 @@ const SanitizedHtml: FC<SanitizedHtmlProps> = ({
 
 
   return (
-    <div className={`SanitizedHtml${className? ` ${className}` : ''}`}
-      dangerouslySetInnerHTML={sanitize(html, options)}
-    ></div>
+    <div className={`SanitizedHtml${className? ` ${className}` : ''}`}>
+      <span dangerouslySetInnerHTML={sanitize(html, options)}></span>
+    </div>
   );
 }
 
