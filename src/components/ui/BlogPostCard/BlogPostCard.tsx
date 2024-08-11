@@ -21,7 +21,7 @@ const BlogPostCard: FC<BlogPostCardProps> = ({
         </Link>
       </h3>
       <small className='d-block subtitle mb-4'>
-        Published: {getDateString(postItem.dateCreated)}
+        {getDateString(postItem.dateCreated)}
       </small>
       <Link href={`/blog/${postItem.slug}`} className="small">
         <span className="d-inline-block me-2">Read more</span>

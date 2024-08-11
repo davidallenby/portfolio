@@ -44,7 +44,7 @@ export default async function Home() {
               loop 
               playsInline 
               className='w-100 h-100' 
-              style={{ objectFit: 'cover'}}
+              style={{ objectFit: 'cover', position: 'absolute', display: 'block' }}
             >
               <source src="/video/camplete-logo.webm" type="video/webm" />
             </video>

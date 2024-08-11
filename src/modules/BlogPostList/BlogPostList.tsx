@@ -3,18 +3,26 @@ import React, { FC } from 'react';
 import './BlogPostList.scss';
 import { useGetBlogPosts } from '@hooks/blog';
 import Link from 'next/link';
+import { BlogPost } from '@interfaces/blog.interfaces';
+import BlogPostListItem from '@components/ui/BlogPostListItem/BlogPostListItem';
 
 interface BlogPostListProps {}
 
 const BlogPostList: FC<BlogPostListProps> = () => {
 
   const { data, isSuccess, isLoading, isError } = useGetBlogPosts({ page: 1 });
-  console.log(data)
+  
   return (
     <div className="BlogPostList">
-      { !isLoading && isSuccess && <>
-        { JSON.stringify(data)}
-      </>}
+      { !isLoading && isSuccess && data.map((post: BlogPost, i: number) => {
+        return <BlogPostListItem key={i} post={post} />
+      })}
+
+      { isLoading && [0,1,2].map((_, i) => {
+        return <span key={i}>
+          LOADING
+        </span>
+      })}
 
       { isError && <>
         <p className="lead">

@@ -13,7 +13,7 @@ const ToggleMobileNav: FC<ToggleMobileNavProps> = ({
 
   return (
     <button type='button' 
-      className={`ToggleMobileNav${open ? ' ToggleMobileNav--open': ''}${' ' + className ?? ''}`}
+      className={`ToggleMobileNav${open ? ' ToggleMobileNav--open': ''}${className ? ` ${className}` : ''}`}
       onClick={() => {
         toggleOpen(!open);
       }}

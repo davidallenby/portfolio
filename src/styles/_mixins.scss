@@ -1,0 +1,11 @@
+// Small square size for blog post featured image
+@mixin post-img-square {
+  width: 160px;
+  height: 160px;
+}
+
+// Full width image size for blog post cards
+@mixin post-img-width-full {
+  height: 250px;
+  width: 100%;
+}

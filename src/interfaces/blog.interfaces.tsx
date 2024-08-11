@@ -10,6 +10,7 @@ export interface BlogPost {
   categories: number[];
   featuredImageUrl: string;
   dateCreated: Date;
+  excerpt: string;
 }
 
 export interface BlogPostTag {
@@ -21,6 +22,12 @@ export interface GetBlogPostsPayload {
   page: number;
   categoryId?: number[];
   tagIds?: number[];
+}
+
+export interface BlogPostCategory {
+  name: string;
+  id: number;
+  slug: string;
 }
 
 export interface WPResponse {

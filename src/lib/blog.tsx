@@ -1,8 +1,14 @@
 import { CMS } from "@constants/wordpress";
 import { 
-  WPResponse, GetBlogPostsPayload, BlogPost 
+  WPResponse, GetBlogPostsPayload, BlogPost, 
+  BlogPostCategory
 } from "@interfaces/blog.interfaces";
 
+/**
+ * Get a list of blog posts
+ * @param payload 
+ * @returns 
+ */
 export const getBlogPosts = async (payload: GetBlogPostsPayload)
 : Promise<BlogPost[]> => {
   try {
@@ -29,6 +35,24 @@ const setWpResponseItemAsBlogPost = (item: WPResponse): BlogPost => {
     url: `/blog/${item.slug}`,
     tags: item.tags,
     categories: item.categories,
-    featuredImageUrl: item.jetpack_featured_media_url
+    featuredImageUrl: item.jetpack_featured_media_url,
+    excerpt: item.excerpt.rendered
+  }
+}
+
+/**
+ * Get a list of categories for blog posts
+ */
+export const getBlogPostCategories = async(): Promise<BlogPostCategory[]> => {
+  try {
+    const url = `${CMS.BASE_URL}/categories?hide_empty=true`
+    const data = await fetch(url);
+    const json = await data.json();
+    console.log(json);
+    // Re-map the WP items as blog post items for the client side / NextJS
+    return json;
+  } catch (err) {
+    console.log(err);
+    return [];
   }
 }

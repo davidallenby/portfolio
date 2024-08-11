@@ -1,0 +1,9 @@
+.BlogPostListItem {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.BlogPostListItem__content {
+  width: 100%;
+}

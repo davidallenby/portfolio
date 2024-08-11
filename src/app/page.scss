@@ -48,6 +48,8 @@
     color: $body-color;
     position: relative;
     min-height: 200px;
+    display: flex;
+
     &:hover {
       & > .FeaturedProject__info {
         opacity: 1;

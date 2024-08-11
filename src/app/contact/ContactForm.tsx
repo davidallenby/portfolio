@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { RECAPTCHA_SITE_KEY } from '@constants/recaptcha';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import SendingSpinner from './SendingSpinner';
-import { app } from '@lib/firebase/app';
+import { app } from '@lib/firebase';
 
 
 interface ContactFormProps {}

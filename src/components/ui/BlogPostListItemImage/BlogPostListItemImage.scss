@@ -1,0 +1,34 @@
+@import "/node_modules/bootstrap/scss/functions";
+@import "/node_modules/bootstrap/scss/variables";
+@import "/node_modules/bootstrap/scss/mixins";
+@import '/src/styles/mixins';
+
+.BlogPostListItemImage {
+  width: 100%;
+  flex: auto;
+  @include post-img-width-full();
+
+  @include media-breakpoint-up(sm) {
+    flex: 0 0 160px;
+    @include post-img-square();
+  }
+
+  @include media-breakpoint-up(lg) {
+    flex: auto;
+    @include post-img-width-full();
+  }
+
+  @include media-breakpoint-up(xl) {
+    flex: 0 0 160px;
+    @include post-img-square();
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
+}

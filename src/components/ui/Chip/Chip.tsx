@@ -13,7 +13,7 @@ interface ChipProps {
 const Chip: FC<ChipProps> = ({
   className, children, icon, small, onDismiss
 }) => (
-  <div className={`Chip d-inline-flex align-items-center${' ' + className ?? ''}${small ? ' Chip--small' : ''}`}>
+  <div className={`Chip d-inline-flex align-items-center${className ? ` ${className}` : ''}${small ? ' Chip--small' : ''}`}>
     { icon && <span className='me-2'>
       {icon}
     </span>}
