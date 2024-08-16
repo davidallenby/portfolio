@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import './BlogPostCard.scss';
-import { getDateString } from '@lib/dates';
+import { getDateString } from '../../../helpers/dates';
 import { BsArrowRight } from 'react-icons/bs';
 import Link from 'next/link';
 import { BlogPost } from '@interfaces/blog.interfaces';

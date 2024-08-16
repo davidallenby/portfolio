@@ -13,20 +13,35 @@ const SanitizedHtml: FC<SanitizedHtmlProps> = ({
 }) => {
 
   const defaultOptions: IOptions = {
-    allowedTags: [ 'b', 'i', 'em', 'strong', 'a', 'p', 'ul', 'ol'],
+    allowedTags: [ 'p', 'b', 'i', 'em', 'strong', 'a', 'p', 'ul', 'ol'],
     allowedAttributes: {
       'a': [ 'href' ]
     },
-    allowedIframeHostnames: []
-  };
+    allowedIframeHostnames: [],
+    transformTags: {
+      'code': sanitizeHtml.simpleTransform('code', {
+        class: 'code-block'
+      })
+    }
+  }
+
+  const setAllowedTags = () => {
+    if (!options.allowedTags || !defaultOptions.allowedTags) { 
+      return [];
+    }
+    return [...new Set(defaultOptions.allowedTags.concat(options.allowedTags))]
+  }
   
   const sanitize = (dirty: string, options: IOptions ) => ({
     __html: sanitizeHtml(
       dirty,
-      { ...defaultOptions, ...options }
+      { 
+        ...defaultOptions, 
+        ...options,
+        allowedTags: setAllowedTags()
+      }
     )
   });
-
 
   return (
     <div className={`SanitizedHtml${className? ` ${className}` : ''}`}>

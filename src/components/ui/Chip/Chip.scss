@@ -11,6 +11,17 @@
     font-size: .8rem;
   }
 
+  &.Chip--clickable {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &.Chip--active {
+    background-color: $primary;
+    color: var(--bs-light);
+  }
+
   & > * {
     line-height: 1;
   }

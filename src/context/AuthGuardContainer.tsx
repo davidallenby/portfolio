@@ -1,6 +1,6 @@
 'use client'
 import { ROUTES } from "@constants/navigation";
-import { auth } from "@lib/firebase";
+import { auth } from "../api/firebase";
 import { useRouter } from "next/navigation";
 import { FC, ReactNode, useEffect, useState } from "react";
 

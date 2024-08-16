@@ -1,4 +1,4 @@
-import { debounce } from "@lib/common";
+import { debounce } from "../helpers/common";
 import { useEffect, useState } from "react";
 
 /**
@@ -29,7 +29,7 @@ export const useBreakpointBoolean = function() {
     return () => {
       window.removeEventListener("resize", debounceResize);
     }
-  }, [width, setWidth]);
+  }, [width, setWidth, isLoaded]);
 
   return {
     isMobile: (isLoaded && width <= 767),

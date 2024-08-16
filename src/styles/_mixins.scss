@@ -1,27 +1,58 @@
 // Small square size for blog post featured image
 @mixin post-img-square {
-  width: 160px;
-  height: 160px;
+  $post-img-square-dimension: 100px;
+  width: $post-img-square-dimension;
+  height: $post-img-square-dimension;
+  flex: 0 0 $post-img-square-dimension;
+
+  @include media-breakpoint-up(md) {
+    width: #{$post-img-square-dimension * 1.25};
+    height: #{$post-img-square-dimension * 1.25};
+    flex: 0 0 #{$post-img-square-dimension * 1.25};
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: #{$post-img-square-dimension * 1.4};
+    height: #{$post-img-square-dimension * 1.4};
+    flex: 0 0 #{$post-img-square-dimension * 1.4};
+  }
+  @include media-breakpoint-up(xl) {
+    width: #{$post-img-square-dimension * 1.5};
+    height: #{$post-img-square-dimension * 1.5};
+    flex: 0 0 #{$post-img-square-dimension * 1.5};
+  }
 }
 
 // Full width image size for blog post cards
 @mixin post-img-width-full {
   height: 250px;
   width: 100%;
+  flex: auto;
 
   @include media-breakpoint-up(md) {
     height: 300px;
+    flex: auto;
   }
 
   @include media-breakpoint-up(lg) {
     height: 350px;
+    flex: auto;
   }
 
   @include media-breakpoint-up(xl) {
     height: 400px;
+    flex: auto;
   }
 
   @include media-breakpoint-up(xxl) {
     height: 450px;
+    flex: auto;
   }
+}
+
+// Code block elements
+@mixin code-block {
+  background-color: var(--bs-dark);
+  color: var(--bs-light);
+  border-radius: 4px;
 }

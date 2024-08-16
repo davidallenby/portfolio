@@ -1,5 +1,5 @@
 import ContentContainer from "@components/layout/ContentContainer/ContentContainer";
-import { getYearsExperience } from "@lib/common";
+import { getYearsExperience } from "../../helpers/common";
 import Image from 'next/image';
 import './About.scss'
 import { FaAngular, FaCss3, FaGithub, FaHtml5, FaJs, FaNodeJs, FaReact, FaSass } from "react-icons/fa";

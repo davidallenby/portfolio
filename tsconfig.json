@@ -32,8 +32,8 @@
       "@svg/*": [
         "./public/svg/*"
       ],
-      "@lib/*": [
-        "./src/lib/*"
+      "@api/*": [
+        "./src/api/*"
       ],
       "@context/*": [
         "./src/context/*"

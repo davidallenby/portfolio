@@ -4,21 +4,17 @@
 @import '/src/styles/mixins';
 
 .BlogPostListItemImage {
-  flex: auto;
   @include post-img-width-full();
 
   @include media-breakpoint-up(sm) {
-    flex: 0 0 160px;
     @include post-img-square();
   }
 
   @include media-breakpoint-up(lg) {
-    flex: auto;
     @include post-img-width-full();
   }
 
   @include media-breakpoint-up(xl) {
-    flex: 0 0 160px;
     @include post-img-square();
   }
 

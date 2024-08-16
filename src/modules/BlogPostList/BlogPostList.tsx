@@ -1,16 +1,24 @@
 'use client'
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import './BlogPostList.scss';
 import { useGetBlogPosts } from '@hooks/blog';
 import Link from 'next/link';
 import { BlogPost } from '@interfaces/blog.interfaces';
 import BlogPostListItem from '@components/ui/BlogPostListItem/BlogPostListItem';
+import { BLOG } from '@constants/blog';
+import { queryClient } from '@context/ReactQueryProvider';
+import { QUERY } from '@constants/query';
 
 interface BlogPostListProps {}
 
 const BlogPostList: FC<BlogPostListProps> = () => {
-
-  const { data, isSuccess, isLoading, isError } = useGetBlogPosts({ page: 1 });
+  const { data, isSuccess, isLoading, isError } = useGetBlogPosts();
+  // When we load this screen, reload the blog posts to the original state.
+  useEffect(() => {
+    return () => {
+      queryClient.removeQueries({ queryKey: [QUERY.BLOG_POSTS]})
+    }
+  }, [])
   
   return (
     <div className="BlogPostList">
@@ -18,11 +26,10 @@ const BlogPostList: FC<BlogPostListProps> = () => {
         return <BlogPostListItem key={i} post={post} />
       })}
 
-      { isLoading && [0,1,2].map((_, i) => {
-        return <span key={i}>
-          LOADING
-        </span>
-      })}
+      { isLoading && <BlogPostListItem 
+          post={BLOG.EMPTY_POST} 
+          loading={true} 
+      />}
 
       { isError && <>
         <p className="lead">

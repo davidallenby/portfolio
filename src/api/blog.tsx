@@ -14,9 +14,18 @@ import { WPBlogPost, WpCategory, WpTag } from "@interfaces/wordpress.interfaces"
  */
 export const getBlogPosts = async (payload: GetBlogPostsPayload)
 : Promise<BlogPost[]> => {
+  console.log(payload)
+
   try {
-    const { page } = payload;
-    const url = `${CMS.BASE_URL}/posts?page=${page}`
+    const { page, tagIds } = payload;
+    let url = `${CMS.BASE_URL}/posts?page=${page}`;
+
+    if (tagIds?.length) {
+      tagIds.forEach((id) => {
+        url += `&tags=${id}`
+      })
+    }
+
     const data = await fetch(url);
     const json = await data.json();
     // Re-map the WP items as blog post items for the client side / NextJS
@@ -39,7 +48,8 @@ const setWpBlogPostAsBlogPost = (item: WPBlogPost): BlogPost => {
     tags: item.tags,
     categories: item.categories,
     featuredImageUrl: item.jetpack_featured_media_url,
-    excerpt: item.excerpt.rendered
+    excerpt: item.excerpt.rendered,
+    content: item.content.rendered
   }
 }
 
@@ -51,7 +61,6 @@ export const getBlogPostCategories = async(): Promise<BlogPostCategory[]> => {
     const url = `${CMS.BASE_URL}/categories?hide_empty=true`
     const data = await fetch(url);
     const json = await data.json();
-    console.log(json);
     // Re-map the WP items as blog post items for the client side / NextJS
     return json.map(mapWpItemsAsClient);
   } catch (err) {

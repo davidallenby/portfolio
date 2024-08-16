@@ -10,9 +10,12 @@ export const queryClient = new QueryClient({
     queries: {
       refetchOnWindowFocus: false,
       refetchOnMount: false,
-      retry: 1,
+      retry: 0,
     },
-  },
+    mutations: {
+      retry: 0
+    }
+  }
 });
 /**
  * This component is required for providing react query. If we use it in the 

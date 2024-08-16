@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import './MobileMenu.scss';
 import Link from 'next/link';
-import { getCurrentYear } from '@lib/common';
+import { getCurrentYear } from '../../../helpers/common';
 import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
 import { NavMenuItem } from '@interfaces/ui.interfaces';
 import { useMobileNavContext } from '@context/MobileNavContext';

@@ -1,7 +1,7 @@
 import './page.scss';
 import ExternalIcons from "@components/ui/ExternalIcons/ExternalIcons";
 import ContentContainer from "@components/layout/ContentContainer/ContentContainer";
-import { getYearsExperience } from "../lib/common";
+import { getYearsExperience } from "../helpers/common";
 import Link from "next/link";
 import { LINKS } from "@constants/links";
 import Image from "next/image";

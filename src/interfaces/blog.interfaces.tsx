@@ -9,6 +9,7 @@ export interface BlogPost {
   featuredImageUrl: string;
   dateCreated: Date;
   excerpt: string;
+  content: string;
 }
 
 export interface BlogPostTag {

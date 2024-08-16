@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import '../styles/index.scss';
+import '../../node_modules/react-loading-skeleton/dist/skeleton.css'
 import ReactQueryProvider from "@context/ReactQueryProvider"
 
 export const metadata: Metadata = {
