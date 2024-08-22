@@ -7,6 +7,7 @@ import { NavMenuItem } from '@interfaces/ui.interfaces';
 import { useMobileNavContext } from '@context/MobileNavContext';
 import { SITENAV_ITEMS } from '@constants/navigation';
 import ExternalIcons from '@components/ui/ExternalIcons/ExternalIcons';
+import ToggleMobileNav from '../ToggleMobileNav/ToggleMobileNav';
 
 interface MobileMenuProps {}
 
@@ -34,10 +35,11 @@ const MobileMenu: FC<MobileMenuProps> = (props) => {
   return (
     <>
       {attach && <div className={styleClass}>
-        <div className='MobileMenu__header d-flex gutter-x py-3'>
+        <div className='MobileMenu__header d-flex justify-content-between align-items-center gutter-x py-3'>
           <SiteLogo colorInverted={true}
             onClick={() => setOpenState(!open)}
           />
+          <ToggleMobileNav />
         </div>
         <nav className='MobileMenu__inner gutter-x'>
           <ul className='list-unstyled'>

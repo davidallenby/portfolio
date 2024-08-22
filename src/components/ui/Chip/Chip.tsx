@@ -1,3 +1,4 @@
+'use client'
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import './Chip.scss';
 import { MdClose } from 'react-icons/md';
@@ -20,16 +21,6 @@ const Chip: FC<ChipProps> = ({
 
 
 
-  const initStyleClasses = () => {
-    // Build the class string for the className property depending on props set
-    let classes = `Chip d-inline-flex align-items-center`;
-    if (className) { classes += ` ${className}`; }
-    if (small) { classes += ` Chip--small` }
-    if (!!onClick) { classes += ` Chip--clickable` }
-    if (toggle) { classes += ` Chip--active` }
-    setStyleClass(classes);
-  }
-
   /**
    * If an onClick method is present. We need to enable this for people using a
    * keyboard. (i.e. accessible users.)
@@ -42,18 +33,35 @@ const Chip: FC<ChipProps> = ({
     clickHandler(e);
   }
 
+  /**
+   * Handles the click event.
+   *
+   * @param {*} e
+   */
   const clickHandler = (e: any) => {
     if (toggleClick) { setToggle(!toggle) }
     if (onClick) { onClick(e); }
   }
 
   useEffect(() => {
+    /**
+     * Initialise the styleClass attribute for this element based on the props
+     * provided
+     *
+     */
+    const initStyleClasses = () => {
+      let classes = ``;
+      if (small) { classes += ` Chip--small` }
+      if (!!onClick) { classes += ` Chip--clickable` }
+      if (toggle) { classes += ` Chip--active` }
+      setStyleClass(classes);
+    }
     initStyleClasses();
-  }, [toggle, className, small])
+  }, [toggle, className, small, onClick])
 
   return (
     <div 
-      className={styleClass}
+      className={`Chip d-inline-flex align-items-center ${className} ${styleClass}`}
       onClick={(onClick) ? clickHandler : undefined}
       onKeyDown={(onClick) ? keyDownHandler : undefined}
       tabIndex={(!!onClick ? 0 : undefined)}

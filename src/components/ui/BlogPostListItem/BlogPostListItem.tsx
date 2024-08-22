@@ -46,6 +46,7 @@ const BlogPostListItem: FC<BlogPostListItemProps> = ({
     const active = getActiveTags(tagIds)
     return active.map((tag: BlogPostTag, i: number) => {
       return <Chip key={i}
+        small
         className='my-2 me-3'
       >{tag.name}</Chip>
     })
