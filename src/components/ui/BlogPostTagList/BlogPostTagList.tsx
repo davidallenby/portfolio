@@ -3,6 +3,7 @@ import React, { FC } from 'react';
 import './BlogPostTagList.scss';
 import Chip from '@components/ui/Chip/Chip';
 import { useGetBlogPostTags } from '@hooks/blog';
+import Skeleton from 'react-loading-skeleton';
 
 interface BlogPostTagListProps {
   tagIds: number[];
@@ -14,15 +15,15 @@ const BlogPostTagList: FC<BlogPostTagListProps> = ({ tagIds, className }) => {
   const { isLoading, isError, isSuccess, data } = useGetBlogPostTags();
 
   return (
-    <div className={`BlogPostTagList d-flex align-items-center${className ? ` ${className}` : ''}`}>
-      { isLoading && <p>LOADING TAGS</p> }
+    <div className={`BlogPostTagList d-flex flex-wrap align-items-center${className ? ` ${className}` : ''}`}>
+      { isLoading && <Skeleton width={130} height={28.8} /> }
   
       { isError && <p className='text-danger mb-0'>Error fetching tags</p> }
   
       { isSuccess && <>
         {data.filter((tag) => tagIds.includes(tag.id)).map((tag, i) => {
           
-          return true ? <Chip className="me-4 mb-4" key={i}>
+          return true ? <Chip className="me-3 mb-3" key={i}>
           { tag.name }
         </Chip> : false;
         })}

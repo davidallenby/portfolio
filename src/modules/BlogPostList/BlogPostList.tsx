@@ -22,9 +22,14 @@ const BlogPostList: FC<BlogPostListProps> = () => {
   
   return (
     <div className="BlogPostList">
-      { !isLoading && isSuccess && data.map((post: BlogPost, i: number) => {
-        return <BlogPostListItem key={i} post={post} />
-      })}
+      { !isLoading && isSuccess && <>
+        {data.length ? data.map((post: BlogPost, i: number) => {
+          return <BlogPostListItem key={i} post={post} />
+        }) : <>
+          <h3 className='h2'>No posts found</h3>
+          <p>There weren&apos;t any posts found with those filters ☹️.</p>
+        </>}
+      </>}
 
       { isLoading && <BlogPostListItem 
           post={BLOG.EMPTY_POST} 

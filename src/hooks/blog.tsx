@@ -15,9 +15,7 @@ export const useGetBlogPosts = () => {
 export const useMutateBlogPosts = () => {
   return useMutation({
     mutationFn: (payload: GetBlogPostsPayload) => getBlogPosts(payload),
-    onSuccess: (data) => {
-      queryClient.setQueryData([QUERY.BLOG_POSTS], data)
-    }
+    onSuccess: (data) => queryClient.setQueryData([QUERY.BLOG_POSTS], data)
   })
 }
 

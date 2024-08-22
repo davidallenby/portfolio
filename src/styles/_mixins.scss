@@ -52,7 +52,14 @@
 
 // Code block elements
 @mixin code-block {
+  width: 100%;
+  @include code-tag();
+}
+
+// Code tag elements (inline)
+@mixin code-tag {
   background-color: var(--bs-dark);
   color: var(--bs-light);
   border-radius: 4px;
+  display: inline-block;
 }

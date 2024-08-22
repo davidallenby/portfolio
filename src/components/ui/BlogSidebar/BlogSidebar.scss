@@ -6,6 +6,8 @@
 
 .BlogSidebar {
   width: 420px;
+  position: sticky;
+  top: $header-height;
 
   @include media-breakpoint-up(lg) {
     padding-left: #{$gutter * 1.25};

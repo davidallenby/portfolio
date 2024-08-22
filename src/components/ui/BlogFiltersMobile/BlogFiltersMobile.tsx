@@ -13,13 +13,6 @@ const BlogFiltersMobile: FC<BlogFiltersMobileProps> = () => {
           className='btn btn-sm btn-outline-primary d-flex align-items-center me-3'
         >
           <MdFilterList size={16} className='me-1' />
-          <span>Categories</span>
-        </button>
-
-        <button type='button'
-          className='btn btn-sm btn-outline-primary d-flex align-items-center me-3'
-        >
-          <MdFilterList size={16} className='me-1' />
           <span>Tags</span>
         </button>
       </div>

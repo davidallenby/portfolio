@@ -10,14 +10,13 @@ interface ChipProps {
   small?: boolean;
   onDismiss?: (e:any) => void;
   onClick?: (e: any) => void;
-  toggleClick?: boolean;
+  toggle?: boolean;
 }
 
 const Chip: FC<ChipProps> = ({
-  className, children, icon, small, onDismiss, onClick, toggleClick
+  className, children, icon, small, onDismiss, onClick, toggle
 }) => {
   const [styleClass, setStyleClass] = useState('')
-  const [toggle, setToggle] = useState(false);
 
 
 
@@ -39,7 +38,6 @@ const Chip: FC<ChipProps> = ({
    * @param {*} e
    */
   const clickHandler = (e: any) => {
-    if (toggleClick) { setToggle(!toggle) }
     if (onClick) { onClick(e); }
   }
 

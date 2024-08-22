@@ -20,6 +20,7 @@ export default async function BlogPage({
   const contentOptions: IOptions = {
     allowedTags: ['h2', 'h3', 'h4', 'pre', 'code']
   }
+
   return (    
     <SiteLayout>
       <div className="BlogPost">
@@ -32,7 +33,7 @@ export default async function BlogPage({
             />
             <BlogPostTagList 
               tagIds={data.tags} 
-              className="mb-4" 
+              className="mb-4 d-none d-sm-block" 
             />
             <SanitizedHtml html={data.content} 
               options={contentOptions} 
