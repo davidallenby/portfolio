@@ -8,11 +8,16 @@ import BlogPostListItem from '@components/ui/BlogPostListItem/BlogPostListItem';
 import { BLOG } from '@constants/blog';
 import { queryClient } from '@context/ReactQueryProvider';
 import { QUERY } from '@constants/query';
+import { useStore } from '@store/store';
 
 interface BlogPostListProps {}
 
 const BlogPostList: FC<BlogPostListProps> = () => {
-  const { data, isSuccess, isLoading, isError } = useGetBlogPosts();
+  const { blogFilterTags } = useStore()
+  const { data, isSuccess, isLoading, isError } = useGetBlogPosts({
+    tagIds: blogFilterTags,
+    page: 1
+  });
   // When we load this screen, reload the blog posts to the original state.
   useEffect(() => {
     return () => {

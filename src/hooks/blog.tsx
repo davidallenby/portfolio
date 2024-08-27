@@ -5,10 +5,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@context/ReactQueryProvider";
 
 
-export const useGetBlogPosts = () => {
+export const useGetBlogPosts = (payload?: GetBlogPostsPayload) => {
+  const req = (payload) ? payload :  { page: 1 }
   return useQuery({
     queryKey: [QUERY.BLOG_POSTS],
-    queryFn: () => getBlogPosts({ page: 1 })
+    queryFn: () => getBlogPosts(req)
   })
 }
 

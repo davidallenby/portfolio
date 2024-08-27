@@ -20,6 +20,7 @@ export interface BlogPostTag {
 
 export interface GetBlogPostsPayload {
   page: number;
+  limit?: number;
   categoryId?: number[];
   tagIds?: number[];
 }

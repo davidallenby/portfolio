@@ -1,11 +1,12 @@
 import BlogPostContainer from "@components/layout/BlogPostContainer/BlogPostContainer";
 import SiteLayout from "@components/layout/SiteLayout/SiteLayout";
 import BlogPostFeaturedImage from "@components/ui/BlogPostFeaturedImage/BlogPostFeaturedImage";
-import { getBlogPostBySlug } from "../../../api/blog";
+import { getBlogPostBySlug } from "@api/blog";
 import './BlogPost.scss';
 import BlogPostTagList from "@components/ui/BlogPostTagList/BlogPostTagList";
 import SanitizedHtml from "@components/ui/SanitizedHtml/SanitizedHtml";
 import { IOptions } from "sanitize-html";
+import { getDateString } from "@helpers/dates";
 
 export default async function BlogPage({
   params 
@@ -26,7 +27,12 @@ export default async function BlogPage({
       <div className="BlogPost">
         {success ? <>
           <BlogPostContainer>
-            <h1 className="mb-4">{ data.title }</h1>
+            <h1 className="mb-1">{ data.title }</h1>
+            <div className="d-flex align-items-end justify-content-between mb-4">
+              <span className="subtitle me-4">Created: {getDateString(data.dateCreated)}</span>
+              {/* Will add share button in v2 */}
+              {/* <SharePostButton /> */}
+            </div>
             <BlogPostFeaturedImage 
               src={data.featuredImageUrl}
               className="mb-4"

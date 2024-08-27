@@ -6,15 +6,12 @@ import Link from "next/link";
 import { LINKS } from "@constants/links";
 import Image from "next/image";
 import OILogo from '@svg/openinvest-logo.svg';
-import FeaturedArticles from '../components/ui/FeaturedArticles/FeaturedArticles';
+import FeaturedArticles from '@modules/FeaturedArticles/FeaturedArticles';
 import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
 import SiteLayout from '@components/layout/SiteLayout/SiteLayout';
 import { BsGithub } from 'react-icons/bs';
-import { BlogPost } from '@interfaces/blog.interfaces';
 
 export default async function Home() {
-  // Get the items from the server
-  const items: BlogPost[] = [];
 
   return (    
     <SiteLayout>
@@ -113,7 +110,7 @@ export default async function Home() {
       </ContentContainer>
       
       <ContentContainer className="bg-beige">
-        <FeaturedArticles items={items} />
+        <FeaturedArticles title='Recent articles' />
       </ContentContainer>
     </SiteLayout> 
   );

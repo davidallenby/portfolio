@@ -4,11 +4,11 @@ import './FeaturedArticles.scss';
 import Link from 'next/link';
 import BlogPostCard from '@components/ui/BlogPostCard/BlogPostCard';
 import { BlogPost } from '@interfaces/blog.interfaces';
+import { useGetBlogPosts } from '@hooks/blog';
 
 interface FeaturedArticlesProps {
   className?: string;
   title?: string;
-  items: BlogPost[];
 }
 /**
  * Creates the list of card templates that display the blog posts.
@@ -40,12 +40,15 @@ const setArticleContent = (posts: BlogPost[]): React.ReactNode => {
 }
 
 const FeaturedArticles: FC<FeaturedArticlesProps> = ({
-  className, items, title = 'Featured articles'
+  className, title = 'Featured articles'
 }) => {
+
+  const { data, isSuccess, isLoading } = useGetBlogPosts({ page: 1, limit: 3})
+
   return (
     <>
       <h2 className="mb-4">{title}</h2>
-      {setArticleContent(items)}
+      {isSuccess && setArticleContent(data)}
     </>
   );
 }

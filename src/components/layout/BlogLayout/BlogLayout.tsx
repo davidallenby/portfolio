@@ -2,8 +2,8 @@
 import React, { FC, ReactNode } from 'react';
 import './BlogLayout.scss';
 import ContentContainer from '../ContentContainer/ContentContainer';
-import BlogSidebar from '@components/ui/BlogSidebar/BlogSidebar';
-import BlogFiltersMobile from '@components/ui/BlogFiltersMobile/BlogFiltersMobile';
+import BlogSidebar from '@modules/BlogSidebar/BlogSidebar';
+import BlogFiltersMobile from '@modules/BlogFiltersMobile/BlogFiltersMobile';
 
 interface BlogLayoutProps {
   children: ReactNode;

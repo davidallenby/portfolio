@@ -14,8 +14,6 @@ import { WPBlogPost, WpCategory, WpTag } from "@interfaces/wordpress.interfaces"
  */
 export const getBlogPosts = async (payload: GetBlogPostsPayload)
 : Promise<BlogPost[]> => {
-  console.log(payload)
-
   try {
     const { page, tagIds } = payload;
     let url = `${CMS.BASE_URL}/posts?page=${page}`;

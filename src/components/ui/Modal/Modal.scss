@@ -4,7 +4,7 @@
 @import '/node_modules/bootstrap/scss/variables';
 
 .Modal {
-  z-index: 2;
+  z-index: 10;
   opacity: 0;
   transition: .25s;
   background-color: rgba(0,0,0,0.6);

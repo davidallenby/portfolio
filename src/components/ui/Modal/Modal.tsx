@@ -1,6 +1,5 @@
 import React, { FC, ReactNode, useEffect, useState } from 'react';
 import './Modal.scss';
-import { IoClose } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
 
 interface ModalProps {
@@ -8,10 +7,12 @@ interface ModalProps {
   title: string;
   onClose: (bool: boolean) => void;
   children: ReactNode;
+  cancelBtnLabel?: string;
 }
 
-const Modal: FC<ModalProps> = ({ show, title, onClose, children }) => {
-
+const Modal: FC<ModalProps> = ({
+  show, title, onClose, children, cancelBtnLabel = 'Cancel'
+}) => {
   const [open, setOpen] = useState(false);
   const [styleClass, setStyleClass] = useState('Modal');
 
@@ -22,15 +23,17 @@ const Modal: FC<ModalProps> = ({ show, title, onClose, children }) => {
     if (show) {
       setTimeout(() => {
         setStyleClass(updatedStyleClass)
+        document.body.classList.add('scroll-lock')
       }, 250)
       setOpen(show);
     } else {
       setStyleClass(updatedStyleClass)
       setTimeout(() => {
         setOpen(show);
+        document.body.classList.remove('scroll-lock')
       }, 250)
     }
-  }, [show])
+  }, [show, open])
 
 
   return (
@@ -58,7 +61,7 @@ const Modal: FC<ModalProps> = ({ show, title, onClose, children }) => {
             className='btn btn-outline-primary'
             onClick={() => onClose(false)}
           >
-            <span>Cancel</span>
+            <span>{ cancelBtnLabel }</span>
           </button>
         </div>
       </div>

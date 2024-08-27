@@ -11,7 +11,7 @@ import ToggleMobileNav from '../ToggleMobileNav/ToggleMobileNav';
 
 interface MobileMenuProps {}
 
-const MobileMenu: FC<MobileMenuProps> = (props) => {
+const MobileMenu: FC<MobileMenuProps> = ({}) => {
   const { open, toggleOpen } = useMobileNavContext();
   const [attach, setAttach] = useState(false);
   const [styleClass, setStyleClass] = useState(`MobileMenu${open ? ` MobileMenu--open` : ''}`);
@@ -44,7 +44,7 @@ const MobileMenu: FC<MobileMenuProps> = (props) => {
         <nav className='MobileMenu__inner gutter-x'>
           <ul className='list-unstyled'>
             { navItems.map((item, i) => {
-              return <li key={i}>
+              return <li key={item.url}>
                 <Link href={item.url}
                   onClick={() => setOpenState(!open)}
                 >{item.label}</Link>

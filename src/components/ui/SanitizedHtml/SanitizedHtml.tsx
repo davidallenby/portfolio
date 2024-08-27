@@ -44,7 +44,7 @@ const SanitizedHtml: FC<SanitizedHtmlProps> = ({
    *
    * @return {*} 
    */
-  const setAllowedTags = () => {
+  const setAllowedTags = (): string[] => {
     if (!options.allowedTags || !defaultOptions.allowedTags) { return [] }
     return [...new Set(defaultOptions.allowedTags.concat(options.allowedTags))]
   }
@@ -68,6 +68,7 @@ const SanitizedHtml: FC<SanitizedHtmlProps> = ({
   
   const sanitized = sanitize(html, options);
 
+  // Highlight syntax in the code blocks on render
   useEffect(() => {
     hljs.highlightAll()
   }, [])

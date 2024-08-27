@@ -50,8 +50,14 @@
       "@hooks/*": [
         "./src/hooks/*"
       ],
+      "@helpers/*": [
+        "./src/helpers/*"
+      ],
       "@node_modules/*": [
         "./node_modules/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
       ]
     }
   },

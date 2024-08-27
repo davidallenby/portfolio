@@ -4,6 +4,7 @@ import { getDateString } from '../../../helpers/dates';
 import { BsArrowRight } from 'react-icons/bs';
 import Link from 'next/link';
 import { BlogPost } from '@interfaces/blog.interfaces';
+import Image from 'next/image';
 
 interface BlogPostCardProps {
   postItem: BlogPost;
@@ -12,11 +13,24 @@ interface BlogPostCardProps {
 const BlogPostCard: FC<BlogPostCardProps> = ({
   postItem
 }) => (
-  <div className='bg-white'>
-    <div className="FeaturedArticle__image"></div>
-    <div className="FeaturedArticle__content p-3">
+  <div className='BlogPostCard bg-white'>
+    <Link 
+      href={`/blog/${postItem.slug}`}
+      className="BlogPostCard__image position-relative d-block"
+    >
+      <Image 
+        width={800} 
+        height={800} 
+        src={postItem.featuredImageUrl} 
+        alt=''
+      />
+    </Link>
+    <div className="BlogPostCard__content p-3">
       <h3>
-        <Link href={`/blog/${postItem.slug}`}>
+        <Link 
+          href={`/blog/${postItem.slug}`}
+          className='text-decoration-none text-body'
+        >
           {postItem.title}
         </Link>
       </h3>

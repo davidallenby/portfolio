@@ -89,7 +89,6 @@ export default function About() {
                   height={576}
                 />  
               </div>
-            
             </div>
             <div className="col-12 col-md-6">
               <h1>Hi, I&apos;m David</h1>

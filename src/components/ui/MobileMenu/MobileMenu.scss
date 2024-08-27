@@ -14,7 +14,7 @@
   animation: fadeIn .25s;
   display: flex;
   flex-direction: column;
-  z-index: 10;
+  z-index: 99;
 
   &.MobileMenu--open {
     opacity: 1;
