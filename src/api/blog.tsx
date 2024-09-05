@@ -100,7 +100,7 @@ export const getBlogPostBySlug = async (slug: string)
 : ApiResponse<BlogPost> => {
   try {
     const url = `${CMS.BASE_URL}/posts?slug=${slug}`
-    const data = await fetch(url);
+    const data = await fetch(url, { next: { revalidate: 3600 }});
     const json = await data.json();
     const mapped = json.map((item: WPBlogPost) => setWpBlogPostAsBlogPost(item))
     return { data: mapped[0], success: true }

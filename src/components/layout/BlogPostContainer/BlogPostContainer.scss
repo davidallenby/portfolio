@@ -5,28 +5,18 @@
   max-width: 960px;
   margin: 0 auto;
 
-  p > code {
-    font-size: 75%;
-    padding: 4px 6px;
-    margin: 0 4px;
-    @include code-tag();
-  }
-
   h2, h3 {
     margin-bottom: 1rem;
   }
 
-
-  p + h2,
-  p + h3,
-  p + h4 {
-    margin-top: 3rem;
+  p, pre {
+    & + h2,
+    & + h3,
+    & + h4 {
+      margin-top: 3rem;
+    }
   }
 
-  code:not(p > code) {
-    padding: 1rem;
-    @include code-block();
-  }
 
   pre {
     border-radius: 4px;

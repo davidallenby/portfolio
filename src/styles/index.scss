@@ -30,6 +30,7 @@
 @import "../../node_modules/bootstrap/scss/tables";
 
 // Custom Styles
+@import './mixins';
 @import './base'; // Base elements (e.g. hr, code, ul etc.)
 @import './spacing'; // Padding and margins
 @import './typography'; // Custom fonts 

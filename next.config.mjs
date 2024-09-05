@@ -7,6 +7,11 @@ const nextConfig = {
       }
     ]
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   webpack(config) {
 
     // Grab the existing rule that handles SVG imports
