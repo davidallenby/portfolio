@@ -13,7 +13,7 @@ sendgrid.setApiKey(process.env.SENDGRID as string)
 const verifyRecaptcha = async (token: string): Promise<boolean> => {
   try {
     const key = process.env.RECAPTCHA;
-    logger.info('RECAPTCHA SECRET: ', key)
+    console.log('RECAPTCHA SECRET: ', key)
     const url = `https://www.google.com/recaptcha/api/siteverify?secret=${key}&response=${token}`;
     const response = await fetch(url, { method: 'POST' })
     .then(res => res.json());
