@@ -1,0 +1,14 @@
+@import "/node_modules/bootstrap/scss/functions";
+@import "/node_modules/bootstrap/scss/variables";
+@import "/node_modules/bootstrap/scss/mixins";
+
+.BlogPost {
+  padding: 32px 0 ;
+  @include media-breakpoint-up(md) {
+    padding: 48px 0;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 64px 0;
+  }
+}

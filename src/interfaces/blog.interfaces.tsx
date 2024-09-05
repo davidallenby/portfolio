@@ -1,23 +1,33 @@
-import { Timestamp } from "@firebase/firestore";
-
-// Base interface
+// Blog Post Data for the client side
 export interface BlogPost {
-  id: string;
+  id: number;
   title: string;
   slug: string;
-  tagIds: string[];
+  tags: number[];
+  url: string;
+  categories: number[];
   featuredImageUrl: string;
-}
-// NextJS doesn't support passing "Timestamp" data to client components. 
-// So we need to convert it to a view interface.
-export interface BlogPostData extends BlogPost {
-  dateCreated: Timestamp;
-  dateEdited: Timestamp;
-  datePublished: Timestamp;
-}
-// View interface
-export interface BlogPostView extends BlogPost {
   dateCreated: Date;
-  dateEdited: Date;
-  datePublished: Date;
+  excerpt: string;
+  content: string;
 }
+
+export interface BlogPostTag {
+  id: number;
+  slug: string;
+  name: string;
+}
+
+export interface GetBlogPostsPayload {
+  page: number;
+  limit?: number;
+  categoryId?: number[];
+  tagIds?: number[];
+}
+
+export interface BlogPostCategory {
+  name: string;
+  id: number;
+  slug: string;
+}
+

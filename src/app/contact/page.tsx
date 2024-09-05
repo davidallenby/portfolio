@@ -1,10 +1,10 @@
-import PublicLayout from "@components/layout/PublicLayout/PublicLayout";
+import SiteLayout from "@components/layout/SiteLayout/SiteLayout";
 import ContactForm from "./ContactForm";
-import ContentContainer from "@components/containers/ContentContainer/ContentContainer";
+import ContentContainer from "@components/layout/ContentContainer/ContentContainer";
 
 export default function Contact() {
   return (
-    <PublicLayout>
+    <SiteLayout>
       <ContentContainer>
         <div className="Contact mx-auto" 
           style={{ maxWidth: 800 }}
@@ -14,6 +14,6 @@ export default function Contact() {
         <ContactForm />
         </div>
       </ContentContainer>
-    </PublicLayout>
+    </SiteLayout>
   );
 }

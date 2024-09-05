@@ -1,16 +1,17 @@
 import React, { FC, useEffect, useState } from 'react';
 import './MobileMenu.scss';
 import Link from 'next/link';
-import { getCurrentYear } from '@utils/common';
+import { getCurrentYear } from '../../../helpers/common';
 import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
 import { NavMenuItem } from '@interfaces/ui.interfaces';
 import { useMobileNavContext } from '@context/MobileNavContext';
 import { SITENAV_ITEMS } from '@constants/navigation';
-import ExternalIcons from '@components/features/ExternalIcons/ExternalIcons';
+import ExternalIcons from '@components/ui/ExternalIcons/ExternalIcons';
+import ToggleMobileNav from '../ToggleMobileNav/ToggleMobileNav';
 
 interface MobileMenuProps {}
 
-const MobileMenu: FC<MobileMenuProps> = (props) => {
+const MobileMenu: FC<MobileMenuProps> = ({}) => {
   const { open, toggleOpen } = useMobileNavContext();
   const [attach, setAttach] = useState(false);
   const [styleClass, setStyleClass] = useState(`MobileMenu${open ? ` MobileMenu--open` : ''}`);
@@ -34,15 +35,16 @@ const MobileMenu: FC<MobileMenuProps> = (props) => {
   return (
     <>
       {attach && <div className={styleClass}>
-        <div className='MobileMenu__header d-flex gutter-x py-3'>
+        <div className='MobileMenu__header d-flex justify-content-between align-items-center gutter-x py-3'>
           <SiteLogo colorInverted={true}
             onClick={() => setOpenState(!open)}
           />
+          <ToggleMobileNav />
         </div>
         <nav className='MobileMenu__inner gutter-x'>
           <ul className='list-unstyled'>
             { navItems.map((item, i) => {
-              return <li key={i}>
+              return <li key={item.url}>
                 <Link href={item.url}
                   onClick={() => setOpenState(!open)}
                 >{item.label}</Link>

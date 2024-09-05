@@ -1,0 +1,17 @@
+hr {
+  width: 75%;
+  margin: 0 auto;
+  border-color: $primary;
+
+  @include media-breakpoint-up(md) {
+    width: 55%;
+  }
+}
+
+.grecaptcha-badge {
+  display: none !important;
+}
+
+body.scroll-lock {
+  overflow: hidden;
+}

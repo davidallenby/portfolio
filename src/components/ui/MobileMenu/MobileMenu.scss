@@ -2,8 +2,8 @@
 
 // Main wrapper
 .MobileMenu {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-color: $primary;
   color: $primary-100;
   position: fixed;
@@ -14,6 +14,7 @@
   animation: fadeIn .25s;
   display: flex;
   flex-direction: column;
+  z-index: 99;
 
   &.MobileMenu--open {
     opacity: 1;

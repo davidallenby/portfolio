@@ -12,6 +12,11 @@ const MobileNavContextProvider: React.FC<{children: React.ReactNode}> =
   const [open, setOpen] = useState(false);
 
   const toggleOpen = useCallback((bool: boolean) => {
+    if (bool) {
+      document.body.classList.add('scroll-lock');
+    } else {
+      document.body.classList.remove('scroll-lock');
+    }
     setOpen(bool);
   }, [setOpen]);
 

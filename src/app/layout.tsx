@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import '../assets/styles/index.scss';
-import AuthBanner from "@components/ui/AuthBanner/AuthBanner";
-import MainApp from "@components/layout/MainApp/MainApp";
+import '../styles/index.scss';
+import '../../node_modules/react-loading-skeleton/dist/skeleton.css'
+import ReactQueryProvider from "@context/ReactQueryProvider"
 
 export const metadata: Metadata = {
   title: `David Allenby | Lead frontend developer based in Berlin, Germany`,
@@ -17,10 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="d-flex flex-column flex-grow-1 h-100">
       <body className="d-flex flex-column flex-grow-1">
-        <MainApp>
-          <AuthBanner />
-          { children }
-        </MainApp>
+          <ReactQueryProvider>
+            { children }
+          </ReactQueryProvider>
       </body>
     </html>
   );

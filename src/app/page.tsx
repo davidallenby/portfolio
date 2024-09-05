@@ -1,28 +1,25 @@
 import './page.scss';
-import ExternalIcons from "@components/features/ExternalIcons/ExternalIcons";
-import ContentContainer from "@components/containers/ContentContainer/ContentContainer";
-import { getYearsExperience } from "../utils/common";
+import ExternalIcons from "@components/ui/ExternalIcons/ExternalIcons";
+import ContentContainer from "@components/layout/ContentContainer/ContentContainer";
+import { getYearsExperience } from "../helpers/common";
 import Link from "next/link";
-import { LINKS } from "../constants/links";
+import { LINKS } from "@constants/links";
 import Image from "next/image";
 import OILogo from '@svg/openinvest-logo.svg';
-import FeaturedArticles from '@components/features/FeaturedArticles/FeaturedArticles';
+import FeaturedArticles from '@modules/FeaturedArticles/FeaturedArticles';
 import SiteLogo from '@components/ui/SiteLogo/SiteLogo';
-import PublicLayout from '@components/layout/PublicLayout/PublicLayout';
-import { BlogPost, BlogPostView } from '@interfaces/blog.interfaces';
-import { getBlogPosts } from '@lib/firebase/firestore';
+import SiteLayout from '@components/layout/SiteLayout/SiteLayout';
+import { BsGithub } from 'react-icons/bs';
 
 export default async function Home() {
-  // Get the items from the server
-  const items: BlogPostView[] = await getBlogPosts(3);
 
   return (    
-    <PublicLayout>
+    <SiteLayout>
       <ContentContainer className="HomeHeroBanner">
         <h1 className="mb-1">David Allenby</h1>
         <h2 className="subtitle text-base mb-3">Lead frontend developer</h2>
         <p>
-          <span>Hi, I&apos;m David. I&apos;m a lead frontend developer based in Berlin, Germany.</span>
+          <span>Hi, I&apos;m David. I&apos;m a lead frontend developer.</span>
           <br/>
           <span>I like making apps, and taking naps.</span>
         </p>
@@ -36,36 +33,48 @@ export default async function Home() {
         <div className="FeaturedProjects__wrapper mb-5">
           <Link href={`https://camplete.com.au`} 
             target='_blank'
-            className="position-relative FeaturedProject">
+            className="FeaturedProject mb-4 mb-md-0 border"
+          >
             <video 
               controls={false} 
               autoPlay={true} 
               loop 
               playsInline 
               className='w-100 h-100' 
-              style={{ objectFit: 'cover'}}
+              style={{ objectFit: 'cover', position: 'absolute', display: 'block' }}
             >
               <source src="/video/camplete-logo.webm" type="video/webm" />
             </video>
             <span className='FeaturedProject__info'></span>
           </Link>
+
           <Link href={'https://openinvest.com.au'} 
             target='_blank'
-            className="FeaturedProject">
+            className="FeaturedProject mb-4 mb-md-0 border"
+          >
             <OILogo />
             <span className='FeaturedProject__info'></span>
           </Link>
           <Link href={'https://davidallenby.com'}
             target='_blank'
-            className="d-flex flex-column justify-content-center align-items-center FeaturedProject bg-white"
+            className="d-flex flex-column justify-content-center align-items-center FeaturedProject bg-primary mb-4 mb-md-0 border"
           >
             <span className='d-flex align-items-center'>
               <SiteLogo isLink={false}
+                colorInverted
                 className='me-3'
               />
-              <p className='h3 mb-0'>David Allenby</p>
+              <p className='h3 mb-0 text-primary-100'>David Allenby</p>
             </span>
             <span className='FeaturedProject__info'></span>
+          </Link>
+        </div>
+        <div className='text-center'>
+          <Link href={LINKS.GITHUB}
+            className='btn btn-outline-primary d-inline-flex align-items-center'
+          >
+            <BsGithub className='me-2' />
+            <span>View GitHub</span>
           </Link>
         </div>
       </ContentContainer>
@@ -101,8 +110,8 @@ export default async function Home() {
       </ContentContainer>
       
       <ContentContainer className="bg-beige">
-        <FeaturedArticles items={items} />
+        <FeaturedArticles title='Recent articles' />
       </ContentContainer>
-    </PublicLayout> 
+    </SiteLayout> 
   );
 }

@@ -5,6 +5,7 @@
       "dom.iterable",
       "esnext"
     ],
+    "target": "es2015",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -23,16 +24,16 @@
     ],
     "paths": {
       "@styles/*": [
-        "./src/assets/styles/*"
+        "./src/styles/*"
       ],
       "@components/*": [
         "./src/components/*"
       ],
       "@svg/*": [
-        "./src/assets/svg/*"
+        "./public/svg/*"
       ],
-      "@lib/*": [
-        "./src/lib/*"
+      "@api/*": [
+        "./src/api/*"
       ],
       "@context/*": [
         "./src/context/*"
@@ -43,8 +44,20 @@
       "@constants/*": [
         "./src/constants/*"
       ],
-      "@utils/*": [
-        "./src/utils/*"
+      "@modules/*": [
+        "./src/modules/*"
+      ],
+      "@hooks/*": [
+        "./src/hooks/*"
+      ],
+      "@helpers/*": [
+        "./src/helpers/*"
+      ],
+      "@node_modules/*": [
+        "./node_modules/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
       ]
     }
   },

@@ -1,0 +1,12 @@
+@import '/src/styles/variables';
+
+.FeaturedArticle__content {
+  h3 > a {
+    color: $body-color;
+    text-decoration: none;
+
+    &:hover {
+      color: lighten($body-color, 15%)
+    }
+  }
+}
