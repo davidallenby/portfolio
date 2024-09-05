@@ -2,13 +2,14 @@ import { FirebaseOptions, getApps, initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const config: FirebaseOptions = {
-  apiKey: "AIzaSyC1S7H407wozzXxryleORoKhFfKs6BRNSM",
-  authDomain: "davidallenby-portfolio.firebaseapp.com",
-  projectId: "davidallenby-portfolio",
-  storageBucket: "davidallenby-portfolio.appspot.com",
-  messagingSenderId: "894212620761",
-  appId: "1:894212620761:web:9d9dd6f314c291462b59c8",
-  measurementId: "G-MQY3VRX12R"
+  apiKey: "AIzaSyDjoJKq8b-PHmrD6alQT7b5yDWcFArouq4",
+  authDomain: "my-portfolio-site-6fafa.firebaseapp.com",
+  projectId: "my-portfolio-site-6fafa",
+  storageBucket: "my-portfolio-site-6fafa.appspot.com",
+  messagingSenderId: "777946271005",
+  appId: "1:777946271005:web:7f944606b2d0cbf150a5f4",
+  measurementId: "G-HGPV01GSL8"
+
 };
 
 // Initialize Firebase
