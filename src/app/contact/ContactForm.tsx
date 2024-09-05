@@ -25,7 +25,7 @@ const ContactForm: FC<ContactFormProps> = () => {
   const sendEmail = httpsCallable(functions, 'postContactRequest');
 
   const { 
-    register, reset, handleSubmit, setValue, formState: { errors }
+    register, reset, handleSubmit, formState: { errors }
   } = useForm<ContactFormInput>();
   // Reference to the recaptcha component
   const recaptchaRef = useRef<ReCAPTCHA>(null);  
