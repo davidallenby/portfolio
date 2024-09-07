@@ -1,6 +1,6 @@
 import { ContactRequestPayload } from "./interfaces/contact";
 import * as sendgrid from '@sendgrid/mail';
-import { runWith, logger } from "firebase-functions/v1";
+import { runWith, logger } from "firebase-functions";
 
 sendgrid.setApiKey(process.env.SENDGRID as string)
 
@@ -13,7 +13,6 @@ sendgrid.setApiKey(process.env.SENDGRID as string)
 const verifyRecaptcha = async (token: string): Promise<boolean> => {
   try {
     const key = process.env.RECAPTCHA;
-    logger.info('RECAPTCHA SECRET: ', key)
     const url = `https://www.google.com/recaptcha/api/siteverify?secret=${key}&response=${token}`;
     const response = await fetch(url, { method: 'POST' })
     .then(res => res.json());
