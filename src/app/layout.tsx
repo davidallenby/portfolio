@@ -16,10 +16,15 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="d-flex flex-column flex-grow-1 h-100">
+      <head>
+      <script>
+        let FF_FOUC_FIX;
+      </script>
+      </head>
       <body className="d-flex flex-column flex-grow-1">
-          <ReactQueryProvider>
-            { children }
-          </ReactQueryProvider>
+        <ReactQueryProvider>
+          { children }
+        </ReactQueryProvider>
       </body>
     </html>
   );
