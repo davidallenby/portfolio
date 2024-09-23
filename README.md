@@ -8,29 +8,29 @@ This portfolio website serves as a comprehensive showcase of my work, skills, an
 
 ## Current Features
 
- - Responsive Design: Optimized for various devices and screen sizes.
- - Dynamic Content: Projects and skills are dynamically loaded from Firebase. I can create, edit, and publish blog posts. There is also the functionality for creating draft posts.
- - Fast Performance: Leveraging Next.js for server-side rendering and static site generation. I have implemented some best practices for asset optimisation and delivery.
- - Authentication: Secure user authentication using Firebase Auth.
- - SEO Friendly: Optimized for search engines to increase visibility.
+- Responsive Design: Optimized for various devices and screen sizes.
+- Dynamic Content: Projects and skills are dynamically loaded from Firebase. I can create, edit, and publish blog posts. There is also the functionality for creating draft posts.
+- Fast Performance: Leveraging Next.js for server-side rendering and static site generation. I have implemented some best practices for asset optimisation and delivery.
+- SEO Friendly: Optimized for search engines to increase visibility.
 
 ## Future features
 
 In future, I plan on adding the following features to this repo:
- - Automated tests
- - Manage / Edit Projects
- - Blog post comments (Google / FB sign in methods)
- - Dynamically add icons to Blog Post Tags
- - Update / Edit alt tags on blog post featured images
+
+- Automated tests
+- Project details page
+- Blog post comments (Google / FB sign in methods)
+- Update / Edit alt tags on blog post featured images
 
 ## Tech stack
 
 I've used the following technnologies in this repo:
- - Firebase
- - Next JS
- - Bootstrap
- - TypeScript
- - ESLint
+
+- Headless Wordpress
+- Next JS
+- Bootstrap
+- TypeScript
+- ESLint
 
 ## Getting Started
 
@@ -52,5 +52,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 If you have any questions, feel free to get in touch!
 
- - Email: [hello@davidallenby.com](mailto:hello@davidallenby.com)
- - LinkedIn: [https://www.linkedin.com/in/davidallenby](https://www.linkedin.com/in/davidallenby/)
+- Email: [hello@davidallenby.com](mailto:hello@davidallenby.com)
+- LinkedIn: [https://www.linkedin.com/in/davidallenby](https://www.linkedin.com/in/davidallenby/)

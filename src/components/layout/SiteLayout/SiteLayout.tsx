@@ -10,9 +10,7 @@ interface SiteLayoutProps {
 const SiteLayout: FC<SiteLayoutProps> = ({ children }) => (
   <>
     <SiteHeader />
-      <main className="d-flex flex-column flex-grow-1">
-        {children}
-      </main>
+    <main className='d-flex flex-column flex-grow-1'>{children}</main>
     <SiteFooter />
   </>
 );
