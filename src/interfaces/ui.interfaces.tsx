@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 export interface NavMenuItem {
-  label: string;
-  url: string;
+	label: string;
+	url: string;
 }
 
 export interface ChipInterface {
-  label: string;
-  icon: ReactNode;
+	label: string;
+	icon: ReactNode;
 }
