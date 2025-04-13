@@ -21,6 +21,7 @@ In future, I plan on adding the following features to this repo:
 - Project details page
 - Blog post comments (Google / FB sign in methods)
 - Update / Edit alt tags on blog post featured images
+- Sharing posts to social media
 
 ## Tech stack
 
