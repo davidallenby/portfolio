@@ -16,7 +16,7 @@ const BlogPostContainer: FC<BlogPostContainerProps> = ({
   const router = useRouter()
 
   return (
-    <div className={`BlogPostContainer gutter-x ${className}`}>
+    <div className={`BlogPostContainer ${className}`}>
       <button
         type='button'
         onClick={() => router.push(`/blog`)}

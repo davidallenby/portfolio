@@ -36,14 +36,14 @@ const MobileMenu: FC = () => {
     <>
       {attach && (
         <div className={styleClass}>
-          <div className='MobileMenu__header flex justify-content-between items-center gutter-x py-3'>
+          <div className='MobileMenu__header flex justify-content-between items-center py-3'>
             <SiteLogo
               colorInverted={true}
               onClick={() => setOpenState(!open)}
             />
             <ToggleMobileNav />
           </div>
-          <nav className='MobileMenu__inner gutter-x'>
+          <nav className='MobileMenu__inner'>
             <ul className='list-unstyled'>
               {navItems.map((item, i) => {
                 return (
@@ -56,7 +56,7 @@ const MobileMenu: FC = () => {
               })}
             </ul>
           </nav>
-          <div className='MobileMenu__footer mt-auto gutter-x'>
+          <div className='MobileMenu__footer mt-auto'>
             <ExternalIcons className='mb-2' />
             <small>&copy; David Allenby {getCurrentYear()}</small>
           </div>

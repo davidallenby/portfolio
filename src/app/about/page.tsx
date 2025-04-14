@@ -84,7 +84,7 @@ export default function About() {
   return (
     <SiteLayout>
       <ContentContainer contained={false}>
-        <div className='contained gutter-x'>
+        <div className='contained'>
           <div className='row'>
             <div className='flex w-full md:w-6/12 mb-5 md:mb-0'>
               <div className='AboutHeader__image-wrapper flex flex-col flex-grow-1'>

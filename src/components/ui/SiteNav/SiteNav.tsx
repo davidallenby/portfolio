@@ -55,7 +55,8 @@ const SiteNav: FC<SiteNavProps> = ({ vertical, colorInverted, className }) => {
           href={item.url}
           key={key}
           className={classNames({
-            'SiteNav__link--inverted text-primary-100': colorInverted
+            'text-primary-100': colorInverted,
+            'text-primary': !colorInverted
           })}
         >
           <span>{item.label}</span>

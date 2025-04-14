@@ -7,7 +7,7 @@ import './SiteFooter.scss'
 
 const SiteFooter: FC = () => (
   <footer className='SiteFooter bg-primary'>
-    <div className='contained gutter-x'>
+    <div className='container mx-auto'>
       <div className='block md:flex justify-between flex-grow-1'>
         <div className='mb-5 md:mb-0 flex items-center'>
           <SiteLogo colorInverted className='me-4' />

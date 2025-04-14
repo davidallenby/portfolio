@@ -1,7 +1,9 @@
+import FeaturedProjectLink from '@components/content/FeaturedProjectLink'
+import FeaturedProjects from '@components/content/FeaturedProjects'
+import HomeHeroBanner from '@components/content/HomeHeroBanner'
 import ContentContainer from '@components/layout/ContentContainer/ContentContainer'
 import FlexGrid from '@components/layout/FlexGrid/FlexGrid'
 import SiteLayout from '@components/layout/SiteLayout/SiteLayout'
-import ExternalIcons from '@components/ui/ExternalIcons/ExternalIcons'
 import { LINKS } from '@constants/links'
 import FeaturedArticles from '@modules/FeaturedArticles/FeaturedArticles'
 import OILogo from '@svg/openinvest-logo.svg'
@@ -9,58 +11,36 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { BsGithub } from 'react-icons/bs'
 import { getYearsExperience } from '../helpers/common'
-import './page.scss'
 
 export default async function Home() {
   return (
     <SiteLayout>
-      <ContentContainer className='HomeHeroBanner'>
-        <h1 className='mb-1'>David Allenby</h1>
-        <h2 className='subtitle text-base mb-3'>Lead frontend developer</h2>
-        <p>
-          <span>Hi, I&apos;m David. I&apos;m a lead frontend developer.</span>
-          <br />
-          <span>I like making apps, and taking naps.</span>
-        </p>
-        <ExternalIcons />
-      </ContentContainer>
+      <HomeHeroBanner />
 
       <hr />
 
       <ContentContainer className=''>
         <h2 className='mb-4'>Featured projects</h2>
-        <div className='FeaturedProjects__wrapper mb-5'>
-          <Link
-            href={`https://camplete.com.au`}
-            target='_blank'
-            className='FeaturedProject mb-4 md:mb-0 border'
-          >
+        <FeaturedProjects>
+          <FeaturedProjectLink href={'https://camplete.com.au'}>
             <video
               controls={false}
               autoPlay={true}
               loop
               playsInline
-              className='w-100 h-100'
-              style={{
-                objectFit: 'cover',
-                position: 'absolute',
-                display: 'block'
-              }}
+              className='w-full h-auto object-cover'
             >
               <source src='/video/camplete-logo.webm' type='video/webm' />
             </video>
-            <span className='FeaturedProject__info'></span>
-          </Link>
+          </FeaturedProjectLink>
 
-          <Link
+          <FeaturedProjectLink
             href={'https://openinvest.com.au'}
-            target='_blank'
-            className='FeaturedProject mb-4 md:mb-0 border'
+            className='bg-[#008476]/10'
           >
-            <OILogo />
-            <span className='FeaturedProject__info'></span>
-          </Link>
-        </div>
+            <OILogo className='max-w-9/12 mx-auto block' />
+          </FeaturedProjectLink>
+        </FeaturedProjects>
         <div className='text-center'>
           <Link
             href={LINKS.GITHUB}
