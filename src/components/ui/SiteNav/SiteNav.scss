@@ -1,24 +1,16 @@
 @import '/src/styles/variables';
 
 .SiteNav {
-  display: inline-flex;
-
   &:not(.SiteNav--vertical) {
     a {
       padding: 0 1.5rem;
     }
   }
 
-  &.SiteNav--vertical {
-    li {
-      margin-bottom: 1rem;
-    }
-  }
-
   a {
     text-decoration: none;
     font-family: $headings-font-family;
-    transition: .25s;
+    transition: 0.25s;
     font-size: 110%;
     position: relative;
 
@@ -32,7 +24,7 @@
       transform: translateX(-50%);
       height: 1px;
       background-color: $primary;
-      transition: .25s;
+      transition: 0.25s;
     }
 
     &.active,
@@ -44,8 +36,4 @@
       }
     }
   }
-}
-
-.SiteNav__link--inverted {
-  color: $primary-100;
 }

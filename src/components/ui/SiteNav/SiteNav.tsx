@@ -1,83 +1,79 @@
-'use client';
-import { type FC, type ReactNode } from 'react';
-import './SiteNav.scss';
-import { SITENAV_ITEMS } from '@constants/navigation';
-import type { NavMenuItem } from '@interfaces/ui.interfaces';
-import Link from 'next/link';
+'use client'
+import { SITENAV_ITEMS } from '@constants/navigation'
+import type { NavMenuItem } from '@interfaces/ui.interfaces'
+import classNames from 'classnames'
+import Link from 'next/link'
+import { type FC, type ReactNode, useCallback } from 'react'
+import './SiteNav.scss'
 
 interface SiteNavProps {
-	vertical?: boolean;
-	colorInverted?: boolean;
-	className?: string;
+  vertical?: boolean
+  colorInverted?: boolean
+  className?: string
 }
 
-const siteNavItems: NavMenuItem[] = [...SITENAV_ITEMS].slice(1);
+const siteNavItems: NavMenuItem[] = [...SITENAV_ITEMS].slice(1)
 
-const SiteNav: FC<SiteNavProps> = (props) => {
-	// Destructure the props object
-	const { vertical, colorInverted, className } = props;
+const SiteNav: FC<SiteNavProps> = ({ vertical, colorInverted, className }) => {
+  const siteNavClass = classNames(
+    'SiteNav inline-flex',
+    {
+      'SiteNav--vertical': vertical,
+      'SiteNav--inverted': colorInverted
+    },
+    className
+  )
 
-	/**
-	 * We want to set the style classes of the element when the component loads
-	 * This function will build them based on the props passed to the component
-	 *
-	 * @return {*}  {string}
-	 */
-	const setStyleClass = (): string => {
-		// Set the base style class for the component
-		let styleClass = 'SiteNav';
-		// Check if props have been set, and attach relevant style classes
-		if (vertical) {
-			styleClass = styleClass + ' SiteNav--vertical';
-		}
-		if (colorInverted) {
-			styleClass = styleClass + ' SiteNav--inverted';
-		}
-		if (className) {
-			styleClass = styleClass + ' ' + className;
-		}
-		// Iterate over the component props, and for each matching key in the array
-		// provided,
-		return styleClass;
-	};
+  /**
+   * Get the list of nav links. If "vertical" is true, we will wrap the links in
+   * an unstyled list. If not vertical, we'll print them as inline nav links
+   *
+   * @return {*}
+   */
+  const getNavLinks = useCallback((): ReactNode => {
+    return siteNavItems.map((item, i) => {
+      return vertical ? (
+        <li key={i} className='mb-1'>
+          {getNavLinkNode(item)}
+        </li>
+      ) : (
+        getNavLinkNode(item, i)
+      )
+    })
+  }, [vertical])
 
-	/**
-	 * Get the list of nav links. If "vertical" is true, we will wrap the links in
-	 * an unstyled list. If not vertical, we'll print them as inline nav links
-	 *
-	 * @return {*}
-	 */
-	const getNavLinks = (): ReactNode => {
-		return siteNavItems.map((item, i) => {
-			return vertical ? <li key={i}>{getNavLinkNode(item)}</li> : getNavLinkNode(item, i);
-		});
-	};
+  /**
+   * Get the individual nav link item template
+   *
+   * @param {NavMenuItem} item
+   * @return {*}  {ReactNode}
+   */
+  const getNavLinkNode = useCallback(
+    (item: NavMenuItem, key?: number): ReactNode => {
+      return (
+        <Link
+          href={item.url}
+          key={key}
+          className={classNames({
+            'SiteNav__link--inverted text-primary-100': colorInverted
+          })}
+        >
+          <span>{item.label}</span>
+        </Link>
+      )
+    },
+    [colorInverted]
+  )
 
-	/**
-	 * Get the individual nav link item template
-	 *
-	 * @param {NavMenuItem} item
-	 * @return {*}  {ReactNode}
-	 */
-	const getNavLinkNode = (item: NavMenuItem, key?: number): ReactNode => {
-		return (
-			<Link href={item.url} key={key} className={`${colorInverted ? 'SiteNav__link--inverted' : ''}`}>
-				<span>{item.label}</span>
-			</Link>
-		);
-	};
+  return (
+    <nav className={siteNavClass}>
+      {vertical ? (
+        <ul className='list-none mb-0'>{getNavLinks()}</ul>
+      ) : (
+        getNavLinks()
+      )}
+    </nav>
+  )
+}
 
-	return (
-		<nav className={setStyleClass()}>
-			{vertical ? (
-				<>
-					<ul className="list-unstyled mb-0">{getNavLinks()}</ul>
-				</>
-			) : (
-				getNavLinks()
-			)}
-		</nav>
-	);
-};
-
-export default SiteNav;
+export default SiteNav
