@@ -1,24 +1,25 @@
+import { type Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
-/** @type {import('tailwindcss').Config} */
-export default {
+const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    colors: {
-      primary: {
-        DEFAULT: '#917059',
-        100: '#E8DFD9' // This is approximately 38% lighter than primary
-      },
-      beige: '#f5e9e1',
-      subtitle: '#b1b1b1',
-      'off-white': '#FBFBFB',
-      body: '#3D3D3D'
+    fontFamily: {
+      serif: ['eb_garamond_med', 'serif'],
+      sans: ['hk_grotesk_reg', 'sans-serif'],
+      'sans-medium': ['hk_grotesk_med', 'sans-serif']
     },
     extend: {
-      fontFamily: {
-        serif: ['eb_garamond_med', 'serif'],
-        sans: ['hk_grotesk_reg', 'sans-serif'],
-        'sans-medium': ['hk_grotesk_med', 'sans-serif']
+      colors: {
+        primary: {
+          DEFAULT: '#917059',
+          100: '#E8DFD9' // This is approximately 38% lighter than primary
+        },
+        beige: '#f5e9e1',
+        subtitle: '#b1b1b1',
+        'off-white': '#FBFBFB',
+        body: '#3D3D3D'
       },
+
       fontSize: {
         base: '1rem',
         h1: ['3rem', { lineHeight: '1.2' }],
@@ -27,9 +28,6 @@ export default {
         h4: ['2rem', { lineHeight: '1.2' }],
         h5: ['1.67rem', { lineHeight: '1.2' }],
         h6: ['1.33rem', { lineHeight: '1.2' }]
-      },
-      spacing: {
-        header: '80px'
       },
       borderRadius: {
         DEFAULT: '0'
@@ -88,3 +86,5 @@ export default {
     })
   ]
 }
+
+export default config

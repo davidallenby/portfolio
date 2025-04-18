@@ -4,11 +4,5 @@
 // Custom Styles
 @import './mixins';
 @import './base'; // Base elements (e.g. hr, code, ul etc.)
-@import './spacing'; // Padding and margins
-@import './typography'; // Custom fonts
-@import './containers';
-@import './utils'; // Custom utility classes
+
 @import './forms';
-@import './overrides';
-// 3rd party libraries
-@import './libs';

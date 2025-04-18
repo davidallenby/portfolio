@@ -6,8 +6,8 @@
 $primary: #917059;
 $primary-100: lighten($primary, 38%);
 $beige: #f5e9e1;
-$body-bg: #FBFBFB;
-$body-color: #3D3D3D;
+$body-bg: #fbfbfb;
+$body-color: #3d3d3d;
 
 $text-color-subtitle: #b1b1b1;
 
@@ -16,14 +16,9 @@ $gutter: 2rem;
 
 $grid-gutter-width: $gutter;
 
-
 // FONTS
 $headings-font-family: 'eb_garamond_med', serif;
 $font-family-base: 'hk_grotesk_reg', sans-serif;
-
-$font-size-base: 1rem;
-$h1-font-size: $font-size-base * 3;
-$h2-font-size: $font-size-base * 2.67;
 
 // COMPONENTS
 $header-height: 80px;
