@@ -1,9 +1,9 @@
 'use client'
+import classNames from '@node_modules/classnames'
 import Link from 'next/link'
 import { type FC } from 'react'
 import { BsGithub, BsLinkedin } from 'react-icons/bs'
 import { FaCodepen } from 'react-icons/fa'
-import './ExternalIcons.scss'
 
 interface ExternalIconsProps {
   className?: string
@@ -14,30 +14,19 @@ const ExternalIcons: FC<ExternalIconsProps> = ({
   className,
   colorInverted = false
 }) => {
-  /**
-   * Generate the style class string for this component. If the dev has
-   * specified custom classes in the parent component, update the default
-   * classes with the custom classes attached.
-   * @returns
-   */
-  const setStyleClass = () => {
-    let string = 'ExternalIcons flex items-center'
-    if (colorInverted) {
-      string = string + ' ExternalIcons--inverted'
-    }
-    if (className) {
-      string = string + ' ' + className
-    }
-    return string
-  }
+  const styleClass = classNames(`ExternalIcons flex items-center`, className)
+
+  const linkClass = classNames('me-4', {
+    'text-primary-100': colorInverted
+  })
 
   return (
-    <div className={setStyleClass()}>
+    <div className={styleClass}>
       <Link
         href='https://github.com/davidallenby'
         rel='noreferrer'
         target='_blank'
-        className='me-4'
+        className={linkClass}
       >
         <BsGithub fontSize={20} />
       </Link>
@@ -45,7 +34,7 @@ const ExternalIcons: FC<ExternalIconsProps> = ({
         href='https://www.linkedin.com/in/davidallenby/'
         rel='noreferrer'
         target='_blank'
-        className='me-4'
+        className={linkClass}
       >
         <BsLinkedin fontSize={20} />
       </Link>
@@ -53,7 +42,7 @@ const ExternalIcons: FC<ExternalIconsProps> = ({
         href='https://codepen.io/davidallenby'
         rel='noreferrer'
         target='_blank'
-        className='me-4'
+        className={linkClass}
       >
         <FaCodepen fontSize={20} />
       </Link>

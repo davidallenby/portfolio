@@ -27,14 +27,14 @@ const Modal: FC<ModalProps> = ({
     if (show) {
       setTimeout(() => {
         setStyleClass(updatedStyleClass)
-        document.body.classList.add('scroll-lock')
+        document.body.classList.add('overflow-hidden')
       }, 250)
       setOpen(show)
     } else {
       setStyleClass(updatedStyleClass)
       setTimeout(() => {
         setOpen(show)
-        document.body.classList.remove('scroll-lock')
+        document.body.classList.remove('overflow-hidden')
       }, 250)
     }
   }, [show])

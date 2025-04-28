@@ -3,7 +3,6 @@ import ClearAllTagsButton from '@components/ui/ClearAllTagsButton/ClearAllTagsBu
 import Modal from '@components/ui/Modal/Modal'
 import { type FC, useState } from 'react'
 import { MdFilterList } from 'react-icons/md'
-import './BlogFiltersMobile.scss'
 
 const BlogFiltersMobile: FC = () => {
   const [open, isOpen] = useState(false)

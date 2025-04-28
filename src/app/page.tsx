@@ -81,7 +81,7 @@ export default async function Home() {
               </Link>
             </div>
           </div>
-          <div className='AboutMe__image w-full lg:w-6/12'>
+          <div className='relative min-h-[300px] w-full lg:w-6/12'>
             <Image
               className='img-fluid'
               src={`/images/me-alligator-gorge.jpg`}

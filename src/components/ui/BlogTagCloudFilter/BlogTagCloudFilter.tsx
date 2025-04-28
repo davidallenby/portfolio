@@ -7,7 +7,6 @@ import { type FC } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { useStore } from '../../../store/store'
 import Chip from '../Chip/Chip'
-import './BlogTagCloudFilter.scss'
 
 const BlogTagCloudFilter: FC = () => {
   const {

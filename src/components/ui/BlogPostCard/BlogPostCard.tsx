@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { type FC } from 'react'
 import { BsArrowRight } from 'react-icons/bs'
 import { getDateString } from '../../../helpers/dates'
-import './BlogPostCard.scss'
 
 interface BlogPostCardProps {
   postItem: BlogPost
@@ -14,9 +13,15 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postItem }) => (
   <div className='BlogPostCard bg-white'>
     <Link
       href={`/blog/${postItem.slug}`}
-      className='BlogPostCard__image position-relative block'
+      className='min-h-[200px] relative block'
     >
-      <Image width={800} height={800} src={postItem.featuredImageUrl} alt='' />
+      <Image
+        width={800}
+        height={800}
+        src={postItem.featuredImageUrl}
+        alt=''
+        className='object-cover absolute top-0 left-0 w-full h-full'
+      />
     </Link>
     <div className='BlogPostCard__content p-3'>
       <h3>

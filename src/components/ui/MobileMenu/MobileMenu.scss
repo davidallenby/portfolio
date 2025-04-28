@@ -1,4 +1,4 @@
-@import "@styles/variables";
+@import '@styles/variables';
 
 // Main wrapper
 .MobileMenu {
@@ -10,8 +10,8 @@
   top: 0;
   left: 0;
   opacity: 0;
-  transition: .25s;
-  animation: fadeIn .25s;
+  transition: 0.25s;
+  animation: fadeIn 0.25s;
   display: flex;
   flex-direction: column;
   z-index: 99;
@@ -21,7 +21,7 @@
   }
 
   a {
-    color: $primary-100
+    color: $primary-100;
   }
 }
 
@@ -36,23 +36,23 @@
   li {
     margin-bottom: 1.5rem;
   }
-  
-  a { 
+
+  a {
     font-size: 170%;
     text-decoration: none;
     font-family: $headings-font-family;
   }
 }
 .MobileMenu__footer {
-  padding: 2rem $gutter;
+  padding: 2rem;
 }
 
-@keyframes fadeIn {  
-  from {  
-      opacity:0;  
-  }  
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
 
-  to {  
-      opacity:1;  
-  }  
+  to {
+    opacity: 1;
+  }
 }

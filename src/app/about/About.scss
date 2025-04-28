@@ -13,10 +13,6 @@
   }
 }
 
-.AboutHeader__image-wrapper {
-  position: relative;
-}
-
 .AboutMe__img-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -26,7 +22,7 @@
 
   @include media-breakpoint-down(md) {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr); 
+    grid-template-rows: repeat(2, 1fr);
   }
 
   & > div {

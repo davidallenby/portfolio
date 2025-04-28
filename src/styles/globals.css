@@ -1,2 +1,35 @@
 @import 'tailwindcss';
 @import './fonts.css';
+
+hr {
+  width: 75%;
+  margin: 0 auto;
+  border-color: var(--primary);
+
+  @media (min-width: 768px) {
+    width: 55%;
+  }
+}
+
+.grecaptcha-badge {
+  display: none !important;
+}
+
+form {
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--subtitle);
+  }
+  input,
+  textarea {
+    padding: 0.5rem 1rem;
+    display: block;
+    width: 100%;
+    border: 1px solid var(--primary);
+  }
+
+  textarea {
+    min-height: 200px;
+  }
+}

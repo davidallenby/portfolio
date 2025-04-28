@@ -3,7 +3,6 @@ import Chip from '@components/ui/Chip/Chip'
 import { useGetBlogPostTags } from '@hooks/blog'
 import { type FC } from 'react'
 import Skeleton from 'react-loading-skeleton'
-import './BlogPostTagList.scss'
 
 interface BlogPostTagListProps {
   tagIds: number[]
