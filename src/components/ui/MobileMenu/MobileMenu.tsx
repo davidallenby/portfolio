@@ -3,34 +3,36 @@ import SiteLogo from '@components/ui/SiteLogo/SiteLogo'
 import { SITENAV_ITEMS } from '@constants/navigation'
 import { useMobileNavContext } from '@context/MobileNavContext'
 import type { NavMenuItem } from '@interfaces/ui.interfaces'
+import classNames from 'classnames'
 import Link from 'next/link'
 import { type FC, useEffect, useState } from 'react'
 import { getCurrentYear } from '../../../helpers/common'
 import ToggleMobileNav from '../ToggleMobileNav/ToggleMobileNav'
 import './MobileMenu.scss'
-
 const MobileMenu: FC = () => {
   const { open, toggleOpen } = useMobileNavContext()
   const [attach, setAttach] = useState(false)
-  const [styleClass, setStyleClass] = useState(
-    `MobileMenu${open ? ` MobileMenu--open` : ''}`
-  )
+
   // The delay between showing/hiding the menu, and attaching the element
   const delay = 250
   // Mobile navigation menu items
   const navItems: NavMenuItem[] = [...SITENAV_ITEMS]
 
   useEffect(() => {
-    setStyleClass(`MobileMenu${open ? ` MobileMenu--open` : ''}`)
     setTimeout(() => {
       setAttach(open)
     }, delay)
   }, [open])
 
   const setOpenState = (bool: boolean) => {
-    setStyleClass(`MobileMenu${open ? ` MobileMenu--open` : ''}`)
     toggleOpen(bool)
   }
+
+  const currentYear = getCurrentYear()
+
+  const styleClass = classNames('MobileMenu', {
+    'MobileMenu--open': open
+  })
 
   return (
     <>
@@ -58,7 +60,7 @@ const MobileMenu: FC = () => {
           </nav>
           <div className='MobileMenu__footer mt-auto'>
             <ExternalIcons className='mb-2' />
-            <small>&copy; David Allenby {getCurrentYear()}</small>
+            <small>&copy; David Allenby {currentYear}</small>
           </div>
         </div>
       )}

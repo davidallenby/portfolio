@@ -1,12 +1,6 @@
 @import '/src/styles/variables';
 
 .SiteNav {
-  &:not(.SiteNav--vertical) {
-    a {
-      padding: 0 1.5rem;
-    }
-  }
-
   a {
     text-decoration: none;
     font-family: $headings-font-family;
