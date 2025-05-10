@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { type FC, useEffect, useState } from 'react'
 import { getCurrentYear } from '../../../helpers/common'
 import ToggleMobileNav from '../ToggleMobileNav/ToggleMobileNav'
-import './MobileMenu.scss'
+
 const MobileMenu: FC = () => {
   const { open, toggleOpen } = useMobileNavContext()
   const [attach, setAttach] = useState(false)
@@ -31,7 +31,7 @@ const MobileMenu: FC = () => {
   const currentYear = getCurrentYear()
 
   const styleClass = classNames(
-    'transition-opacity duration-250 top-0 left-0 w-full h-full fixed z-99 fixed flex flex-col animate-fadeIn bg-primary text-primary-100',
+    'transition-opacity duration-250 top-0 left-0 w-full h-full fixed z-99 fixed flex flex-col gap-6 animate-fadeIn bg-primary text-primary-100',
     {
       'opacity-100': open,
       'opacity-0': !open
@@ -42,31 +42,28 @@ const MobileMenu: FC = () => {
     <>
       {attach && (
         <div className={styleClass}>
-          <div className='MobileMenu__header flex justify-between items-center py-3 px-4'>
+          <div className='flex justify-between items-center py-3 px-4'>
             <SiteLogo
               colorInverted={true}
               onClick={() => setOpenState(!open)}
             />
             <ToggleMobileNav />
           </div>
-          <nav className='MobileMenu__inner'>
-            <ul className='list-unstyled'>
-              {navItems.map((item, i) => {
-                return (
-                  <li key={item.url}>
-                    <Link
-                      href={item.url}
-                      className='text-primary-100'
-                      onClick={() => setOpenState(!open)}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
+          <nav className='px-4 flex flex-col flex-grow-1 justify-center gap-12'>
+            {navItems.map((item, i) => {
+              return (
+                <Link
+                  key={item.url}
+                  href={item.url}
+                  className='text-primary-100 font-serif text-3xl hover:text-white'
+                  onClick={() => setOpenState(!open)}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
           </nav>
-          <div className='MobileMenu__footer mt-auto'>
+          <div className='p-4 mt-auto'>
             <ExternalIcons className='mb-2' />
             <small>&copy; David Allenby {currentYear}</small>
           </div>
