@@ -14,7 +14,7 @@ const SiteHeader: FC = () => {
   return (
     <MobileNavContextProvider>
       <header className='SiteHeader top-0 z-50 sticky bg-off-white'>
-        <div className='container mx-auto position-relative flex items-center justify-between py-3 gap-4'>
+        <div className='container mx-auto position-relative flex items-center justify-between py-3 px-4 gap-4'>
           <SiteLogo className='me-4' />
           <ToggleMobileNav className='md:hidden' />
           <SiteNav className='hidden md:inline-flex' />

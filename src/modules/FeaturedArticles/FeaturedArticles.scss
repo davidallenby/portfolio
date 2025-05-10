@@ -1,12 +1,12 @@
-@import '/src/styles/variables';
+// @import '/src/styles/variables';
 
-.FeaturedArticle__content {
-  h3 > a {
-    color: $body-color;
-    text-decoration: none;
+// .FeaturedArticle__content {
+//   h3 > a {
+//     color: $body-color;
+//     text-decoration: none;
 
-    &:hover {
-      color: lighten($body-color, 15%)
-    }
-  }
-}
+//     &:hover {
+//       color: lighten($body-color, 15%)
+//     }
+//   }
+// }

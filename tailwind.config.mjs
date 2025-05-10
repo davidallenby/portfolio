@@ -1,7 +1,8 @@
-import { type Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
-const config: Config = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['./src/**/*.{js,ts,jsx,tsx}', './src/**/*.{css,scss}'],
   theme: {
     fontFamily: {
       serif: ['eb_garamond_med', 'serif'],
@@ -10,16 +11,13 @@ const config: Config = {
     },
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#917059',
-          100: '#E8DFD9' // This is approximately 38% lighter than primary
-        },
+        primary: '#917059',
+        'primary-100': '#E8DFD9',
         beige: '#f5e9e1',
         subtitle: '#b1b1b1',
         'off-white': '#FBFBFB',
         body: '#3D3D3D'
       },
-
       fontSize: {
         base: '1rem',
         h1: ['3rem', { lineHeight: '1.2' }],
@@ -34,6 +32,15 @@ const config: Config = {
       },
       letterSpacing: {
         subtitle: '0.115rem'
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.25s'
+      },
+      keyframes: {
+        fadeIn: {
+          from: { opacity: 0 },
+          to: { opacity: 1 }
+        }
       }
     }
   },
@@ -86,5 +93,3 @@ const config: Config = {
     })
   ]
 }
-
-export default config

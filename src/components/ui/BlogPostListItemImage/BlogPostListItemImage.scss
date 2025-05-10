@@ -1,29 +1,29 @@
-@import "/node_modules/bootstrap/scss/functions";
-@import "/node_modules/bootstrap/scss/variables";
-@import "/node_modules/bootstrap/scss/mixins";
-@import '/src/styles/mixins';
+// @import "/node_modules/bootstrap/scss/functions";
+// @import "/node_modules/bootstrap/scss/variables";
+// @import "/node_modules/bootstrap/scss/mixins";
+// @import '/src/styles/mixins';
 
-.BlogPostListItemImage {
-  @include post-img-width-full();
+// .BlogPostListItemImage {
+//   @include post-img-width-full();
 
-  @include media-breakpoint-up(sm) {
-    @include post-img-square();
-  }
+//   @include media-breakpoint-up(sm) {
+//     @include post-img-square();
+//   }
 
-  @include media-breakpoint-up(lg) {
-    @include post-img-width-full();
-  }
+//   @include media-breakpoint-up(lg) {
+//     @include post-img-width-full();
+//   }
 
-  @include media-breakpoint-up(xl) {
-    @include post-img-square();
-  }
+//   @include media-breakpoint-up(xl) {
+//     @include post-img-square();
+//   }
 
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-  }
-}
+//   img {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     object-fit: cover;
+//     height: 100%;
+//     width: 100%;
+//   }
+// }

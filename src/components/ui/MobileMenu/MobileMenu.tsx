@@ -30,15 +30,19 @@ const MobileMenu: FC = () => {
 
   const currentYear = getCurrentYear()
 
-  const styleClass = classNames('MobileMenu', {
-    'MobileMenu--open': open
-  })
+  const styleClass = classNames(
+    'transition-opacity duration-250 top-0 left-0 w-full h-full fixed z-99 fixed flex flex-col animate-fadeIn bg-primary text-primary-100',
+    {
+      'opacity-100': open,
+      'opacity-0': !open
+    }
+  )
 
   return (
     <>
       {attach && (
         <div className={styleClass}>
-          <div className='MobileMenu__header flex justify-content-between items-center py-3'>
+          <div className='MobileMenu__header flex justify-between items-center py-3 px-4'>
             <SiteLogo
               colorInverted={true}
               onClick={() => setOpenState(!open)}
@@ -50,7 +54,11 @@ const MobileMenu: FC = () => {
               {navItems.map((item, i) => {
                 return (
                   <li key={item.url}>
-                    <Link href={item.url} onClick={() => setOpenState(!open)}>
+                    <Link
+                      href={item.url}
+                      className='text-primary-100'
+                      onClick={() => setOpenState(!open)}
+                    >
                       {item.label}
                     </Link>
                   </li>

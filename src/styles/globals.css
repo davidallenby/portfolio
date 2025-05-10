@@ -1,35 +1,32 @@
 @import 'tailwindcss';
+@config '../../tailwind.config.mjs';
+
 @import './fonts.css';
 
-hr {
-  width: 75%;
-  margin: 0 auto;
-  border-color: var(--primary);
+@layer components {
+  hr {
+    @apply w-3/4 mx-auto border border-primary;
 
-  @media (min-width: 768px) {
-    width: 55%;
-  }
-}
-
-.grecaptcha-badge {
-  display: none !important;
-}
-
-form {
-  label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--subtitle);
-  }
-  input,
-  textarea {
-    padding: 0.5rem 1rem;
-    display: block;
-    width: 100%;
-    border: 1px solid var(--primary);
+    @media (min-width: 768px) {
+      @apply w-[55%];
+    }
   }
 
-  textarea {
-    min-height: 200px;
+  .grecaptcha-badge {
+    @apply hidden;
+  }
+
+  form {
+    label {
+      @apply block mb-2 text-subtitle;
+    }
+    input,
+    textarea {
+      @apply p-2 block w-full border border-primary;
+    }
+
+    textarea {
+      @apply min-h-[200px];
+    }
   }
 }

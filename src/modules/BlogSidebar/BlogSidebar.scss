@@ -1,16 +1,16 @@
-@import '/src/styles/variables';
-@import '/node_modules/bootstrap/scss/functions';
-@import '/node_modules/bootstrap/scss/variables';
-@import '/node_modules/bootstrap/scss/mixins';
+// @import '/src/styles/variables';
+// @import '/node_modules/bootstrap/scss/functions';
+// @import '/node_modules/bootstrap/scss/variables';
+// @import '/node_modules/bootstrap/scss/mixins';
 
-.BlogSidebar {
-  width: 420px;
-  position: sticky;
-  top: 80px;
+// .BlogSidebar {
+//   width: 420px;
+//   position: sticky;
+//   top: 80px;
 
-  @include media-breakpoint-up(lg) {
-    padding-left: #{$gutter * 1.25};
-    margin-left: #{$gutter * 1.25};
-    border-left: 1px solid $primary-100;
-  }
-}
+//   @include media-breakpoint-up(lg) {
+//     padding-left: #{$gutter * 1.25};
+//     margin-left: #{$gutter * 1.25};
+//     border-left: 1px solid $primary-100;
+//   }
+// }
