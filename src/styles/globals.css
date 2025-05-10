@@ -1,11 +1,11 @@
 @import 'tailwindcss';
-@config '../../tailwind.config.mjs';
+@config '../../tailwind.config.ts';
 
 @import './fonts.css';
 
 @layer components {
   hr {
-    @apply w-3/4 mx-auto border border-primary;
+    @apply w-3/4 mx-auto border border-primary-100;
 
     @media (min-width: 768px) {
       @apply w-[55%];

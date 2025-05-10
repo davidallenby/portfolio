@@ -4,6 +4,7 @@ import HomeHeroBanner from '@components/content/HomeHeroBanner'
 import ContentContainer from '@components/layout/ContentContainer/ContentContainer'
 import FlexGrid from '@components/layout/FlexGrid/FlexGrid'
 import SiteLayout from '@components/layout/SiteLayout/SiteLayout'
+import LinkButton from '@components/ui/Button/LinkButton'
 import { LINKS } from '@constants/links'
 import FeaturedArticles from '@modules/FeaturedArticles/FeaturedArticles'
 import OILogo from '@svg/openinvest-logo.svg'
@@ -42,13 +43,10 @@ export default async function Home() {
           </FeaturedProjectLink>
         </FeaturedProjects>
         <div className='text-center'>
-          <Link
-            href={LINKS.GITHUB}
-            className='btn btn-outline-primary inline-flex items-center'
-          >
+          <LinkButton href={LINKS.GITHUB}>
             <BsGithub className='me-2' />
             <span>View GitHub</span>
-          </Link>
+          </LinkButton>
         </div>
       </ContentContainer>
 

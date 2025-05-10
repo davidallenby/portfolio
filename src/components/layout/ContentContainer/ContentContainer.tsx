@@ -1,5 +1,6 @@
 'use client'
 
+import classNames from '@node_modules/classnames'
 import { type FC, type ReactNode } from 'react'
 
 interface ContentContainerProps {
@@ -14,7 +15,11 @@ const ContentContainer: FC<ContentContainerProps> = ({
   contained = true
 }) => {
   return (
-    <section className={className}>
+    <section
+      className={classNames(``, className, {
+        'py-12 md:py-16 lg:py-20 xl:py-24': !className?.includes('py-')
+      })}
+    >
       {contained ? (
         <div className={`container mx-auto px-4`}>{children}</div>
       ) : (

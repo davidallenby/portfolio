@@ -1,9 +1,19 @@
+import { type Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ['./src/**/*.{js,ts,jsx,tsx}', './src/**/*.{css,scss}'],
+const config: Config = {
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    container: {
+      center: true,
+      padding: '1rem',
+      screens: {
+        sm: '640px',
+        md: '768px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1440px'
+      }
+    },
     fontFamily: {
       serif: ['eb_garamond_med', 'serif'],
       sans: ['hk_grotesk_reg', 'sans-serif'],
@@ -11,8 +21,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: '#917059',
-        'primary-100': '#E8DFD9',
+        primary: {
+          DEFAULT: '#917059',
+          100: '#E8DFD9' // This is approximately 38% lighter than primary
+        },
         beige: '#f5e9e1',
         subtitle: '#b1b1b1',
         'off-white': '#FBFBFB',
@@ -32,15 +44,6 @@ module.exports = {
       },
       letterSpacing: {
         subtitle: '0.115rem'
-      },
-      animation: {
-        fadeIn: 'fadeIn 0.25s'
-      },
-      keyframes: {
-        fadeIn: {
-          from: { opacity: 0 },
-          to: { opacity: 1 }
-        }
       }
     }
   },
@@ -93,3 +96,5 @@ module.exports = {
     })
   ]
 }
+
+export default config
