@@ -1,8 +1,6 @@
 'use client'
 
-import classNames from '@node_modules/classnames'
 import { type FC, type ReactNode } from 'react'
-import './ContentContainer.scss'
 
 interface ContentContainerProps {
   children: ReactNode
@@ -16,9 +14,9 @@ const ContentContainer: FC<ContentContainerProps> = ({
   contained = true
 }) => {
   return (
-    <section className={classNames(`ContentContainer`, className)}>
+    <section className={className}>
       {contained ? (
-        <div className={`container mx-auto`}>{children}</div>
+        <div className={`container mx-auto px-4`}>{children}</div>
       ) : (
         children
       )}

@@ -17,7 +17,8 @@ const ExternalIcons: FC<ExternalIconsProps> = ({
   const styleClass = classNames(`ExternalIcons flex items-center`, className)
 
   const linkClass = classNames('me-4', {
-    'text-primary-100': colorInverted
+    'text-primary-100 hover:text-white': colorInverted,
+    'text-primary hover:text-body': !colorInverted
   })
 
   return (

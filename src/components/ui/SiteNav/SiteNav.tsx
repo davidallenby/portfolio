@@ -14,7 +14,7 @@ interface SiteNavProps {
 const siteNavItems: NavMenuItem[] = [...SITENAV_ITEMS].slice(1)
 
 const SiteNav: FC<SiteNavProps> = ({ colorInverted = false, className }) => {
-  const siteNavClass = classNames('SiteNav hidden md:inline-flex', className)
+  const siteNavClass = classNames('hidden md:inline-flex', className)
 
   return (
     <nav className={siteNavClass}>

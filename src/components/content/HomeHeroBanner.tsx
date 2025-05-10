@@ -3,7 +3,7 @@ import ExternalIcons from '@components/ui/ExternalIcons/ExternalIcons'
 
 export default function HomeHeroBanner() {
   return (
-    <ContentContainer className='HomeHeroBanner py-36 bg-off-white'>
+    <ContentContainer className='py-36 bg-off-white'>
       <h1 className='mb-1'>David Allenby</h1>
       <h2 className='subtitle text-base mb-3'>Lead frontend developer</h2>
       <p>
