@@ -4,7 +4,6 @@ import SiteNav from '@components/ui/SiteNav/SiteNav'
 import SiteNavVertical from '@components/ui/SiteNav/SiteNavVertical'
 import { type FC } from 'react'
 import { getCurrentYear } from '../../../helpers/common'
-import './SiteFooter.scss'
 
 const SiteFooter: FC = () => (
   <footer className='SiteFooter bg-primary py-12 md:py-16'>
