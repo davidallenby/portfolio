@@ -19,8 +19,8 @@ const SiteNavLink: FC<SiteNavLinkProps> = ({
       className={classNames(
         'text-lg font-serif transition-colors duration-200',
         {
-          'text-primary-100': colorInverted,
-          'text-primary': !colorInverted
+          'text-primary-100 hover:text-white': colorInverted,
+          'text-primary hover:text-body': !colorInverted
         },
         className
       )}
