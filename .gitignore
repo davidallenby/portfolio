@@ -15,7 +15,6 @@
 
 # Firebase
 /.firebase/
-/.github/
 
 # production
 /build
