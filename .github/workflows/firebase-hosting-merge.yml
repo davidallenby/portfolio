@@ -20,6 +20,12 @@ jobs:
       - name: Install Next.js globally
         run: npm install -g next
 
+        - name: Decode and print service account email
+        run: |
+          echo "$FIREBASE_SERVICE_ACCOUNT" | jq -r '.client_email'
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_SITE_6FAFA }}
+
       - name: Build the app
         run: npm run build
 
