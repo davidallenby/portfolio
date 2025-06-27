@@ -1,8 +1,5 @@
-import * as sendgrid from '@sendgrid/mail'
 import { logger, runWith } from 'firebase-functions'
 import type { ContactRequestPayload } from './interfaces/contact'
-
-sendgrid.setApiKey(process.env.SENDGRID as string)
 
 /**
  * Verifies the recaptcha request. If it returns false, we'll throw an error.
@@ -27,15 +24,15 @@ sendgrid.setApiKey(process.env.SENDGRID as string)
 /**
  * Contact Us API
  */
-export const postContactRequest = runWith({
-  secrets: ['SENDGRID', 'RECAPTCHA']
-}).https.onCall(async (payload: ContactRequestPayload, context) => {
-  try {
-    // For now, just return success to test deployment
-    logger.info('Contact request received', { payload })
-    return { success: true, message: 'Contact request received' }
-  } catch (err) {
-    logger.error(err)
-    throw err
+export const postContactRequest = runWith({}).https.onCall(
+  async (payload: ContactRequestPayload, context) => {
+    try {
+      // For now, just return success to test deployment
+      logger.info('Contact request received', { payload })
+      return { success: true, message: 'Contact request received' }
+    } catch (err) {
+      logger.error(err)
+      throw err
+    }
   }
-})
+)
