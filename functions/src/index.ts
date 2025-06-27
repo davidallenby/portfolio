@@ -10,19 +10,19 @@ sendgrid.setApiKey(process.env.SENDGRID as string)
  * @param {string} token
  * @return {*}
  */
-const verifyRecaptcha = async (token: string): Promise<boolean> => {
-  try {
-    const key = process.env.RECAPTCHA
-    const url = `https://www.google.com/recaptcha/api/siteverify?secret=${key}&response=${token}`
-    const response = await fetch(url, { method: 'POST' }).then((res) =>
-      res.json()
-    )
-    return response.success
-  } catch (err) {
-    logger.error(err)
-    throw err
-  }
-}
+// const verifyRecaptcha = async (token: string): Promise<boolean> => {
+//   try {
+//     const key = process.env.RECAPTCHA
+//     const url = `https://www.google.com/recaptcha/api/siteverify?secret=${key}&response=${token}`
+//     const response = await fetch(url, { method: 'POST' }).then((res) =>
+//       res.json()
+//     )
+//     return response.success
+//   } catch (err) {
+//     logger.error(err)
+//     throw err
+//   }
+// }
 
 /**
  * Contact Us API
