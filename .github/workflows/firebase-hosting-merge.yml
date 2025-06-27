@@ -31,7 +31,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Firebase
-        run: firebase deploy --force
+        run: firebase deploy --force --token "$FIREBASE_TOKEN"
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
-          FIREBASE_SERVICE_ACCOUNT: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MY_PORTFOLIO_SITE_6FAFA }}'
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
