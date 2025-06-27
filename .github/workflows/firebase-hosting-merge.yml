@@ -30,8 +30,8 @@ jobs:
       - name: Build Firebase Functions
         run: |
           cd functions
-          pnpm install
-          pnpm build
+          npm install
+          npm run build
 
       - name: Build the app
         run: npm run build
