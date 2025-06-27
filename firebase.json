@@ -12,7 +12,9 @@
   },
   "functions": [
     {
-      "source": ".",
+      "source": "functions",
+      "codebase": "firebase-frameworks-my-portfolio-site-6fafa",
+      "runtime": "nodejs18",
       "ignore": [
         "node_modules",
         ".git",
