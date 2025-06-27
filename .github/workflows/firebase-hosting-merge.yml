@@ -36,8 +36,14 @@ jobs:
       - name: Build the app
         run: npm run build
 
-      - name: Deploy to Firebase
-        run: firebase deploy --force --token "$FIREBASE_TOKEN"
+      - name: Deploy Functions
+        run: firebase deploy --only functions --force --token "$FIREBASE_TOKEN"
+        env:
+          FIREBASE_CLI_EXPERIMENTS: webframeworks
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+      - name: Deploy Hosting
+        run: firebase deploy --only hosting --force --token "$FIREBASE_TOKEN"
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
