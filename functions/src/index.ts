@@ -1,8 +1,6 @@
 import * as sendgrid from '@sendgrid/mail';
 import { logger, runWith } from 'firebase-functions';
-import { ContactRequestPayload } from './interfaces/contact';
-
-sendgrid.setApiKey(process.env.SENDGRID as string);
+import type { ContactRequestPayload } from './interfaces/contact';
 
 /**
  * Verifies the recaptcha request. If it returns false, we'll throw an error.
