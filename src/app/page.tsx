@@ -2,7 +2,6 @@ import FeaturedProjectLink from '@components/content/FeaturedProjectLink'
 import FeaturedProjects from '@components/content/FeaturedProjects'
 import HomeHeroBanner from '@components/content/HomeHeroBanner'
 import ContentContainer from '@components/layout/ContentContainer/ContentContainer'
-import FlexGrid from '@components/layout/FlexGrid/FlexGrid'
 import SiteLayout from '@components/layout/SiteLayout/SiteLayout'
 import LinkButton from '@components/ui/Button/LinkButton'
 import { LINKS } from '@constants/links'
@@ -43,7 +42,7 @@ export default async function Home() {
           </FeaturedProjectLink>
         </FeaturedProjects>
         <div className='text-center'>
-          <LinkButton href={LINKS.GITHUB}>
+          <LinkButton href={LINKS.GITHUB} variant='secondary'>
             <BsGithub className='me-2' />
             <span>View GitHub</span>
           </LinkButton>
@@ -53,8 +52,8 @@ export default async function Home() {
       <hr />
 
       <ContentContainer className='bg-white'>
-        <FlexGrid>
-          <div className='w-full lg:w-6/12 flex flex-col justify-center mb-5 lg:mb-0'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24'>
+          <div className='flex flex-col justify-center mb-5 lg:mb-0'>
             <div>
               <h2>About me</h2>
               <p>
@@ -69,17 +68,17 @@ export default async function Home() {
                 <span>If you&apos;d like to know more, check out the </span>
                 <Link href={`/about`}>about page</Link>
                 <span>, or visit my </span>
-                <a href={LINKS.LINKEDIN} target='_blank' rel='noreferrer'>
+                <Link href={LINKS.LINKEDIN} target='_blank' rel='noreferrer'>
                   LinkedIn
-                </a>
+                </Link>
                 <span> for more details about my experience.</span>
               </p>
-              <Link href={`/about`} className='btn btn-outline-primary'>
+              <LinkButton href={`/about`} variant='secondary'>
                 Learn more
-              </Link>
+              </LinkButton>
             </div>
           </div>
-          <div className='relative min-h-[300px] w-full lg:w-6/12'>
+          <div className='relative min-h-[300px]'>
             <Image
               className='img-fluid'
               src={`/images/me-alligator-gorge.jpg`}
@@ -88,7 +87,7 @@ export default async function Home() {
               height={576}
             />
           </div>
-        </FlexGrid>
+        </div>
       </ContentContainer>
 
       <ContentContainer className='bg-beige'>

@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import Link, { LinkProps } from 'next/link'
-import { buttonVariants } from './config'
+import { BUTTON_VARIANTS } from './config'
 import { ButtonVariant } from './types'
 
 interface LinkButtonProps extends LinkProps {
@@ -16,7 +16,10 @@ export default function LinkButton({
   ...props
 }: LinkButtonProps) {
   return (
-    <Link className={classNames(buttonVariants[variant], className)} {...props}>
+    <Link
+      className={classNames(BUTTON_VARIANTS[variant], className)}
+      {...props}
+    >
       {children}
     </Link>
   )
