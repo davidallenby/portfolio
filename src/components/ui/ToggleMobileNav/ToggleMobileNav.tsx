@@ -9,11 +9,15 @@ interface ToggleMobileNavProps {
 const ToggleMobileNav: FC<ToggleMobileNavProps> = ({ className }) => {
   const { open, toggleOpen } = useMobileNavContext()
   const toggleMobileNavClass = classNames(
-    'ToggleMobileNav flex flex-col justify-between relative h-6 w-10 bg-transparent border-0 z-11',
+    'flex flex-col justify-between cursor-pointer relative h-6 w-10 bg-transparent border-0 z-11 hover:[&>div]:bg-primary/80',
     {
       'ToggleMobileNav--open': open
     },
     className
+  )
+
+  const toggleMobileNavLineClass = classNames(
+    'h-0.5 w-full bg-primary transition-all duration-200'
   )
 
   return (
@@ -23,30 +27,20 @@ const ToggleMobileNav: FC<ToggleMobileNavProps> = ({ className }) => {
       onClick={() => toggleOpen(!open)}
     >
       <div
-        className={classNames(
-          'ToggleMobileNav__line h-0.5 w-full bg-primary transition-all duration-200',
-          {
-            'translate-y-[12px] translate-x-0 rotate-[32deg] bg-primary-100':
-              open
-          }
-        )}
+        className={classNames(toggleMobileNavLineClass, {
+          'translate-y-[12px] translate-x-0 rotate-[32deg] bg-primary-100': open
+        })}
       ></div>
       <div
-        className={classNames(
-          'ToggleMobileNav__line h-0.5 w-full bg-primary transition-all duration-200',
-          {
-            'opacity-0 bg-primary-100': open
-          }
-        )}
+        className={classNames(toggleMobileNavLineClass, {
+          'opacity-0 bg-primary-100': open
+        })}
       ></div>
       <div
-        className={classNames(
-          'ToggleMobileNav__line h-0.5 w-full bg-primary transition-all duration-200',
-          {
-            '-translate-y-[11px] translate-x-0 -rotate-[32deg] bg-primary-100':
-              open
-          }
-        )}
+        className={classNames(toggleMobileNavLineClass, {
+          '-translate-y-[11px] translate-x-0 -rotate-[32deg] bg-primary-100':
+            open
+        })}
       ></div>
     </button>
   )

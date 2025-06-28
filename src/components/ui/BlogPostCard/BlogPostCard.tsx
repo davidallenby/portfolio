@@ -8,10 +8,11 @@ import ReadMoreLink from './ReadMoreLink'
 
 interface BlogPostCardProps {
   postItem: BlogPost
+  className?: string
 }
 
-const BlogPostCard: FC<BlogPostCardProps> = ({ postItem }) => (
-  <BaseCard href={`/blog/${postItem.slug}`}>
+const BlogPostCard: FC<BlogPostCardProps> = ({ postItem, className }) => (
+  <BaseCard href={`/blog/${postItem.slug}`} className={className}>
     <BaseCardImage
       src={postItem.featuredImageUrl}
       alt=''

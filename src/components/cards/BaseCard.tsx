@@ -16,7 +16,7 @@ interface BaseCardProps {
  */
 export default function BaseCard({ href, className, children }: BaseCardProps) {
   const styleClasses = classNames(
-    'flex flex-col bg-white transition-all duration-250 hover:shadow-md max-w-[500px] w-full mx-auto',
+    'flex flex-col bg-white transition-all duration-250 hover:shadow-md w-full',
     className
   )
 

@@ -21,12 +21,12 @@ const FeaturedArticles: FC<FeaturedArticlesProps> = ({
 
   return (
     <>
-      <h2 className='text-center md:text-left mb-16'>{title}</h2>
+      <h2 className='mb-8!'>{title}</h2>
       {isSuccess && data?.length && (
         <>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-16'>
             {data?.map((item, i) => {
-              return <BlogPostCard postItem={item} key={i} />
+              return <BlogPostCard postItem={item} key={i} className='h-full' />
             })}
           </div>
           <div className='text-center'>
