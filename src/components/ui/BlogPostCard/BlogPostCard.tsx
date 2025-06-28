@@ -10,7 +10,7 @@ interface BlogPostCardProps {
 }
 
 const BlogPostCard: FC<BlogPostCardProps> = ({ postItem }) => (
-  <div className='BlogPostCard bg-white'>
+  <div className='flex flex-col bg-white'>
     <Link
       href={`/blog/${postItem.slug}`}
       className='min-h-[200px] relative block'
@@ -23,11 +23,11 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postItem }) => (
         className='object-cover absolute top-0 left-0 w-full h-full'
       />
     </Link>
-    <div className='BlogPostCard__content p-3'>
+    <div className='p-3 flex-1 flex flex-col'>
       <h3>
         <Link
           href={`/blog/${postItem.slug}`}
-          className='text-decoration-none text-body'
+          className='text-decoration-none text-body hover:text-body/80 transition-all duration-250'
         >
           {postItem.title}
         </Link>
@@ -35,7 +35,9 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postItem }) => (
       <small className='block subtitle mb-4'>
         {getDateString(postItem.dateCreated)}
       </small>
-      <ReadMoreLink href={`/blog/${postItem.slug}`}>Read more</ReadMoreLink>
+      <div className='mt-auto'>
+        <ReadMoreLink href={`/blog/${postItem.slug}`}>Read more</ReadMoreLink>
+      </div>
     </div>
   </div>
 )

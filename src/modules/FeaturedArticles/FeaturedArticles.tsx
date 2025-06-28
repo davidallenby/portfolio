@@ -54,16 +54,9 @@ const FeaturedArticles: FC<FeaturedArticlesProps> = ({
       <h2>{title}</h2>
       {isSuccess && data?.length && (
         <>
-          <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5'>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-5'>
             {data.map((item, i) => {
-              return (
-                <div
-                  className='w-full col-lg-4 mb-4 lg:mb-0 FeaturedArticle'
-                  key={i}
-                >
-                  <BlogPostCard postItem={item} />
-                </div>
-              )
+              return <BlogPostCard postItem={item} key={i} />
             })}
           </div>
           <div className='text-center'>

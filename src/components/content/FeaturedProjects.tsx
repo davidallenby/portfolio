@@ -1,11 +1,18 @@
 import { ReactNode } from '@node_modules/@types/react'
+import classNames from '@node_modules/classnames'
 
 interface FeaturedProjectsProps {
   children: ReactNode
+  className?: string
 }
-export default function FeaturedProjects({ children }: FeaturedProjectsProps) {
+export default function FeaturedProjects({
+  children,
+  className
+}: FeaturedProjectsProps) {
   return (
-    <div className='FeaturedProjects mb-5 grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[400px]'>
+    <div
+      className={classNames('grid grid-cols-1 md:grid-cols-2 gap-8', className)}
+    >
       {children}
     </div>
   )

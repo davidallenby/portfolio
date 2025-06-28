@@ -21,7 +21,7 @@ export default async function Home() {
 
       <ContentContainer className=''>
         <h2 className='mb-4'>Featured projects</h2>
-        <FeaturedProjects>
+        <FeaturedProjects className='mb-8'>
           <FeaturedProjectLink href={'https://camplete.com.au'}>
             <video
               controls={false}
@@ -42,9 +42,12 @@ export default async function Home() {
           </FeaturedProjectLink>
         </FeaturedProjects>
         <div className='text-center'>
-          <LinkButton href={LINKS.GITHUB} variant='secondary'>
-            <BsGithub className='me-2' />
-            <span>View GitHub</span>
+          <LinkButton
+            href={LINKS.GITHUB}
+            variant='secondary'
+            leftIcon={<BsGithub />}
+          >
+            View GitHub
           </LinkButton>
         </div>
       </ContentContainer>
