@@ -53,3 +53,7 @@ h5,
 h6 {
   margin-bottom: 1rem;
 }
+
+p {
+  @apply mb-4;
+}

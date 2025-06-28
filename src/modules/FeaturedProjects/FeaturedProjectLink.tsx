@@ -18,7 +18,7 @@ export default function FeaturedProjectLink({
       href={href}
       target='_blank'
       className={classNames(
-        'FeaturedProjectLink no-underline transition-all duration-250 aspect-video w-full text-body relative flex hover:brightness-75',
+        'FeaturedProjectLink no-underline transition-all duration-250 aspect-video w-full text-body relative flex hover:border hover:border-primary hover:shadow-md',
         className
       )}
     >

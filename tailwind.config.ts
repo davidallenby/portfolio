@@ -5,7 +5,13 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: '1rem',
+      padding: {
+        DEFAULT: '1.5rem',
+        sm: '1.5rem',
+        lg: '2rem',
+        xl: '2.5rem',
+        '2xl': '3rem'
+      },
       screens: {
         sm: '640px',
         md: '768px',
@@ -31,13 +37,16 @@ const config: Config = {
         body: '#3D3D3D'
       },
       fontSize: {
+        xs: '0.75rem',
+        sm: '0.875rem',
         base: '1rem',
-        h1: ['3rem', { lineHeight: '1.2' }],
-        h2: ['2.67rem', { lineHeight: '1.2' }],
-        h3: ['2.33rem', { lineHeight: '1.2' }],
-        h4: ['2rem', { lineHeight: '1.2' }],
-        h5: ['1.67rem', { lineHeight: '1.2' }],
-        h6: ['1.33rem', { lineHeight: '1.2' }]
+        lg: '1.125rem',
+        xl: '1.25rem',
+        '2xl': '1.5rem',
+        '3xl': '1.75rem',
+        '4xl': '1.83rem',
+        '5xl': '2.25rem',
+        '6xl': '2.67rem'
       },
       borderRadius: {
         DEFAULT: '0'
@@ -51,37 +60,37 @@ const config: Config = {
     plugin(function ({ addBase }) {
       addBase({
         h1: {
-          fontSize: 'clamp(3rem, 4vw, 4rem)',
+          fontSize: 'clamp(2.75rem, 4vw, 3.5rem)',
           lineHeight: '1.2',
           fontFamily: 'var(--font-heading)'
         },
         h2: {
-          fontSize: 'clamp(2.5rem, 3.5vw, 3.25rem)',
+          fontSize: 'clamp(2.25rem, 3.5vw, 2.75rem)',
           lineHeight: '1.2',
           fontFamily: 'var(--font-heading)'
         },
         h3: {
-          fontSize: 'clamp(2rem, 3vw, 3rem)',
+          fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
           lineHeight: '1.2',
           fontFamily: 'var(--font-heading)'
         },
         h4: {
-          fontSize: 'clamp(1.75rem, 2.5vw, 2.75rem)',
+          fontSize: 'clamp(1.5rem, 2.5vw, 2.25rem)',
           lineHeight: '1.2',
           fontFamily: 'var(--font-heading)'
         },
         h5: {
-          fontSize: 'clamp(1.5rem, 2vw, 2.5rem)',
+          fontSize: 'clamp(1.25rem, 2vw, 1.75rem)',
           lineHeight: '1.2',
           fontFamily: 'var(--font-heading)'
         },
         h6: {
-          fontSize: 'clamp(1.25rem, 1.5vw, 2rem)',
+          fontSize: 'clamp(1.15rem, 1.5vw, 1.5rem)',
           lineHeight: '1.2',
           fontFamily: 'var(--font-heading)'
         },
         '.subtitle': {
-          fontSize: 'clamp(1rem, 1.5vw, 1.15rem)',
+          fontSize: 'clamp(0.9rem, 1.5vw, 1rem)',
           fontFamily: 'var(--font-body)',
           lineHeight: '1.2',
           textTransform: 'uppercase',

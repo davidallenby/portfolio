@@ -1,11 +1,11 @@
-import FeaturedProjectLink from '@components/content/FeaturedProjectLink'
-import FeaturedProjects from '@components/content/FeaturedProjects'
 import HomeHeroBanner from '@components/content/HomeHeroBanner'
 import ContentContainer from '@components/layout/ContentContainer/ContentContainer'
 import SiteLayout from '@components/layout/SiteLayout/SiteLayout'
 import LinkButton from '@components/ui/Button/LinkButton'
 import { LINKS } from '@constants/links'
 import FeaturedArticles from '@modules/FeaturedArticles/FeaturedArticles'
+import FeaturedProjectLink from '@modules/FeaturedProjects/FeaturedProjectLink'
+import FeaturedProjects from '@modules/FeaturedProjects/FeaturedProjects'
 import OILogo from '@svg/openinvest-logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -19,7 +19,7 @@ export default async function Home() {
 
       <hr />
 
-      <ContentContainer className=''>
+      <ContentContainer>
         <h2 className='mb-4'>Featured projects</h2>
         <FeaturedProjects className='mb-8'>
           <FeaturedProjectLink href={'https://camplete.com.au'}>
@@ -57,25 +57,25 @@ export default async function Home() {
       <ContentContainer className='bg-white'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24'>
           <div className='flex flex-col justify-center mb-5 lg:mb-0'>
+            <h2>About me</h2>
+            <p>
+              With around {getYearsExperience()} years experience in software
+              development I have a wealth of experience dealing with complex
+              problems and implementing solutions. I&apos;m a frontend engineer
+              first and foremost, however I do have experience with building
+              backend systems, UX design, and an understanding of CI/CD
+              pipelines.
+            </p>
+            <p className='mb-8!'>
+              <span>If you&apos;d like to know more, check out the </span>
+              <Link href={`/about`}>about page</Link>
+              <span>, or visit my </span>
+              <Link href={LINKS.LINKEDIN} target='_blank' rel='noreferrer'>
+                LinkedIn
+              </Link>
+              <span> for more details about my experience.</span>
+            </p>
             <div>
-              <h2>About me</h2>
-              <p>
-                With around {getYearsExperience()} years experience in software
-                development I have a wealth of experience dealing with complex
-                problems and implementing solutions. I&apos;m a frontend
-                engineer first and foremost, however I do have experience with
-                building backend systems, UX design, and an understanding of
-                CI/CD pipelines.
-              </p>
-              <p className='mb-5'>
-                <span>If you&apos;d like to know more, check out the </span>
-                <Link href={`/about`}>about page</Link>
-                <span>, or visit my </span>
-                <Link href={LINKS.LINKEDIN} target='_blank' rel='noreferrer'>
-                  LinkedIn
-                </Link>
-                <span> for more details about my experience.</span>
-              </p>
               <LinkButton href={`/about`} variant='secondary'>
                 Learn more
               </LinkButton>
