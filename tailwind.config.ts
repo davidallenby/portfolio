@@ -48,49 +48,45 @@ const config: Config = {
     }
   },
   plugins: [
-    plugin(function ({ addBase, theme }) {
+    plugin(function ({ addBase }) {
       addBase({
         h1: {
-          fontSize: theme('fontSize.h1')[0],
-          lineHeight: theme('fontSize.h1')[1].lineHeight,
-          fontFamily: theme('fontFamily.serif').join(', '),
-          color: theme('colors.body')
+          fontSize: 'clamp(3rem, 4vw, 4rem)',
+          lineHeight: '1.2',
+          fontFamily: 'var(--font-heading)'
         },
         h2: {
-          fontSize: theme('fontSize.h2')[0],
-          lineHeight: theme('fontSize.h2')[1].lineHeight,
-          fontFamily: theme('fontFamily.serif').join(', '),
-          color: theme('colors.body')
+          fontSize: 'clamp(2.5rem, 3.5vw, 3.25rem)',
+          lineHeight: '1.2',
+          fontFamily: 'var(--font-heading)'
         },
         h3: {
-          fontSize: theme('fontSize.h3')[0],
-          lineHeight: theme('fontSize.h3')[1].lineHeight,
-          fontFamily: theme('fontFamily.serif').join(', '),
-          color: theme('colors.body')
+          fontSize: 'clamp(2rem, 3vw, 3rem)',
+          lineHeight: '1.2',
+          fontFamily: 'var(--font-heading)'
         },
         h4: {
-          fontSize: theme('fontSize.h4')[0],
-          lineHeight: theme('fontSize.h4')[1].lineHeight,
-          fontFamily: theme('fontFamily.serif').join(', '),
-          color: theme('colors.body')
+          fontSize: 'clamp(1.75rem, 2.5vw, 2.75rem)',
+          lineHeight: '1.2',
+          fontFamily: 'var(--font-heading)'
         },
         h5: {
-          fontSize: theme('fontSize.h5')[0],
-          lineHeight: theme('fontSize.h5')[1].lineHeight,
-          fontFamily: theme('fontFamily.serif').join(', '),
-          color: theme('colors.body')
+          fontSize: 'clamp(1.5rem, 2vw, 2.5rem)',
+          lineHeight: '1.2',
+          fontFamily: 'var(--font-heading)'
         },
         h6: {
-          fontSize: theme('fontSize.h6')[0],
-          lineHeight: theme('fontSize.h6')[1].lineHeight,
-          fontFamily: theme('fontFamily.serif').join(', '),
-          color: theme('colors.body')
+          fontSize: 'clamp(1.25rem, 1.5vw, 2rem)',
+          lineHeight: '1.2',
+          fontFamily: 'var(--font-heading)'
         },
         '.subtitle': {
-          fontFamily: theme('fontFamily.sans').join(', '),
-          color: theme('colors.subtitle'),
+          fontSize: 'clamp(1rem, 1.5vw, 1.15rem)',
+          fontFamily: 'var(--font-body)',
+          lineHeight: '1.2',
           textTransform: 'uppercase',
-          letterSpacing: theme('letterSpacing.subtitle')
+          letterSpacing: '0.115rem',
+          color: '#b1b1b1'
         }
       })
     })

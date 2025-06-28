@@ -5,7 +5,7 @@ interface FeaturedProjectsProps {
 }
 export default function FeaturedProjects({ children }: FeaturedProjectsProps) {
   return (
-    <div className='FeaturedProjects mb-5 block md:grid md:grid-cols-2 gap-12 min-h-[400px]'>
+    <div className='FeaturedProjects mb-5 grid grid-cols-1 md:grid-cols-2 gap-8 min-h-[400px]'>
       {children}
     </div>
   )

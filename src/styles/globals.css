@@ -3,6 +3,20 @@
 
 @import './fonts.css';
 
+:root {
+  --font-display: 'eb_garamond_med', sans-serif;
+  --font-heading: 'eb_garamond_med', sans-serif;
+  --font-body: 'hk_grotesk_reg', sans-serif;
+}
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-body);
+  --font-display: var(--font-display);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+}
+
 @layer components {
   hr {
     @apply w-3/4 mx-auto border border-primary-100;
@@ -29,4 +43,13 @@
       @apply min-h-[200px];
     }
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
 }

@@ -1,11 +1,11 @@
 'use client'
 import BlogPostCard from '@components/ui/BlogPostCard/BlogPostCard'
+import LinkButton from '@components/ui/Button/LinkButton'
 import { useGetBlogPosts } from '@hooks/blog'
 import type { BlogPost } from '@interfaces/blog.interfaces'
 import Link from 'next/link'
 import type React from 'react'
 import type { FC } from 'react'
-import './FeaturedArticles.scss'
 
 interface FeaturedArticlesProps {
   className?: string
@@ -51,8 +51,28 @@ const FeaturedArticles: FC<FeaturedArticlesProps> = ({
 
   return (
     <>
-      <h2 className='mb-4'>{title}</h2>
-      {isSuccess && setArticleContent(data)}
+      <h2>{title}</h2>
+      {isSuccess && data?.length && (
+        <>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 mb-5'>
+            {data.map((item, i) => {
+              return (
+                <div
+                  className='w-full col-lg-4 mb-4 lg:mb-0 FeaturedArticle'
+                  key={i}
+                >
+                  <BlogPostCard postItem={item} />
+                </div>
+              )
+            })}
+          </div>
+          <div className='text-center'>
+            <LinkButton href={`/blog`} variant='secondary'>
+              View more
+            </LinkButton>
+          </div>
+        </>
+      )}
     </>
   )
 }

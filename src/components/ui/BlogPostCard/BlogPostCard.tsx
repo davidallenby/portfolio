@@ -2,8 +2,8 @@ import type { BlogPost } from '@interfaces/blog.interfaces'
 import Image from 'next/image'
 import Link from 'next/link'
 import { type FC } from 'react'
-import { BsArrowRight } from 'react-icons/bs'
 import { getDateString } from '../../../helpers/dates'
+import ReadMoreLink from './ReadMoreLink'
 
 interface BlogPostCardProps {
   postItem: BlogPost
@@ -35,10 +35,7 @@ const BlogPostCard: FC<BlogPostCardProps> = ({ postItem }) => (
       <small className='block subtitle mb-4'>
         {getDateString(postItem.dateCreated)}
       </small>
-      <Link href={`/blog/${postItem.slug}`} className='small'>
-        <span className='inline-block me-2'>Read more</span>
-        <BsArrowRight />
-      </Link>
+      <ReadMoreLink href={`/blog/${postItem.slug}`}>Read more</ReadMoreLink>
     </div>
   </div>
 )
