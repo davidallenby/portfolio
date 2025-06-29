@@ -1,4 +1,4 @@
 export interface AppState {
-  blogFilterTags: number[],
-  setBlogFilterTags: (tags: number[]) => void;
+	blogFilterTags: number[];
+	setBlogFilterTags: (tags: number[]) => void;
 }

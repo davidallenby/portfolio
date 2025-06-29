@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "target": "es2015",
     "allowJs": true,
     "skipLibCheck": true,
@@ -23,42 +19,18 @@
       }
     ],
     "paths": {
-      "@styles/*": [
-        "./src/styles/*"
-      ],
-      "@components/*": [
-        "./src/components/*"
-      ],
-      "@svg/*": [
-        "./public/svg/*"
-      ],
-      "@api/*": [
-        "./src/api/*"
-      ],
-      "@context/*": [
-        "./src/context/*"
-      ],
-      "@interfaces/*": [
-        "./src/interfaces/*"
-      ],
-      "@constants/*": [
-        "./src/constants/*"
-      ],
-      "@modules/*": [
-        "./src/modules/*"
-      ],
-      "@hooks/*": [
-        "./src/hooks/*"
-      ],
-      "@helpers/*": [
-        "./src/helpers/*"
-      ],
-      "@node_modules/*": [
-        "./node_modules/*"
-      ],
-      "@store/*": [
-        "./src/store/*"
-      ]
+      "@styles/*": ["./src/styles/*"],
+      "@components/*": ["./src/components/*"],
+      "@svg/*": ["./public/svg/*"],
+      "@api/*": ["./src/api/*"],
+      "@context/*": ["./src/context/*"],
+      "@interfaces/*": ["./src/interfaces/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@node_modules/*": ["./node_modules/*"],
+      "@store/*": ["./src/store/*"]
     }
   },
   "include": [
@@ -67,9 +39,8 @@
     "**/*.tsx",
     "BACKUP/types/**/*.ts",
     "src/middleware.ts",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "tailwind.config.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

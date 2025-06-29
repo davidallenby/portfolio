@@ -1,18 +1,19 @@
-'use client';
-import React, { FC } from 'react';
-import './BlogPostFeaturedImage.scss';
-import Image from 'next/image';
-import { useBreakpointBoolean } from '@hooks/dom';
+'use client'
+import { useBreakpointBoolean } from '@hooks/dom'
+import classNames from '@node_modules/classnames'
+import Image from 'next/image'
+import { type FC } from 'react'
 
 interface BlogPostFeaturedImageProps {
-  src: string;
-  className?: string;
+  src: string
+  className?: string
 }
 
 const BlogPostFeaturedImage: FC<BlogPostFeaturedImageProps> = ({
-  src, className
+  src,
+  className
 }) => {
-  const { isDesktop } = useBreakpointBoolean();
+  const { isDesktop } = useBreakpointBoolean()
 
   const getImageDimensions = () => {
     return {
@@ -20,16 +21,20 @@ const BlogPostFeaturedImage: FC<BlogPostFeaturedImageProps> = ({
       width: isDesktop ? 800 : 1200
     }
   }
-  const { height, width } = getImageDimensions();
+  const { height, width } = getImageDimensions()
   return (
-    <div className={`BlogPostFeaturedImage${ className ? ` ${className}` : ''}`}>
-      <Image src={src} 
+    <div
+      className={classNames('BlogPostFeaturedImage w-full relative', className)}
+    >
+      <Image
+        src={src}
         alt={''}
         width={width}
         height={height}
+        className='w-full h-auto object-cover'
       />
     </div>
-  );
+  )
 }
 
-export default BlogPostFeaturedImage;
+export default BlogPostFeaturedImage

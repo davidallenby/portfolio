@@ -1,0 +1,65 @@
+@import 'tailwindcss';
+@config '../../tailwind.config.ts';
+
+@import './fonts.css';
+
+:root {
+  --font-display: 'eb_garamond_med', sans-serif;
+  --font-heading: 'eb_garamond_med', sans-serif;
+  --font-body: 'hk_grotesk_reg', sans-serif;
+  --color-primary: #917059;
+  --color-primary-100: #e8dfd9;
+  --color-subtitle: #b1b1b1;
+  --color-off-white: #fbfbfb;
+  --color-body: #3d3d3d;
+  --color-beige: #f5e9e1;
+}
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-body);
+  --font-display: var(--font-display);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+}
+
+@layer components {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply mb-6;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  hr {
+    @apply w-3/4 mx-auto border border-primary-100;
+
+    @media (min-width: 768px) {
+      @apply w-[55%];
+    }
+  }
+
+  .grecaptcha-badge {
+    @apply hidden;
+  }
+
+  form {
+    label {
+      @apply block mb-2 text-subtitle;
+    }
+    input,
+    textarea {
+      @apply p-2 block w-full border border-primary;
+    }
+
+    textarea {
+      @apply min-h-[200px];
+    }
+  }
+}

@@ -1,48 +1,38 @@
-import React, { FC } from 'react';
-import './BlogPostCard.scss';
-import { getDateString } from '../../../helpers/dates';
-import { BsArrowRight } from 'react-icons/bs';
-import Link from 'next/link';
-import { BlogPost } from '@interfaces/blog.interfaces';
-import Image from 'next/image';
+import BaseCard from '@components/cards/BaseCard'
+import BaseCardBody from '@components/cards/BaseCardBody'
+import BaseCardImage from '@components/cards/BaseCardImage'
+import type { BlogPost } from '@interfaces/blog.interfaces'
+import { type FC } from 'react'
+import { getDateString } from '../../../helpers/dates'
+import ReadMoreLink from './ReadMoreLink'
 
 interface BlogPostCardProps {
-  postItem: BlogPost;
+  postItem: BlogPost
+  className?: string
 }
 
-const BlogPostCard: FC<BlogPostCardProps> = ({
-  postItem
-}) => (
-  <div className='BlogPostCard bg-white'>
-    <Link 
-      href={`/blog/${postItem.slug}`}
-      className="BlogPostCard__image position-relative d-block"
-    >
-      <Image 
-        width={800} 
-        height={800} 
-        src={postItem.featuredImageUrl} 
-        alt=''
-      />
-    </Link>
-    <div className="BlogPostCard__content p-3">
-      <h3>
-        <Link 
-          href={`/blog/${postItem.slug}`}
-          className='text-decoration-none text-body'
-        >
+const BlogPostCard: FC<BlogPostCardProps> = ({ postItem, className }) => (
+  <BaseCard href={`/blog/${postItem.slug}`} className={className}>
+    <BaseCardImage
+      src={postItem.featuredImageUrl}
+      alt=''
+      width={600}
+      height={400}
+    />
+    <BaseCardBody>
+      <h3 className='mb-2!'>
+        <span className='text-decoration-none text-body transition-all duration-250 line-clamp-2'>
           {postItem.title}
-        </Link>
+        </span>
       </h3>
-      <small className='d-block subtitle mb-4'>
+      <small className='block subtitle mb-8'>
         {getDateString(postItem.dateCreated)}
       </small>
-      <Link href={`/blog/${postItem.slug}`} className="small">
-        <span className="d-inline-block me-2">Read more</span>
-        <BsArrowRight />
-      </Link>
-    </div>              
-  </div>
-);
+      <div className='mt-auto text-right'>
+        <ReadMoreLink href={`/blog/${postItem.slug}`}>Read more</ReadMoreLink>
+      </div>
+    </BaseCardBody>
+  </BaseCard>
+)
 
-export default BlogPostCard;
+export default BlogPostCard

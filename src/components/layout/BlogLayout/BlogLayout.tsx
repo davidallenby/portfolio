@@ -1,29 +1,31 @@
 'use client'
-import React, { FC, ReactNode } from 'react';
-import './BlogLayout.scss';
-import ContentContainer from '../ContentContainer/ContentContainer';
-import BlogSidebar from '@modules/BlogSidebar/BlogSidebar';
-import BlogFiltersMobile from '@modules/BlogFiltersMobile/BlogFiltersMobile';
+import BlogFiltersMobile from '@modules/BlogFiltersMobile/BlogFiltersMobile'
+import BlogSidebar from '@modules/BlogSidebar/BlogSidebar'
+import { type FC, type ReactNode } from 'react'
 
 interface BlogLayoutProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
-const BlogLayout: FC<BlogLayoutProps> = ({ children }) => {  
+const BlogLayout: FC<BlogLayoutProps> = ({ children }) => {
   return (
-    <ContentContainer>
-      <div className='BlogLayout mx-auto ms-lg-0'>
-        <BlogFiltersMobile />
-        
-        <div className='BlogLayout__content'>
-          <h2 className='visually-hidden'>Posts</h2>
-          { children }
+    <div className='container py-12'>
+      <div className='max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2'>
+        <div className='lg:hidden mb-8'>
+          <BlogFiltersMobile />
         </div>
 
-        <BlogSidebar />
+        <div className='BlogLayout__content lg:border-r border-primary-100 lg:pr-16'>
+          <h2 className='visually-hidden'>Posts</h2>
+          {children}
+        </div>
+
+        <div className='hidden lg:block pl-16'>
+          <BlogSidebar />
+        </div>
       </div>
-    </ContentContainer>
-  );
+    </div>
+  )
 }
 
-export default BlogLayout;
+export default BlogLayout

@@ -1,60 +1,54 @@
 'use client'
-import React, { FC } from 'react';
-import './ExternalIcons.scss';
-import { BsGithub, BsLinkedin } from 'react-icons/bs';
-import { FaCodepen } from 'react-icons/fa';
-import Link from 'next/link';
+import classNames from '@node_modules/classnames'
+import Link from 'next/link'
+import { type FC } from 'react'
+import { BsGithub, BsLinkedin } from 'react-icons/bs'
+import { FaCodepen } from 'react-icons/fa'
 
 interface ExternalIconsProps {
-  className?: string;
-  colorInverted?: boolean;
+  className?: string
+  colorInverted?: boolean
 }
 
-const ExternalIcons: FC<ExternalIconsProps> = ({ 
-  className, colorInverted = false
+const ExternalIcons: FC<ExternalIconsProps> = ({
+  className,
+  colorInverted = false
 }) => {
-  /**
-   * Generate the style class string for this component. If the dev has
-   * specified custom classes in the parent component, update the default
-   * classes with the custom classes attached.
-   * @returns 
-   */
-  const setStyleClass = () => {
-    let string = 'ExternalIcons d-flex align-items-center';
-    if (colorInverted) {
-      string = string + ' ExternalIcons--inverted';
-    }
-    if (className) {
-      string = string + ' ' + className;
-    }
-    return string;
-  }
+  const styleClass = classNames(`ExternalIcons flex items-center`, className)
+
+  const linkClass = classNames('me-4', {
+    'text-primary-100 hover:text-white': colorInverted,
+    'text-primary hover:text-body': !colorInverted
+  })
 
   return (
-    <div className={setStyleClass()}>
-      <Link href='https://github.com/davidallenby' 
+    <div className={styleClass}>
+      <Link
+        href='https://github.com/davidallenby'
         rel='noreferrer'
         target='_blank'
-        className='me-4'
+        className={linkClass}
       >
         <BsGithub fontSize={20} />
       </Link>
-      <Link href='https://www.linkedin.com/in/davidallenby/' 
+      <Link
+        href='https://www.linkedin.com/in/davidallenby/'
         rel='noreferrer'
         target='_blank'
-        className='me-4'
+        className={linkClass}
       >
         <BsLinkedin fontSize={20} />
       </Link>
-      <Link href='https://codepen.io/davidallenby' 
+      <Link
+        href='https://codepen.io/davidallenby'
         rel='noreferrer'
         target='_blank'
-        className='me-4'
+        className={linkClass}
       >
         <FaCodepen fontSize={20} />
       </Link>
     </div>
-  );
+  )
 }
 
-export default ExternalIcons;
+export default ExternalIcons

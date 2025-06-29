@@ -1,31 +1,36 @@
 'use client'
-import React, { FC, ReactNode } from 'react';
-import './BlogPostContainer.scss';
-import { useRouter } from 'next/navigation'  // Usage: App router
-import { BsArrowLeft } from 'react-icons/bs';
+import classNames from '@node_modules/classnames'
+import Link from '@node_modules/next/link'
+import { type FC, type ReactNode } from 'react'
+import { BsArrowLeft } from 'react-icons/bs'
+import './BlogPostContainer.css'
 
 interface BlogPostContainerProps {
-  children: ReactNode;
-  className?: string;
+  children: ReactNode
+  className?: string
 }
 
 const BlogPostContainer: FC<BlogPostContainerProps> = ({
-  children, className
+  children,
+  className
 }) => {
-  const router = useRouter();
-
   return (
-    <div className={`BlogPostContainer gutter-x ${className}`}>
-      <button type="button" 
-        onClick={() => router.push(`/blog`)}
-        className='text-primary bg-transparent border-0 mb-4 px-0 text-underline-none d-inline-flex align-items-center'
+    <div
+      className={classNames(
+        'max-w-screen-md mx-auto BlogPostContainer py-24',
+        className
+      )}
+    >
+      <Link
+        href='/blog'
+        className='text-primary bg-transparent border-0 mb-4 px-0 text-underline-none inline-flex items-center hover:text-primary-100 transition-colors'
       >
         <BsArrowLeft className='me-2 mt-1' size={18} />
         <span> Back to blog list</span>
-      </button>
-      { children }
+      </Link>
+      {children}
     </div>
-  );
+  )
 }
 
-export default BlogPostContainer;
+export default BlogPostContainer
