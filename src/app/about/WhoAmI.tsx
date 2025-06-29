@@ -6,8 +6,8 @@ import Link from 'next/link'
 export default function WhoAmI() {
   return (
     <ContentContainer className='bg-beige'>
-      <div className='row flex-row-reverse'>
-        <div className='w-full lg:w-6/12 mb-5 lg:mb-0'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16'>
+        <div className='w-full'>
           <h2>Who am I?</h2>
           <p>
             Originally from Northern Ireland, I&apos;ve spent the last 14 years
@@ -36,32 +36,32 @@ export default function WhoAmI() {
             <Link href={ROUTES.CONTACT}>get in touch!</Link>
           </p>
         </div>
-        <div className='w-full lg:w-6/12 AboutMe__img-grid'>
-          <div>
+        <div className='w-full grid grid-cols-2 grid-rows-2 md:grid-rows-1 md:grid-cols-3 gap-4'>
+          <div className='relative col-span-1 row-span-2 md:row-span-1 md:col-start-1 md:row-start-1'>
             <Image
               src={'/images/tv-tower.jpg'}
               alt='Berlin TV Tower'
               width={600}
               height={600}
-              className='img-fluid'
+              className='h-full w-full object-cover'
             />
           </div>
-          <div>
+          <div className='relative col-span-1 md:col-start-2 md:row-start-1'>
             <Image
               src={'/images/brandenburg-gate.jpeg'}
               alt='Berlin TV Tower'
               width={600}
               height={600}
-              className='img-fluid'
+              className='h-full w-full object-cover'
             />
           </div>
-          <div>
+          <div className='relative col-span-1 md:col-start-3 md:row-start-1'>
             <Image
               src={'/images/me-forest.jpg'}
               alt='Berlin TV Tower'
               width={600}
               height={600}
-              className='img-fluid'
+              className='h-full w-full object-cover'
             />
           </div>
         </div>

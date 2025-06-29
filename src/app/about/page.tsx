@@ -6,7 +6,6 @@ import { ROUTES } from '@constants/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import './About.scss'
 import WhoAmI from './WhoAmI'
 import { chips } from './constants'
 export default function About() {
@@ -14,8 +13,8 @@ export default function About() {
     <SiteLayout>
       <ContentContainer contained={false}>
         <div className='container mx-auto'>
-          <div className='row'>
-            <div className='flex w-full md:w-6/12 mb-5 md:mb-0'>
+          <div className='grid grid-cols-1 lg:grid-cols-2 gap-16'>
+            <div className='flex w-full'>
               <div className='relative flex flex-col flex-grow-1'>
                 <Image
                   className='AboutHeader__image img-fluid'
@@ -26,7 +25,7 @@ export default function About() {
                 />
               </div>
             </div>
-            <div className='w-full md:w-6/12'>
+            <div className='w-full'>
               <h1>Hi, I&apos;m David</h1>
               <p>
                 I&apos;m a Lead Frontend Developer with about 12 years of
@@ -53,8 +52,8 @@ export default function About() {
       </ContentContainer>
       <hr />
       <ContentContainer className='bg-white'>
-        <div className='row'>
-          <div className='w-full lg:w-6/12 mb-4 lg:mb-0'>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-16'>
+          <div className='w-full'>
             <h2>My toolkit</h2>
             <p>
               I&apos;ve had the opportunity to gain experience and knowledge
@@ -77,7 +76,7 @@ export default function About() {
               <span> and I will happily share my CV.</span>
             </p>
           </div>
-          <div className='w-full lg:w-6/12 flex items-center'>
+          <div className='w-full flex items-center'>
             <div>
               {chips.map((item, i) => {
                 const Icon = item.icon
