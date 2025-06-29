@@ -6,7 +6,7 @@ import BlogPostTagList from '@components/ui/BlogPostTagList/BlogPostTagList'
 import SanitizedHtml from '@components/ui/SanitizedHtml/SanitizedHtml'
 import { getDateString } from '@helpers/dates'
 import type { IOptions } from 'sanitize-html'
-import './BlogPost.scss'
+import NotFound from './NotFound'
 
 export default async function BlogPage({
   params
@@ -27,7 +27,8 @@ export default async function BlogPage({
   return (
     <SiteLayout>
       <div className='BlogPost'>
-        {success ? (
+        {!success && <NotFound />}
+        {success && (
           <>
             <BlogPostContainer>
               <h1 className='mb-1'>{data.title}</h1>
@@ -44,15 +45,11 @@ export default async function BlogPage({
               />
               <BlogPostTagList
                 tagIds={data.tags}
+                size='sm'
                 className='mb-4 hidden sm:block'
               />
               <SanitizedHtml html={data.content} options={contentOptions} />
             </BlogPostContainer>
-          </>
-        ) : (
-          <>
-            <h1>404: Post not found</h1>
-            <p>Sorry, but details of that post could not be found.</p>
           </>
         )}
       </div>

@@ -28,13 +28,13 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#917059',
-          100: '#E8DFD9' // This is approximately 38% lighter than primary
+          DEFAULT: 'var(--color-primary)',
+          100: 'var(--color-primary-100)' // This is approximately 38% lighter than primary
         },
-        beige: '#f5e9e1',
-        subtitle: '#b1b1b1',
-        'off-white': '#FBFBFB',
-        body: '#3D3D3D'
+        beige: 'var(--color-beige)',
+        subtitle: 'var(--color-subtitle)',
+        'off-white': 'var(--color-off-white)',
+        body: 'var(--color-body)'
       },
       fontSize: {
         xs: '0.75rem',

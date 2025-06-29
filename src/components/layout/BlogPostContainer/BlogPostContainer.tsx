@@ -1,9 +1,9 @@
 'use client'
 import classNames from '@node_modules/classnames'
-import { useRouter } from 'next/navigation' // Usage: App router
-import { type FC, type ReactNode, useCallback } from 'react'
+import Link from '@node_modules/next/link'
+import { type FC, type ReactNode } from 'react'
 import { BsArrowLeft } from 'react-icons/bs'
-import './BlogPostContainer.scss'
+import './BlogPostContainer.css'
 
 interface BlogPostContainerProps {
   children: ReactNode
@@ -14,22 +14,20 @@ const BlogPostContainer: FC<BlogPostContainerProps> = ({
   children,
   className
 }) => {
-  const router = useRouter()
-
-  const handleClick = useCallback(() => {
-    router.push(`/blog`)
-  }, [router])
-
   return (
-    <div className={classNames('BlogPostContainer', className)}>
-      <button
-        type='button'
-        onClick={handleClick}
-        className='text-primary bg-transparent border-0 mb-4 px-0 text-underline-none inline-flex items-center'
+    <div
+      className={classNames(
+        'max-w-screen-md mx-auto BlogPostContainer py-24',
+        className
+      )}
+    >
+      <Link
+        href='/blog'
+        className='text-primary bg-transparent border-0 mb-4 px-0 text-underline-none inline-flex items-center hover:text-primary-100 transition-colors'
       >
         <BsArrowLeft className='me-2 mt-1' size={18} />
         <span> Back to blog list</span>
-      </button>
+      </Link>
       {children}
     </div>
   )

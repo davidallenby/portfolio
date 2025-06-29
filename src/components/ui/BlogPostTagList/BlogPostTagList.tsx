@@ -6,10 +6,15 @@ import Skeleton from 'react-loading-skeleton'
 
 interface BlogPostTagListProps {
   tagIds: number[]
+  size?: 'sm' | 'md'
   className?: string
 }
 
-const BlogPostTagList: FC<BlogPostTagListProps> = ({ tagIds, className }) => {
+const BlogPostTagList: FC<BlogPostTagListProps> = ({
+  tagIds,
+  size = 'md',
+  className
+}) => {
   // Queries
   const { isLoading, isError, isSuccess, data } = useGetBlogPostTags()
 
@@ -29,7 +34,7 @@ const BlogPostTagList: FC<BlogPostTagListProps> = ({ tagIds, className }) => {
             .filter((tag) => tagIds.includes(tag.id))
             .map((tag, i) => {
               return true ? (
-                <Chip className='me-3 mb-3' key={i}>
+                <Chip className='me-3 mb-3' key={i} size={size}>
                   {tag.name}
                 </Chip>
               ) : (
