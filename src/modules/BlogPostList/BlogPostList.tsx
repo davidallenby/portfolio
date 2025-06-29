@@ -25,17 +25,23 @@ const BlogPostList: FC = () => {
 
   return (
     <div className='BlogPostList'>
+      {isLoading && <BlogPostListItemSkeleton />}
+
       {!isLoading && isSuccess && data.length > 0 && (
-        <>
+        <div className='flex flex-col gap-16'>
           {data.map((post: BlogPost, i: number) => {
-            return <BlogPostListItem key={i} post={post} />
+            const isLastItem = i === data.length - 1
+            return (
+              <>
+                <BlogPostListItem key={i} post={post} />
+                {!isLastItem && <hr />}
+              </>
+            )
           })}
-        </>
+        </div>
       )}
 
       {!isLoading && isSuccess && data.length === 0 && <BlogPostListEmpty />}
-
-      {isLoading && <BlogPostListItemSkeleton />}
 
       {!isLoading && isError && (
         <>

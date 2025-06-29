@@ -1,3 +1,4 @@
+import classNames from '@node_modules/classnames'
 import { type FC } from 'react'
 
 interface SkeletonImageProps {
@@ -10,7 +11,9 @@ export const SkeletonImage: FC<SkeletonImageProps> = ({
   aspectRatio = 'aspect-video'
 }) => {
   return (
-    <div className={`${aspectRatio} relative block`}>
+    <div
+      className={classNames(aspectRatio, 'relative block w-full', className)}
+    >
       <div className='animate-pulse bg-gray-200 w-full h-full' />
     </div>
   )

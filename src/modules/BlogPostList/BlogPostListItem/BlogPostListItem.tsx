@@ -10,9 +10,10 @@ import { getLastFullStopAfterIndex } from './utils'
 
 interface BlogPostListItemProps {
   post: BlogPost
+  className?: string
 }
 
-const BlogPostListItem: FC<BlogPostListItemProps> = ({ post }) => {
+const BlogPostListItem: FC<BlogPostListItemProps> = ({ post, className }) => {
   const excerpt = useMemo(() => {
     return getLastFullStopAfterIndex(post.excerpt)
   }, [post.excerpt])
@@ -23,13 +24,13 @@ const BlogPostListItem: FC<BlogPostListItemProps> = ({ post }) => {
 
   return (
     <BlogPostListItemProvider post={post}>
-      <BlogPostListItemBase href={post.url}>
+      <BlogPostListItemBase href={post.url} className={className}>
         <BlogPostListItemImage
           src={post.featuredImageUrl}
           alt={post.title}
           className='mb-4'
         />
-        <div className='BlogPostListItem__content me-sm-5'>
+        <div>
           <h3 className='mb-1!'>{post.title}</h3>
           <p className='subtitle mb-2'>{dateString}</p>
 
