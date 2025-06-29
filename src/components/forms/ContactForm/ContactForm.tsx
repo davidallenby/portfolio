@@ -1,19 +1,15 @@
 'use client'
+import Button from '@components/ui/Button/Button'
 import Input from '@components/ui/Inputs/Input'
 import TextArea from '@components/ui/Inputs/TextArea'
 import { RECAPTCHA_SITE_KEY } from '@constants/recaptcha'
-import { getFunctions, httpsCallable } from 'firebase/functions'
 import { type FC, useCallback, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
 import { type SubmitHandler, useForm } from 'react-hook-form'
-import { app } from '../../../api/firebase'
 import ContactLoadingSpinner from './ContactLoadingSpinner'
 import { ContactFormInput } from './types'
 
 const ContactForm: FC = () => {
-  const functions = getFunctions(app)
-  const sendEmail = httpsCallable(functions, 'postContactRequest')
-
   const {
     register,
     reset,
@@ -39,6 +35,7 @@ const ContactForm: FC = () => {
    */
   const onSubmit: SubmitHandler<ContactFormInput> = useCallback(
     async (data: ContactFormInput) => {
+      const { name, email, message } = data
       // Validate recaptcha
       const recaptchaToken = await recaptchaRef.current?.executeAsync()
       if (!recaptchaToken) {
@@ -53,9 +50,17 @@ const ContactForm: FC = () => {
       setError(false)
       setSuccess(false)
       try {
-        await sendEmail({ ...data })
-        setSuccess(true)
-        reset()
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, message })
+        })
+        if (response.ok) {
+          setSuccess(true)
+          reset()
+        } else {
+          throw new Error('Failed to send message')
+        }
       } catch (err) {
         console.log(err)
         setError(true)
@@ -63,11 +68,11 @@ const ContactForm: FC = () => {
         setSending(false)
       }
     },
-    [sendEmail, reset]
+    [reset]
   )
 
   return (
-    <div className='ContactForm relative'>
+    <div className='ContactForm'>
       {!sending && !success && (
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -114,32 +119,35 @@ const ContactForm: FC = () => {
             </div>
           )}
 
-          <div>
+          <div className='flex justify-end'>
             <ReCAPTCHA
               ref={recaptchaRef}
               sitekey={RECAPTCHA_SITE_KEY}
               size='invisible'
             />
-            <button
+            <Button
               disabled={sending}
               type='submit'
-              className='btn btn-outline-primary'
+              variant='primary'
+              size='lg'
             >
               Submit
-            </button>
+            </Button>
           </div>
         </form>
       )}
       {sending && (
-        <div className='absolute top-0 left-0 h-full w-full bg-white flex items-center justify-center text-center'>
+        <div className='bg-white relative flex items-center justify-center text-center'>
           <ContactLoadingSpinner />
         </div>
       )}
 
       {!sending && success && (
-        <div className='absolute top-0 left-0 h-full w-full bg-white flex items-center justify-center text-center'>
-          <p className='lead'>✅ Message sent successfully!</p>
-          <p>Thanks for your message. I&apos;ll be in touch soon.</p>
+        <div className='bg-green-50 text-green-800 p-4'>
+          <p className='text-xl'>✅ Message sent successfully!</p>
+          <p className='mb-0!'>
+            Thanks for your message. I&apos;ll be in touch soon.
+          </p>
         </div>
       )}
     </div>

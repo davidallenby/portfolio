@@ -63,7 +63,7 @@
 
 .line {
   height: 4px;
-  background: #3b82f6;
+  background: var(--color-primary);
   position: absolute;
   width: 0%;
   left: 25%;

@@ -19,6 +19,7 @@ export default function Button({
   size = 'md',
   leftIcon,
   rightIcon,
+  type = 'button',
   ...props
 }: ButtonProps) {
   const buttonSizeClass = BUTTON_SIZES[size]
