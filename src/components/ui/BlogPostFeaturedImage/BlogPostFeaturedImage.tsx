@@ -3,7 +3,6 @@ import { useBreakpointBoolean } from '@hooks/dom'
 import classNames from '@node_modules/classnames'
 import Image from 'next/image'
 import { type FC } from 'react'
-import './BlogPostFeaturedImage.scss'
 
 interface BlogPostFeaturedImageProps {
   src: string

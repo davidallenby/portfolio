@@ -79,7 +79,7 @@ const BlogTagCloudFilter: FC = () => {
             const isTagActive = blogFilterTags.some((id) => id === tag.id)
             return (
               <Chip
-                key={tag.id}
+                key={`blog-tag-${tag.id}`}
                 onClick={tagToggleHandler(tag.id)}
                 toggle={isTagActive}
               >

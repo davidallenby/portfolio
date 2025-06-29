@@ -28,17 +28,17 @@ const BlogPostList: FC = () => {
       {isLoading && <BlogPostListItemSkeleton />}
 
       {!isLoading && isSuccess && data.length > 0 && (
-        <div className='flex flex-col gap-16'>
+        <ul className='flex flex-col'>
           {data.map((post: BlogPost, i: number) => {
             const isLastItem = i === data.length - 1
             return (
-              <>
-                <BlogPostListItem key={i} post={post} />
-                {!isLastItem && <hr />}
-              </>
+              <li key={`blog-post-${post.id}`}>
+                <BlogPostListItem post={post} />
+                {!isLastItem && <hr className='my-16' />}
+              </li>
             )
           })}
-        </div>
+        </ul>
       )}
 
       {!isLoading && isSuccess && data.length === 0 && <BlogPostListEmpty />}
