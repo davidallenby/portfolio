@@ -3,7 +3,7 @@ import type {
   BlogPostTag,
   GetBlogPostsPayload
 } from '@interfaces/blog.interfaces'
-import { type FC } from 'react'
+import { type FC, useCallback } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { useStore } from '../../../store/store'
 import Chip from '../Chip/Chip'
@@ -18,47 +18,43 @@ const BlogTagCloudFilter: FC = () => {
   const { blogFilterTags, setBlogFilterTags } = useStore()
 
   /**
-   * Check if the provided tag ID is currently selected.
-   *
-   * @param {number} tagId
-   * @return {*}
+   * Fire API to filter the tags and refresh the state
+   * @param tagIds
    */
-  const isTagActive = (tagId: number): boolean => {
-    return blogFilterTags.some((id) => id === tagId)
-  }
+  const filterPostsByTag = useCallback(
+    (tagIds: number[]) => {
+      const payload: GetBlogPostsPayload = { page: 1, tagIds }
+      mutation.mutate(payload)
+    },
+    [mutation]
+  )
 
   /**
    * Fired when the user clicks the tag to filter the posts.
    *
    * @param {number} tagId
    */
-  const tagToggleHandler = (tagId: number) => {
-    // Check if the tag is currently active
-    const isActive = isTagActive(tagId)
-    let newTagIds: number[] = []
-    // If it is...
-    if (isActive) {
-      // Remove it
-      newTagIds = blogFilterTags.filter((active: number) => active !== tagId)
-    } else {
-      // .. if not...
-      // Add it
-      newTagIds = [...blogFilterTags, tagId]
-    }
-    // Update the state
-    setBlogFilterTags(newTagIds)
-    // Fire the API
-    filterPostsByTag(newTagIds)
-  }
-
-  /**
-   * Fire API to filter the tags and refresh the state
-   * @param tagIds
-   */
-  const filterPostsByTag = (tagIds: number[]) => {
-    const payload: GetBlogPostsPayload = { page: 1, tagIds }
-    mutation.mutate(payload)
-  }
+  const tagToggleHandler = useCallback(
+    (tagId: number) => () => {
+      // Check if the tag is currently active
+      const isActive = blogFilterTags.some((id) => id === tagId)
+      let newTagIds: number[] = []
+      // If it is...
+      if (isActive) {
+        // Remove it
+        newTagIds = blogFilterTags.filter((active: number) => active !== tagId)
+      } else {
+        // .. if not...
+        // Add it
+        newTagIds = [...blogFilterTags, tagId]
+      }
+      // Update the state
+      setBlogFilterTags(newTagIds)
+      // Fire the API
+      filterPostsByTag(newTagIds)
+    },
+    [blogFilterTags, setBlogFilterTags, filterPostsByTag]
+  )
 
   return (
     <div className='BlogTagCloudFilter'>
@@ -77,20 +73,22 @@ const BlogTagCloudFilter: FC = () => {
         </div>
       )}
 
-      {tagSuccess &&
-        tags.length &&
-        tags.map((tag: BlogPostTag, i: number) => {
-          return (
-            <Chip
-              key={tag.id}
-              className='my-2 me-3'
-              onClick={() => tagToggleHandler(tag.id)}
-              toggle={isTagActive(tag.id)}
-            >
-              {tag.name}
-            </Chip>
-          )
-        })}
+      {tagSuccess && tags.length && (
+        <div className='flex flex-wrap gap-2'>
+          {tags.map((tag: BlogPostTag, i: number) => {
+            const isTagActive = blogFilterTags.some((id) => id === tag.id)
+            return (
+              <Chip
+                key={tag.id}
+                onClick={tagToggleHandler(tag.id)}
+                toggle={isTagActive}
+              >
+                {tag.name}
+              </Chip>
+            )
+          })}
+        </div>
+      )}
     </div>
   )
 }

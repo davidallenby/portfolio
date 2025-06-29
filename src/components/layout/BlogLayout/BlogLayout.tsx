@@ -2,8 +2,6 @@
 import BlogFiltersMobile from '@modules/BlogFiltersMobile/BlogFiltersMobile'
 import BlogSidebar from '@modules/BlogSidebar/BlogSidebar'
 import { type FC, type ReactNode } from 'react'
-import ContentContainer from '../ContentContainer/ContentContainer'
-import './BlogLayout.scss'
 
 interface BlogLayoutProps {
   children: ReactNode
@@ -11,18 +9,22 @@ interface BlogLayoutProps {
 
 const BlogLayout: FC<BlogLayoutProps> = ({ children }) => {
   return (
-    <ContentContainer>
-      <div className='BlogLayout mx-auto lg:ms-0'>
-        <BlogFiltersMobile />
+    <div className='container py-12'>
+      <div className='max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2'>
+        <div className='lg:hidden mb-8'>
+          <BlogFiltersMobile />
+        </div>
 
-        <div className='BlogLayout__content'>
+        <div className='BlogLayout__content lg:border-r border-primary-100 lg:pr-16'>
           <h2 className='visually-hidden'>Posts</h2>
           {children}
         </div>
 
-        <BlogSidebar />
+        <div className='hidden lg:block pl-16'>
+          <BlogSidebar />
+        </div>
       </div>
-    </ContentContainer>
+    </div>
   )
 }
 

@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en' className='flex flex-col flex-grow-1 h-100'>
+    <html lang='en' className='flex flex-col flex-grow-1 h-screen'>
       <head>
         <script>let FF_FOUC_FIX;</script>
       </head>

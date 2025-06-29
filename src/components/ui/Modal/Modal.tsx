@@ -1,76 +1,34 @@
-import { type FC, type ReactNode, useEffect, useState } from 'react'
-import { IoMdClose } from 'react-icons/io'
-import './Modal.scss'
+import { DialogTitle } from '@headlessui/react'
+import { type FC, PropsWithChildren } from 'react'
+import ModalContainer, { ModalContainerProps } from './ModalContainer'
+import ModalContent from './ModalContent'
+import ModalFooter, { ModalFooterProps } from './ModalFooter'
 
-interface ModalProps {
-  show: boolean
-  title: string
-  onClose: (bool: boolean) => void
-  children: ReactNode
-  cancelBtnLabel?: string
-}
+export type ModalProps = PropsWithChildren<
+  ModalContainerProps & ModalFooterProps
+>
 
 const Modal: FC<ModalProps> = ({
-  show,
-  title,
-  onClose,
+  isOpen,
+  onDismiss,
   children,
-  cancelBtnLabel = 'Cancel'
+  primaryButtonProps,
+  secondaryButtonProps,
+  title,
+  ...props
 }) => {
-  const [open, setOpen] = useState(false)
-  const [styleClass, setStyleClass] = useState('Modal')
-
-  useEffect(() => {
-    const baseStyleClass = `Modal position-fixed top-0 start-0 h-100 w-100`
-    const updatedStyleClass = `${baseStyleClass}${show ? ' Modal--show' : ''}`
-
-    if (show) {
-      setTimeout(() => {
-        setStyleClass(updatedStyleClass)
-        document.body.classList.add('overflow-hidden')
-      }, 250)
-      setOpen(show)
-    } else {
-      setStyleClass(updatedStyleClass)
-      setTimeout(() => {
-        setOpen(show)
-        document.body.classList.remove('overflow-hidden')
-      }, 250)
-    }
-  }, [show])
-
   return (
-    <>
-      {open && (
-        <div className={styleClass} onClick={(e) => onClose(false)}>
-          <div
-            className='Modal__body position-absolute w-100 flex flex-col flex-grow-1'
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className='Modal__header p-3 border-bottom flex items-center justify-content-between'>
-              <h4 className='mb-0 text-truncate me-3'>{title}</h4>
-              <button
-                type='button'
-                className='btn'
-                onClick={() => onClose(false)}
-              >
-                <IoMdClose size={22} />
-              </button>
-            </div>
-            <div className='Modal__content flex-grow-1 p-3'>{children}</div>
-            <div className='Modal__footer text-end p-3 border-top'>
-              <button
-                type='button'
-                className='btn btn-outline-primary'
-                onClick={() => onClose(false)}
-              >
-                <span>{cancelBtnLabel}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+    <ModalContainer isOpen={isOpen} onDismiss={onDismiss} {...props}>
+      <DialogTitle className='px-6 py-4 mb-0!' as='h4'>
+        {title}
+      </DialogTitle>
+      <ModalContent>{children}</ModalContent>
+      <ModalFooter
+        className='px-6 py-4'
+        primaryButtonProps={primaryButtonProps}
+        secondaryButtonProps={secondaryButtonProps}
+      />
+    </ModalContainer>
   )
 }
 

@@ -1,13 +1,14 @@
 'use client'
-import BlogPostListItem from '@components/ui/BlogPostListItem/BlogPostListItem'
-import { BLOG } from '@constants/blog'
 import { QUERY } from '@constants/query'
 import { queryClient } from '@context/ReactQueryProvider'
 import { useGetBlogPosts } from '@hooks/blog'
 import type { BlogPost } from '@interfaces/blog.interfaces'
+import BlogPostListItem from '@modules/BlogPostList/BlogPostListItem/BlogPostListItem'
 import { useStore } from '@store/store'
 import Link from 'next/link'
 import { type FC, useEffect } from 'react'
+import BlogPostListEmpty from './BlogPostListEmpty'
+import BlogPostListItemSkeleton from './BlogPostListItemSkeleton'
 
 const BlogPostList: FC = () => {
   const { blogFilterTags } = useStore()
@@ -24,24 +25,19 @@ const BlogPostList: FC = () => {
 
   return (
     <div className='BlogPostList'>
-      {!isLoading && isSuccess && (
+      {!isLoading && isSuccess && data.length > 0 && (
         <>
-          {data.length ? (
-            data.map((post: BlogPost, i: number) => {
-              return <BlogPostListItem key={i} post={post} />
-            })
-          ) : (
-            <>
-              <h3 className='h2'>No posts found</h3>
-              <p>There weren&apos;t any posts found with those filters ☹️.</p>
-            </>
-          )}
+          {data.map((post: BlogPost, i: number) => {
+            return <BlogPostListItem key={i} post={post} />
+          })}
         </>
       )}
 
-      {isLoading && <BlogPostListItem post={BLOG.EMPTY_POST} loading={true} />}
+      {!isLoading && isSuccess && data.length === 0 && <BlogPostListEmpty />}
 
-      {isError && (
+      {isLoading && <BlogPostListItemSkeleton />}
+
+      {!isLoading && isError && (
         <>
           <p className='lead'>
             <span>Hmmm, there was an error loading the blog posts. </span>

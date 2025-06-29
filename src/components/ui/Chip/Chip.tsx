@@ -1,14 +1,13 @@
 'use client'
-import { type FC, type ReactNode, useEffect, useState } from 'react'
-import { MdClose } from 'react-icons/md'
-import './Chip.scss'
+import classNames from '@node_modules/classnames'
+import { type FC, type ReactNode, useCallback, useMemo } from 'react'
+import { CHIP_SIZE_CLASS, CHIP_SIZE_ICON_CLASS } from './config'
 
 interface ChipProps {
   className?: string
   children?: ReactNode
   icon?: ReactNode
-  small?: boolean
-  onDismiss?: (e: any) => void
+  size?: 'sm' | 'md'
   onClick?: (e: any) => void
   toggle?: boolean
 }
@@ -17,13 +16,10 @@ const Chip: FC<ChipProps> = ({
   className,
   children,
   icon,
-  small,
-  onDismiss,
+  size = 'md',
   onClick,
   toggle
 }) => {
-  const [styleClass, setStyleClass] = useState('')
-
   /**
    * If an onClick method is present. We need to enable this for people using a
    * keyboard. (i.e. accessible users.)
@@ -31,64 +27,57 @@ const Chip: FC<ChipProps> = ({
    * @param {*} e
    * @return {*}
    */
-  const keyDownHandler = (e: any) => {
-    if (!onClick || e.key !== 'Enter') {
-      return
-    }
-    clickHandler(e)
-  }
+  const keyDownHandler = useCallback(
+    (e: any) => {
+      if (!onClick || e.key !== 'Enter') {
+        return
+      }
+      clickHandler(e)
+    },
+    [onClick]
+  )
 
   /**
    * Handles the click event.
    *
    * @param {*} e
    */
-  const clickHandler = (e: any) => {
-    if (onClick) {
-      onClick(e)
-    }
-  }
+  const clickHandler = useCallback(
+    (e: any) => {
+      if (onClick) {
+        onClick(e)
+      }
+    },
+    [onClick]
+  )
 
-  useEffect(() => {
-    /**
-     * Initialise the styleClass attribute for this element based on the props
-     * provided
-     *
-     */
-    const initStyleClasses = () => {
-      let classes = ``
-      if (small) {
-        classes += ` Chip--small`
+  const chipStyleClasses = useMemo(() => {
+    return classNames(
+      'inline-flex items-center rounded-sm transition-all duration-300 text-primary bg-beige border border-beige',
+      className,
+      {
+        [CHIP_SIZE_CLASS[size]]: size,
+        'cursor-pointer hover:bg-beige/50': !!onClick,
+        'bg-primary text-white hover:bg-primary/80 border-primary': toggle
       }
-      if (!!onClick) {
-        classes += ` Chip--clickable`
-      }
-      if (toggle) {
-        classes += ` Chip--active`
-      }
-      setStyleClass(classes)
-    }
-    initStyleClasses()
-  }, [toggle, small, onClick])
+    )
+  }, [className, size, onClick, toggle])
+
+  const tabIndex = useMemo(() => {
+    return !!onClick ? 0 : undefined
+  }, [onClick])
 
   return (
     <div
-      className={`Chip inline-flex items-center ${className} ${styleClass}`}
-      onClick={onClick ? clickHandler : undefined}
-      onKeyDown={onClick ? keyDownHandler : undefined}
-      tabIndex={!!onClick ? 0 : undefined}
+      className={chipStyleClasses}
+      onClick={clickHandler}
+      onKeyDown={keyDownHandler}
+      tabIndex={tabIndex}
     >
-      {icon && <span className='me-2'>{icon}</span>}
-      <span className='Chip__label'>{children}</span>
-      {onDismiss && (
-        <button
-          type='button'
-          className='Chip__dismiss ms-3 p-0 border-0 bg-transparent'
-          onClick={onDismiss}
-        >
-          <MdClose size={14} />
-        </button>
+      {icon && (
+        <span className={`${CHIP_SIZE_ICON_CLASS[size]} me-2`}>{icon}</span>
       )}
+      <span>{children}</span>
     </div>
   )
 }

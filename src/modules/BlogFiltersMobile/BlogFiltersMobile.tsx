@@ -1,41 +1,54 @@
 import BlogTagCloudFilter from '@components/ui/BlogTagCloudFilter/BlogTagCloudFilter'
+import Button from '@components/ui/Button/Button'
 import ClearAllTagsButton from '@components/ui/ClearAllTagsButton/ClearAllTagsButton'
 import Modal from '@components/ui/Modal/Modal'
-import { type FC, useCallback, useState } from 'react'
+import { type FC, useCallback, useMemo, useState } from 'react'
 import { MdFilterList } from 'react-icons/md'
 
 const BlogFiltersMobile: FC = () => {
-  const [open, isOpen] = useState(false)
+  const [open, setOpen] = useState(false)
 
   const handleToggle = useCallback(
-    (bool: boolean) => (e: React.MouseEvent<HTMLButtonElement>) => {
-      isOpen(bool)
+    (bool: boolean) => () => {
+      console.log('handleToggle', bool)
+      setOpen(bool)
     },
     []
   )
 
+  const closeButtonProps = useMemo(
+    () => ({
+      children: 'Close',
+      onClick: handleToggle(false)
+    }),
+    [handleToggle]
+  )
+
+  const handleDismiss = useCallback(() => {
+    setOpen(false)
+  }, [])
+
   return (
-    <div className='BlogFiltersMobile lg:hidden bg-off-white py-2'>
-      <div className='flex items-center'>
-        <button
-          type='button'
-          className='btn btn-sm btn-outline-primary flex items-center me-3'
-          onClick={handleToggle(!open)}
-        >
-          <MdFilterList size={16} className='me-1' />
-          <span>Tags</span>
-        </button>
-      </div>
-      <Modal
-        show={open}
-        title='Filter by tag'
-        onClose={handleToggle}
-        cancelBtnLabel='Close'
+    <>
+      <Button
+        size='sm'
+        leftIcon={<MdFilterList size={16} />}
+        variant='secondary'
+        className='flex items-center me-3'
+        onClick={handleToggle(!open)}
       >
-        <ClearAllTagsButton className='mb-3' />
+        <span>Tags</span>
+      </Button>
+      <Modal
+        isOpen={open}
+        title='Filter by tag'
+        onDismiss={handleDismiss}
+        secondaryButtonProps={closeButtonProps}
+      >
+        <ClearAllTagsButton className='mb-6' />
         <BlogTagCloudFilter />
       </Modal>
-    </div>
+    </>
   )
 }
 
