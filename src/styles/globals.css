@@ -42,6 +42,7 @@
 
     @media (min-width: 768px) {
       @apply w-[55%];
+      max-width: 800px;
     }
   }
 
