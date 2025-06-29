@@ -15,13 +15,7 @@ const ContactForm: FC = () => {
     reset,
     handleSubmit,
     formState: { errors }
-  } = useForm<ContactFormInput>({
-    defaultValues: {
-      name: 'Test ',
-      email: 'test@test.com',
-      message: 'Test message'
-    }
-  })
+  } = useForm<ContactFormInput>({})
   // Reference to the recaptcha component
   const recaptchaRef = useRef<ReCAPTCHA>(null)
   // Sending states
