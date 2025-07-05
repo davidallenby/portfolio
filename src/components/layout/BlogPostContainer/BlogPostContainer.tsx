@@ -17,7 +17,7 @@ const BlogPostContainer: FC<BlogPostContainerProps> = ({
   return (
     <div
       className={classNames(
-        'max-w-screen-md mx-auto BlogPostContainer py-24',
+        'container px-4 md:max-w-screen-md mx-auto py-24',
         className
       )}
     >
