@@ -4,7 +4,7 @@
 		"clientKind": "git",
 		"enabled": true,
 		"useIgnoreFile": true,
-		"defaultBranch": "preprod"
+		"defaultBranch": "master"
 	},
 	"javascript": {
 		"formatter": {
@@ -109,7 +109,7 @@
 			}
 		},
 		{
-			"include": ["packages/webapp/**"],
+			"include": ["./src/**/*"],
 			"javascript": {
 				"formatter": {
 					"arrowParentheses": "always",
