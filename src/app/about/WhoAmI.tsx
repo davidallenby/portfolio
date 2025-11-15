@@ -36,29 +36,30 @@ export default function WhoAmI() {
             <Link href={ROUTES.CONTACT}>get in touch!</Link>
           </p>
         </div>
-        <div className='w-full grid grid-cols-2 grid-rows-2 md:grid-rows-1 md:grid-cols-3 gap-4'>
+        <div className='w-full grid grid-cols-2 grid-rows-2 gap-4 md:grid-rows-1 md:grid-cols-3'>
           <div className='relative col-span-1 row-span-2 md:row-span-1 md:col-start-1 md:row-start-1'>
-            <Image
-              src={'/images/tv-tower.jpg'}
-              alt='Berlin TV Tower'
+          <Image
+              src={'/images/me-forest.jpg'}
+              alt='Me in the forest'
               width={600}
               height={600}
               className='h-full w-full object-cover'
             />
+
           </div>
           <div className='relative col-span-1 md:col-start-2 md:row-start-1'>
             <Image
               src={'/images/brandenburg-gate.jpeg'}
-              alt='Berlin TV Tower'
+              alt='Me at theBrandenburg Gate'
               width={600}
               height={600}
               className='h-full w-full object-cover'
             />
           </div>
           <div className='relative col-span-1 md:col-start-3 md:row-start-1'>
-            <Image
-              src={'/images/me-forest.jpg'}
-              alt='Berlin TV Tower'
+          <Image
+              src={'/images/me-camera.jpeg'}
+              alt='Me with a camera in the forest'
               width={600}
               height={600}
               className='h-full w-full object-cover'

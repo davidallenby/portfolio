@@ -18,7 +18,7 @@ const BlogPostListItemImage: FC<BlogPostListItemImageProps> = ({
   return (
     <div
       className={classNames(
-        'aspect-video block relative w-full overflow-hidden',
+        'aspect-video md:aspect-square lg:aspect-video xl:aspect-square block relative w-full md:max-w-[28%] lg:max-w-none xl:max-w-[30%] overflow-hidden',
         className
       )}
     >
