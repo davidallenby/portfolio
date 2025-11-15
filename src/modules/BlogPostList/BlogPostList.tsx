@@ -5,55 +5,47 @@ import { useGetBlogPosts } from '@hooks/blog'
 import type { BlogPost } from '@interfaces/blog.interfaces'
 import BlogPostListItem from '@modules/BlogPostList/BlogPostListItem/BlogPostListItem'
 import { useStore } from '@store/store'
-import Link from 'next/link'
 import { type FC, useEffect } from 'react'
 import BlogPostListEmpty from './BlogPostListEmpty'
+import { BlogPostListError } from './BlogPostListError'
 import BlogPostListItemSkeleton from './BlogPostListItemSkeleton'
 
 const BlogPostList: FC = () => {
-  const { blogFilterTags } = useStore()
-  const { data, isSuccess, isLoading, isError } = useGetBlogPosts({
-    tagIds: blogFilterTags,
-    page: 1
-  })
-  // When we load this screen, reload the blog posts to the original state.
-  useEffect(() => {
-    return () => {
-      queryClient.removeQueries({ queryKey: [QUERY.BLOG_POSTS] })
-    }
-  }, [])
+	const { blogFilterTags } = useStore()
+	const { data, isSuccess, isLoading, isError } = useGetBlogPosts({
+		tagIds: blogFilterTags,
+		page: 1
+	})
+	// When we leave this page, reload the blog posts to the original state.
+	useEffect(() => {
+		return () => {
+			queryClient.removeQueries({ queryKey: [QUERY.BLOG_POSTS] })
+		}
+	}, [])
 
-  return (
-    <div className='BlogPostList'>
-      {isLoading && <BlogPostListItemSkeleton />}
+	return (
+		<div className="BlogPostList">
+			{isLoading && <BlogPostListItemSkeleton />}
 
-      {!isLoading && isSuccess && data.length > 0 && (
-        <ul className='flex flex-col'>
-          {data.map((post: BlogPost, i: number) => {
-            const isLastItem = i === data.length - 1
-            return (
-              <li key={`blog-post-${post.id}`}>
-                <BlogPostListItem post={post} />
-                {!isLastItem && <hr className='my-16' />}
-              </li>
-            )
-          })}
-        </ul>
-      )}
+			{!isLoading && isSuccess && data.length > 0 && (
+				<ul className="flex flex-col">
+					{data.map((post: BlogPost, i: number) => {
+						const isLastItem = i === data.length - 1
+						return (
+							<li key={`blog-post-${post.id}`}>
+								<BlogPostListItem post={post} />
+								{!isLastItem && <hr className="my-16" />}
+							</li>
+						)
+					})}
+				</ul>
+			)}
 
-      {!isLoading && isSuccess && data.length === 0 && <BlogPostListEmpty />}
+			{!isLoading && isSuccess && data.length === 0 && <BlogPostListEmpty />}
 
-      {!isLoading && isError && (
-        <>
-          <p className='lead'>
-            <span>Hmmm, there was an error loading the blog posts. </span>
-            <Link href={`/contact`}>Let me know</Link>
-            <span> what happened so I can fix it!</span>
-          </p>
-        </>
-      )}
-    </div>
-  )
+			{!isLoading && isError && <BlogPostListError />}
+		</div>
+	)
 }
 
 export default BlogPostList
