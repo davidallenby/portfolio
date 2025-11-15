@@ -37,6 +37,25 @@
     @apply mb-4;
   }
 
+  /* Add spacing between paragraphs/lists and following headings in markdown content */
+  .markdown-content p + h2,
+  .markdown-content ul + h2,
+  .markdown-content ol + h2 {
+    @apply mt-12;
+  }
+
+  .markdown-content p + h3,
+  .markdown-content ul + h3,
+  .markdown-content ol + h3 {
+    @apply mt-10;
+  }
+
+  .markdown-content p + h4,
+  .markdown-content ul + h4,
+  .markdown-content ol + h4 {
+    @apply mt-8;
+  }
+
   hr {
     @apply w-3/4 mx-auto border border-primary-100;
 

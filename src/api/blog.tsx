@@ -1,117 +1,45 @@
-import { CMS } from '@constants/wordpress'
-import type { ApiResponse } from '@interfaces/api.interfaces'
+import type { ApiResponse } from '@interfaces/api.interfaces';
 import type {
   BlogPost,
   BlogPostCategory,
   BlogPostTag,
   GetBlogPostsPayload
-} from '@interfaces/blog.interfaces'
-import type {
-  WPBlogPost,
-  WpCategory,
-  WpTag
-} from '@interfaces/wordpress.interfaces'
+} from '@interfaces/blog.interfaces';
+import {
+  getBlogPostsAction,
+  getBlogPostCategoriesAction,
+  getBlogPostTagsAction,
+  getBlogPostBySlugAction
+} from '../actions/blog';
 
 /**
- * Get a list of blog posts
- * @param payload
- * @returns
+ * Get a list of blog posts (wraps server action for React Query)
  */
 export const getBlogPosts = async (
   payload: GetBlogPostsPayload
 ): Promise<BlogPost[]> => {
-  try {
-    const { page, tagIds } = payload
-    let url = `${CMS.BASE_URL}/posts?page=${page}`
-
-    if (tagIds?.length) {
-      for (const id of tagIds) {
-        url += `&tags=${id}`
-      }
-    }
-
-    const data = await fetch(url)
-    const json = await data.json()
-    // Re-map the WP items as blog post items for the client side / NextJS
-    return json.map((item: WPBlogPost) => setWpBlogPostAsBlogPost(item))
-  } catch (err) {
-    console.log(err)
-    return []
-  }
-}
-// Converts the WP response item to a better format for our frontend. There are
-// a lot of properties we don't need and we need to drill down into the WP
-// properties to get the data we do need.
-const setWpBlogPostAsBlogPost = (item: WPBlogPost): BlogPost => {
-  return {
-    id: item.id,
-    title: item.title.rendered,
-    slug: item.slug,
-    dateCreated: new Date(item.date),
-    url: `/blog/${item.slug}`,
-    tags: item.tags,
-    categories: item.categories,
-    featuredImageUrl: item.jetpack_featured_media_url,
-    excerpt: item.excerpt.rendered,
-    content: item.content.rendered
-  }
-}
+  return getBlogPostsAction(payload);
+};
 
 /**
- * Get a list of categories for blog posts
+ * Get a list of categories for blog posts (wraps server action for React Query)
  */
 export const getBlogPostCategories = async (): Promise<BlogPostCategory[]> => {
-  try {
-    const url = `${CMS.BASE_URL}/categories?hide_empty=true`
-    const data = await fetch(url)
-    const json = await data.json()
-    // Re-map the WP items as blog post items for the client side / NextJS
-    return json.map(mapWpItemsAsClient)
-  } catch (err) {
-    console.log(err)
-    return []
-  }
-}
+  return getBlogPostCategoriesAction();
+};
 
 /**
- * Get a list of tags
- * @returns
+ * Get a list of tags (wraps server action for React Query)
  */
 export const getBlogPostTags = async (): Promise<BlogPostTag[]> => {
-  try {
-    const url = `${CMS.BASE_URL}/tags`
-    const data = await fetch(url)
-    const json = await data.json()
-    // Re-map the WP items as blog post tags for the client side / NextJS
-    return json.map(mapWpItemsAsClient)
-  } catch (err) {
-    console.log(err)
-    return []
-  }
-}
-// Categories and Tags have the same structure
-type WpTagOrWpCategory = WpTag | WpCategory
-const mapWpItemsAsClient = (
-  item: WpTagOrWpCategory
-): BlogPostTag | BlogPostCategory => {
-  const { id, name, slug } = item
-  return { id, name, slug }
-}
+  return getBlogPostTagsAction();
+};
+
 /**
- * Get a specific blog post by slug
- * @param slug
- * @returns
+ * Get a specific blog post by slug (wraps server action for React Query)
  */
 export const getBlogPostBySlug = async (
   slug: string
 ): ApiResponse<BlogPost> => {
-  try {
-    const url = `${CMS.BASE_URL}/posts?slug=${slug}`
-    const data = await fetch(url)
-    const json = await data.json()
-    const mapped = json.map((item: WPBlogPost) => setWpBlogPostAsBlogPost(item))
-    return { data: mapped[0], success: true }
-  } catch {
-    return { data: null, success: false }
-  }
-}
+  return getBlogPostBySlugAction(slug);
+};

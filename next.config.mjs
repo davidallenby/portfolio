@@ -3,7 +3,9 @@ const nextConfig = {
 	images: {
 		remotePatterns: [
 			{
-				hostname: 'i0.wp.com'
+				protocol: 'https',
+				hostname: 'firebasestorage.googleapis.com',
+				pathname: '/v0/b/my-portfolio-site-6fafa.firebasestorage.app/**'
 			}
 		]
 	},

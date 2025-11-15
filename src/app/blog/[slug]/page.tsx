@@ -3,9 +3,8 @@ import BlogPostContainer from '@components/layout/BlogPostContainer/BlogPostCont
 import SiteLayout from '@components/layout/SiteLayout/SiteLayout'
 import BlogPostFeaturedImage from '@components/ui/BlogPostFeaturedImage/BlogPostFeaturedImage'
 import BlogPostTagList from '@components/ui/BlogPostTagList/BlogPostTagList'
-import SanitizedHtml from '@components/ui/SanitizedHtml/SanitizedHtml'
+import { MarkdownContent } from '@components/ui/MarkdownContent'
 import { getDateString } from '@helpers/dates'
-import type { IOptions } from 'sanitize-html'
 import NotFound from './NotFound'
 
 export default async function BlogPage({
@@ -19,10 +18,6 @@ export default async function BlogPage({
   }
   // Get the post data by slug in the URL
   const { data, success } = await getBlogPostBySlug(params.slug)
-  // Allowed tags in the HTML content
-  const contentOptions: IOptions = {
-    allowedTags: ['h2', 'h3', 'h4', 'pre', 'code']
-  }
 
   return (
     <SiteLayout>
@@ -48,7 +43,7 @@ export default async function BlogPage({
                 size='sm'
                 className='mb-4 hidden sm:block'
               />
-              <SanitizedHtml html={data.content} options={contentOptions} />
+              <MarkdownContent content={data.content} />
             </BlogPostContainer>
           </>
         )}
