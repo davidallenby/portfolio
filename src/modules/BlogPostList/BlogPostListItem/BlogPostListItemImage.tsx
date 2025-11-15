@@ -1,6 +1,7 @@
 import classNames from '@node_modules/classnames'
 import Image from 'next/image'
 import { type FC } from 'react'
+import { BLOG_POST_LIST_ITEM_IMAGE_BASE_CLASS } from '../config'
 
 interface BlogPostListItemImageProps {
 	src: string
@@ -11,12 +12,7 @@ interface BlogPostListItemImageProps {
 
 const BlogPostListItemImage: FC<BlogPostListItemImageProps> = ({ src, alt, loading, className }) => {
 	return (
-		<div
-			className={classNames(
-				'aspect-video md:aspect-square lg:aspect-video xl:aspect-square block relative w-full md:max-w-[28%] lg:max-w-none xl:max-w-[30%] overflow-hidden',
-				className
-			)}
-		>
+		<div className={classNames(BLOG_POST_LIST_ITEM_IMAGE_BASE_CLASS, className)}>
 			<Image
 				width={400}
 				height={400}
