@@ -34,7 +34,7 @@ export default function WhoAmI() {
 				<div className="w-full grid grid-cols-2 grid-rows-2 gap-4 md:grid-rows-1 md:grid-cols-3">
 					<div className="relative col-span-1 row-span-2 md:row-span-1 md:col-start-1 md:row-start-1">
 						<Image
-							src={'/images/me-forest.jpg'}
+							src={'https://firebasestorage.googleapis.com/v0/b/my-portfolio-site-6fafa.firebasestorage.app/o/site-content%2Fme-forest.jpg?alt=media&token=06ddffdb-6fb1-4170-b64b-79016edb35e1'}
 							alt="Me in the forest"
 							width={600}
 							height={600}
@@ -43,7 +43,7 @@ export default function WhoAmI() {
 					</div>
 					<div className="relative col-span-1 md:col-start-2 md:row-start-1">
 						<Image
-							src={'/images/brandenburg-gate.jpeg'}
+							src={'https://firebasestorage.googleapis.com/v0/b/my-portfolio-site-6fafa.firebasestorage.app/o/site-content%2Fbrandenburg-gate.jpeg?alt=media&token=51d8d43e-c28d-4b53-a3f6-70620def9284'}
 							alt="Me at theBrandenburg Gate"
 							width={600}
 							height={600}
@@ -52,7 +52,7 @@ export default function WhoAmI() {
 					</div>
 					<div className="relative col-span-1 md:col-start-3 md:row-start-1">
 						<Image
-							src={'/images/me-camera.jpeg'}
+							src={'https://firebasestorage.googleapis.com/v0/b/my-portfolio-site-6fafa.firebasestorage.app/o/site-content%2Fme-camera.jpeg?alt=media&token=b79a74be-13fd-4acb-a00c-cf360e8586b9'}
 							alt="Me with a camera in the forest"
 							width={600}
 							height={600}
