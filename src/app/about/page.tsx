@@ -21,7 +21,7 @@ export default function About() {
 							<div className="relative flex flex-col flex-grow-1">
 								<Image
 									className="AboutHeader__image img-fluid"
-									src={'/images/me-beach.jpg'}
+									src={'https://firebasestorage.googleapis.com/v0/b/my-portfolio-site-6fafa.firebasestorage.app/o/site-content%2Fme-beach.jpg?alt=media&token=dccac05c-ddc2-41c2-bde6-6b6a99cfe421'}
 									alt={'Me at the beach'}
 									width={1024}
 									height={576}

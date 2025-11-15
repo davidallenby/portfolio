@@ -84,7 +84,7 @@ export default async function Home() {
           <div className='relative min-h-[300px]'>
             <Image
               className='img-fluid'
-              src={`/images/me-alligator-gorge.jpg`}
+              src={'https://firebasestorage.googleapis.com/v0/b/my-portfolio-site-6fafa.firebasestorage.app/o/site-content%2Fme-alligator-gorge.jpg?alt=media&token=ac4cea91-3632-4ce7-b3a8-70cbddd2b3aa'}
               alt='Me hiking through alligator gorge'
               width={1024}
               height={576}
