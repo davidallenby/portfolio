@@ -7,8 +7,7 @@
     "source": ".",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "frameworksBackend": {
-      "region": "us-central1",
-      "secrets": ["RESEND_API_KEY"]
+      "region": "us-central1"
     }
   },
   "functions": [
