@@ -1,29 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { NodemailerEmailService } from '../../../services/email/EmailService'
+import { ResendEmailService } from '../../../services/email/EmailService'
 import type { ContactFormData } from '../../../services/email/interfaces'
 
-// Email service configuration
-const emailConfig = {
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: process.env.SMTP_SECURE === 'true',
-  auth: {
-    user: process.env.SMTP_USER || '',
-    pass: process.env.SMTP_PASS || ''
-  }
-}
-
-// Debug: Log email config (without password)
-console.log('Email config:', {
-  host: emailConfig.host,
-  port: emailConfig.port,
-  secure: emailConfig.secure,
-  user: emailConfig.auth.user,
-  hasPassword: !!emailConfig.auth.pass
-})
-
 // Initialize email service
-const emailService = new NodemailerEmailService(emailConfig)
+const emailService = new ResendEmailService(
+  process.env.RESEND_API_KEY || ''
+)
 
 // Validation function
 function validateContactData(data: any): data is ContactFormData {
@@ -62,28 +44,8 @@ export async function POST(request: NextRequest) {
       message: body.message.trim()
     }
 
-    // Verify email service connection
-    console.log('Attempting to verify email service connection...')
-    const isConnected = await emailService.verifyConnection()
-    console.log('Connection verification result:', isConnected)
-
-    if (!isConnected) {
-      console.error(
-        'Email service connection failed - check SMTP credentials and settings'
-      )
-      return NextResponse.json(
-        {
-          error:
-            'Email service temporarily unavailable. Please try again later.'
-        },
-        { status: 503 }
-      )
-    }
-
     // Send email
-    console.log('Sending contact email...')
     await emailService.sendContactEmail(contactData)
-    console.log('Email sent successfully')
 
     // Return success response
     return NextResponse.json(
@@ -93,18 +55,8 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Contact API error:', error)
 
-    // Return appropriate error response
-    if (error instanceof Error) {
-      if (error.message.includes('Failed to send email')) {
-        return NextResponse.json(
-          { error: 'Failed to send email. Please try again later.' },
-          { status: 500 }
-        )
-      }
-    }
-
     return NextResponse.json(
-      { error: 'Internal server error. Please try again later.' },
+      { error: 'Failed to send email. Please try again later.' },
       { status: 500 }
     )
   }
