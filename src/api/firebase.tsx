@@ -2,13 +2,13 @@ import { type FirebaseOptions, getApps, initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 
 const config: FirebaseOptions = {
-	apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-	authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-	projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-	storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-	messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-	appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-	measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+	apiKey: 'AIzaSyDjoJKq8b-PHmrD6alQT7b5yDWcFArouq4',
+	authDomain: 'my-portfolio-site-6fafa.firebaseapp.com',
+	projectId: 'my-portfolio-site-6fafa',
+	storageBucket: 'my-portfolio-site-6fafa.appspot.com',
+	messagingSenderId: '777946271005',
+	appId: '1:777946271005:web:7f944606b2d0cbf150a5f4',
+	measurementId: 'G-HGPV01GSL8'
 }
 
 // Initialize Firebase
